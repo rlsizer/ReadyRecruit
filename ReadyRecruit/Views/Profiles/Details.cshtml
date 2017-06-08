@@ -1,0 +1,162 @@
+﻿@model ReadyRecruit.Models.Profile
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Height)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Height)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dependents)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dependents)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Branch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Branch)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AsvabScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AsvabScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PracticeScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PracticeScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PointsTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PointsTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PointsEarned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PointsEarned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Education.EduLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Education.EduLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaritalStat.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaritalStat.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PriorService.PriorServiceID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriorService.PriorServiceID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProfileID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

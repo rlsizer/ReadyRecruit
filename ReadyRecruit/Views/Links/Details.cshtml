@@ -1,0 +1,34 @@
+﻿@model ReadyRecruit.Models.Link
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Link</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.FName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Profile.FName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Roadmap.RoadmapName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Roadmap.RoadmapName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LinkID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

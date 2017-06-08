@@ -1,0 +1,135 @@
+﻿@model IEnumerable<ReadyRecruit.Models.Profile>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Height)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Weight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dependents)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Branch)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AsvabScore)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PracticeScore)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PointsTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PointsEarned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Education.EduLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaritalStat.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriorService.PriorServiceID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BirthDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Height)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Weight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dependents)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Branch)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AsvabScore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PracticeScore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PointsTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PointsEarned)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Education.EduLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaritalStat.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriorService.PriorServiceID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProfileID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProfileID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProfileID })
+        </td>
+    </tr>
+}
+
+</table>
