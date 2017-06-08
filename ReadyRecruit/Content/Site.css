@@ -22,3 +22,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.navbar-collapse {
+    border-bottom:10px solid red;
+    border-width: 0px 0px 5px;
+    background-color: white;
+}
+
+.navbar-brand, .navbar-fixed-top a {
+    color: navy;
+}
