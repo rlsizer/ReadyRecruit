@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7f2520029f0a4b198fd3b975dc52a2e4" Name="Diagram1">
+        <EntityTypeShape EntityType="ReadyRecruitModel.Education" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadyRecruitModel.Gender" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadyRecruitModel.Headstep" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadyRecruitModel.Link" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadyRecruitModel.Mainstep" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadyRecruitModel.MaritalStat" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadyRecruitModel.PriorService" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadyRecruitModel.Profile" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadyRecruitModel.Roadmap" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadyRecruitModel.Substep" Width="1.5" PointX="9.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadyRecruitModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ReadyRecruitModel.FK_Profile_Education" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadyRecruitModel.FK_Profile_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadyRecruitModel.FK_Headstep_Mainstep" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadyRecruitModel.FK_Substep_Headstep" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadyRecruitModel.FK_Link_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadyRecruitModel.FK_Link_Roadmap" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadyRecruitModel.FK_Mainstep_Roadmap" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadyRecruitModel.FK_Profile_MaritalStat" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadyRecruitModel.FK_Profile_PriorService" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ReadyRecruitModel.AspNetRole" Width="1.5" PointX="12.625" PointY="9.75" />
+        <EntityTypeShape EntityType="ReadyRecruitModel.AspNetUserClaim" Width="1.5" PointX="11.875" PointY="14.875" />
+        <EntityTypeShape EntityType="ReadyRecruitModel.AspNetUserLogin" Width="1.5" PointX="11.875" PointY="12.25" />
+        <EntityTypeShape EntityType="ReadyRecruitModel.AspNetUser" Width="1.5" PointX="9.625" PointY="0.5" />
+        <AssociationConnector Association="ReadyRecruitModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ReadyRecruitModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ReadyRecruitModel.FK_Profile_AspNetUsers" />
+        <AssociationConnector Association="ReadyRecruitModel.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
