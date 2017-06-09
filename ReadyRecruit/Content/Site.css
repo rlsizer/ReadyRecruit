@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 225px;
     padding-bottom: 20px;
 }
 
@@ -23,16 +23,36 @@ textarea {
     max-width: 280px;
 }
 
+
+/*NAVBAR*/
+
 .navbar-collapse {
-    border-bottom:10px solid red;
-    border-width: 0px 0px 5px;
-    background-color: white;
+    /*border-bottom:10px solid red;
+    border-width: 0px 0px 5px;*/
+    border-bottom:40px,solid;
+    border-bottom-color:blue;
+    border-width:0px,0px,5px;
+    border-top:0px;
 }
 
 .navbar-brand, .navbar-fixed-top a {
-    color: navy;
+    color: red;
 }
 
 .nav li {
-    font-size: 10px;
+    font-size: 12px;
+}
+
+#Home img {
+    height: 200px;
+    width: 50%;
+    margin-left:-10px;;
+}
+
+.navbar.navbar-fixed-top {
+    background-image: url('images/Bald-Eagle-banner-1383.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 225px;
 }

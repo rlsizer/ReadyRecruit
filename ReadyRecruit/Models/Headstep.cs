@@ -11,7 +11,8 @@ namespace ReadyRecruit.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Headstep
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,12 +22,24 @@ namespace ReadyRecruit.Models
         }
     
         public int HeadstepID { get; set; }
+
+        [Required]
         public decimal Number { get; set; }
+
+        [Required]
         public string Name { get; set; }
+
+
         public Nullable<System.DateTime> DueDate { get; set; }
+
+        [Required, Display(Name = "Finished?")]
         public bool IsDone { get; set; }
+
         public string Notes { get; set; }
+
+        [Required]
         public decimal Points { get; set; }
+
         public int MainstepID { get; set; }
     
         public virtual Mainstep Mainstep { get; set; }
