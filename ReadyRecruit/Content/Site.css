@@ -32,3 +32,7 @@ textarea {
 .navbar-brand, .navbar-fixed-top a {
     color: navy;
 }
+
+.nav li {
+    font-size: 10px;
+}

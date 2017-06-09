@@ -4,9 +4,10 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
+using System.Web; 
 using System.Web.Mvc;
 using ReadyRecruit.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ReadyRecruit.Controllers
 {
@@ -17,7 +18,12 @@ namespace ReadyRecruit.Controllers
         // GET: Profiles
         public ActionResult Index()
         {
-            var profiles = db.Profiles.Include(p => p.Education).Include(p => p.Gender).Include(p => p.MaritalStat).Include(p => p.PriorService).Include(p => p.AspNetUser);
+            //make sure user can only see his profile (not others)
+            //var profiles = db.Profiles.Include(p => p.Education).Include(p => p.Gender).Include(p => p.MaritalStat).Include(p => p.PriorService).Include(p => p.AspNetUser);
+            var currentUserId = User.Identity.GetUserId();
+            var profiles = (from p in db.Profiles
+                            where p.Id == currentUserId
+                            select p);
             return View(profiles.ToList());
         }
 
@@ -39,11 +45,23 @@ namespace ReadyRecruit.Controllers
         // GET: Profiles/Create
         public ActionResult Create()
         {
+            //Check to see if user already has a profile
+            var profiles = (from p in db.Profiles select p);
+            foreach (var p in profiles)
+            {
+                //should be if(p.IsDone==true)  but it isn't working
+                //if (p.Id == User.Identity.GetUserId())
+                if (p.IsDone==true)
+                    {
+                    return RedirectToAction("Index");
+                }
+            }
+
             ViewBag.EducationID = new SelectList(db.Educations, "EducationID", "EduLevel");
             ViewBag.GenderID = new SelectList(db.Genders, "GenderID", "Type");
             ViewBag.MaritalStatID = new SelectList(db.MaritalStats, "MaritalStatID", "Status");
             ViewBag.PriorServiceID = new SelectList(db.PriorServices, "PriorServiceID", "PriorServiceID");
-            ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email");
+            //ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
 
@@ -56,16 +74,18 @@ namespace ReadyRecruit.Controllers
         {
             if (ModelState.IsValid)
             {
+                profile.Id = User.Identity.GetUserId();
+                profile.IsDone = true;
                 db.Profiles.Add(profile);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+       
             ViewBag.EducationID = new SelectList(db.Educations, "EducationID", "EduLevel", profile.EducationID);
             ViewBag.GenderID = new SelectList(db.Genders, "GenderID", "Type", profile.GenderID);
             ViewBag.MaritalStatID = new SelectList(db.MaritalStats, "MaritalStatID", "Status", profile.MaritalStatID);
             ViewBag.PriorServiceID = new SelectList(db.PriorServices, "PriorServiceID", "PriorServiceID", profile.PriorServiceID);
-            ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email", profile.Id);
+            //ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email", profile.Id);
             return View(profile);
         }
 
@@ -85,7 +105,7 @@ namespace ReadyRecruit.Controllers
             ViewBag.GenderID = new SelectList(db.Genders, "GenderID", "Type", profile.GenderID);
             ViewBag.MaritalStatID = new SelectList(db.MaritalStats, "MaritalStatID", "Status", profile.MaritalStatID);
             ViewBag.PriorServiceID = new SelectList(db.PriorServices, "PriorServiceID", "PriorServiceID", profile.PriorServiceID);
-            ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email", profile.Id);
+            //ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email", profile.Id);
             return View(profile);
         }
 
@@ -98,15 +118,17 @@ namespace ReadyRecruit.Controllers
         {
             if (ModelState.IsValid)
             {
+                profile.Id = User.Identity.GetUserId();
                 db.Entry(profile).State = EntityState.Modified;
                 db.SaveChanges();
+                //return RedirectToAction("Details",profile.ProfileID);
                 return RedirectToAction("Index");
             }
             ViewBag.EducationID = new SelectList(db.Educations, "EducationID", "EduLevel", profile.EducationID);
             ViewBag.GenderID = new SelectList(db.Genders, "GenderID", "Type", profile.GenderID);
             ViewBag.MaritalStatID = new SelectList(db.MaritalStats, "MaritalStatID", "Status", profile.MaritalStatID);
             ViewBag.PriorServiceID = new SelectList(db.PriorServices, "PriorServiceID", "PriorServiceID", profile.PriorServiceID);
-            ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email", profile.Id);
+            //ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email", profile.Id);
             return View(profile);
         }
 
