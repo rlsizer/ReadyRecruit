@@ -218,23 +218,23 @@ namespace ReadyRecruit.Controllers
                                     where s.HeadstepID == h.HeadstepID
                                     orderby s.Number
                                     select s).ToList();
-                        pages.NumSubsteps = substeps.Count();
-                        if (pages.NumSubsteps > 0)
+                        pages.NumSubsteps[count] = substeps.Count();
+                        if (pages.NumSubsteps[count] > 0)
                         {
                             subcount = 0;
                             foreach (var s in substeps)
                             {
                                 subcount += 1;
-                                pages.Substeps[subcount] = s.Name;   //send substep name
+                                pages.Substeps[count,subcount] = s.Name;   //send substep name
                                 subStats = (from ss in db.SubStats
                                             where ss.LinkID == userLinkID &&
                                             ss.SubstepID == s.SubstepID
                                             select ss).ToList();
                                 if (subStats.Count() > 0)
                                 {
-                                    pages.SubstepsDue[subcount] = subStats[0].DueDate; //send substep due date
-                                    pages.IsSubDone[subcount] = subStats[1].IsDone;    //send substep isDone status
-                                    pages.SubNotes[subcount] = subStats[2].Notes;      //send substep notes
+                                    pages.SubstepsDue[count,subcount] = subStats[0].DueDate; //send substep due date
+                                    pages.IsSubDone[count,subcount] = subStats[1].IsDone;    //send substep isDone status
+                                    pages.SubNotes[count,subcount] = subStats[2].Notes;      //send substep notes
                                 }
                             }
                         }
