@@ -18,6 +18,7 @@ namespace ReadyRecruit.Models
         public Headstep()
         {
             this.Substeps = new HashSet<Substep>();
+            this.HeadStats = new HashSet<HeadStat>();
         }
     
         public int HeadstepID { get; set; }
@@ -32,5 +33,7 @@ namespace ReadyRecruit.Models
         public virtual Mainstep Mainstep { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Substep> Substeps { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HeadStat> HeadStats { get; set; }
     }
 }

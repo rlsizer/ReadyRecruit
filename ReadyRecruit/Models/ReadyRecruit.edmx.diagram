@@ -33,6 +33,15 @@
         <AssociationConnector Association="ReadyRecruitModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="ReadyRecruitModel.FK_Profile_AspNetUsers" />
         <AssociationConnector Association="ReadyRecruitModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="ReadyRecruitModel.HeadStat" Width="1.5" PointX="12.75" PointY="1.5" />
+        <EntityTypeShape EntityType="ReadyRecruitModel.MainStat" Width="1.5" PointX="12.5" PointY="5.5" />
+        <EntityTypeShape EntityType="ReadyRecruitModel.SubStat" Width="1.5" PointX="15" PointY="5.375" />
+        <AssociationConnector Association="ReadyRecruitModel.FK_HeadStat_Headstep" />
+        <AssociationConnector Association="ReadyRecruitModel.FK_HeadStat_Link" />
+        <AssociationConnector Association="ReadyRecruitModel.FK_MainStat_Link" />
+        <AssociationConnector Association="ReadyRecruitModel.FK_SubStat_Link" />
+        <AssociationConnector Association="ReadyRecruitModel.FK_MainStat_Mainstep" />
+        <AssociationConnector Association="ReadyRecruitModel.FK_SubStat_Substep" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -242,11 +242,17 @@
     <Compile Include="Models\Gender.cs">
       <DependentUpon>ReadyRecruit.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HeadStat.cs">
+      <DependentUpon>ReadyRecruit.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Headstep.cs">
       <DependentUpon>ReadyRecruit.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Link.cs">
+      <DependentUpon>ReadyRecruit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MainStat.cs">
       <DependentUpon>ReadyRecruit.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Mainstep.cs">
@@ -256,6 +262,7 @@
     <Compile Include="Models\MaritalStat.cs">
       <DependentUpon>ReadyRecruit.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Pages.cs" />
     <Compile Include="Models\PriorService.cs">
       <DependentUpon>ReadyRecruit.tt</DependentUpon>
     </Compile>
@@ -278,6 +285,10 @@
       <DependentUpon>ReadyRecruit.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Roadmap.cs">
+      <DependentUpon>ReadyRecruit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StepsViewModel.cs" />
+    <Compile Include="Models\SubStat.cs">
       <DependentUpon>ReadyRecruit.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Substep.cs">
@@ -428,6 +439,7 @@
     <Content Include="Views\Links\Details.cshtml" />
     <Content Include="Views\Links\Edit.cshtml" />
     <Content Include="Views\Links\Index.cshtml" />
+    <Content Include="Views\Mainsteps\StepPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

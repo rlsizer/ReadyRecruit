@@ -14,11 +14,25 @@ namespace ReadyRecruit.Models
     
     public partial class Link
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Link()
+        {
+            this.HeadStats = new HashSet<HeadStat>();
+            this.MainStats = new HashSet<MainStat>();
+            this.SubStats = new HashSet<SubStat>();
+        }
+    
         public int LinkID { get; set; }
         public int ProfileID { get; set; }
         public int RoadmapID { get; set; }
     
         public virtual Profile Profile { get; set; }
         public virtual Roadmap Roadmap { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HeadStat> HeadStats { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MainStat> MainStats { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SubStat> SubStats { get; set; }
     }
 }
