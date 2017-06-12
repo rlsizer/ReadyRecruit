@@ -11,7 +11,8 @@ namespace ReadyRecruit.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Profile
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +22,16 @@ namespace ReadyRecruit.Models
         }
     
         public int ProfileID { get; set; }
+
+        [Required]
         public string FName { get; set; }
+
+        [Required (ErrorMessage ="Required Entry")]
         public string LName { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public System.DateTime BirthDate { get; set; }
+
         public decimal Height { get; set; }
         public decimal Weight { get; set; }
         public int Dependents { get; set; }

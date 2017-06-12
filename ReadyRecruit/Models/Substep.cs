@@ -23,7 +23,7 @@ namespace ReadyRecruit.Models
         [Required]
         public string Name { get; set; }
 
-
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public Nullable<System.DateTime> DueDate { get; set; }
 
         [Required, Display(Name = "Finished?")]

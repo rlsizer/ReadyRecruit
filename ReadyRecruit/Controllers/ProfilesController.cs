@@ -46,14 +46,20 @@ namespace ReadyRecruit.Controllers
         public ActionResult Create()
         {
             //Check to see if user already has a profile
-            var profiles = (from p in db.Profiles select p);
-            foreach (var p in profiles)
+            var currentUserId = User.Identity.GetUserId();
+            var profiles = (from p in db.Profiles
+                            where p.Id == currentUserId
+                            select p);
+            if (profiles.Count() > 0)
             {
-                //should be if(p.IsDone==true)  but it isn't working
-                //if (p.Id == User.Identity.GetUserId())
-                if (p.IsDone==true)
+                foreach (var p in profiles)
+                {
+                    //should be if(p.IsDone==true)  but it isn't working
+                    //if (p.Id == User.Identity.GetUserId())
+                    if (p.IsDone == true)
                     {
-                    return RedirectToAction("Index");
+                        return RedirectToAction("Index");
+                    }
                 }
             }
 
