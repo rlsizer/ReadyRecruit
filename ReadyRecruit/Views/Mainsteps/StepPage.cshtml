@@ -14,15 +14,28 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="row outline">
-                    <h1>@one.Title</h1>
+                    <h1>@one.Title</h1><hr />
                     @for (int i = 1; i <= one.NumHeadings; i++)
                     {
                         <h2>@one.Headings[i]</h2>
                         for (int j = 1; j <= one.NumSubsteps[i]; j++)
                         {
-                            <h3>@one.Substeps[i,j]</h3>
+                            <h3>
+                                <a href="@Url.Action("ToggleDone", new { id = one.LinkID, id2 = one.SubID[i,j], id3 = 3})">
+                                    @if (one.IsSubDone[i, j])
+                                    {
+                                        <span class="glyphicon glyphicon-check"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="glyphicon glyphicon-unchecked"></span>
+                                    }
+                                </a>
+                                @one.Substeps[i, j]
+                            </h3>
                         }
                     }
+
                 </div>
                 <div class="row">
                     @*@Html.ActionLink("Yes", "#Step2")
@@ -52,34 +65,3 @@
 
 
 </section>
-@*@foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DueDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Points)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Roadmap.RoadmapName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.MainstepID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.MainstepID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.MainstepID })
-            </td>
-        </tr>*@
-

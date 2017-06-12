@@ -36,3 +36,24 @@ textarea {
 .nav li {
     font-size: 10px;
 }
+
+section #Step1, section #Step2 {
+    min-height: 90vh;
+}
+
+section#Step1 h1 {
+    text-align:center;
+}
+
+section#Step1 h2 {
+    padding-left:5vw;
+    text-wrap:avoid;
+}
+
+section#Step1 h3 {
+    padding-left:10vw;
+}
+.glyphicon-check, .glyphicon-unchecked {
+    font-size: 0.5em;
+    top: -3px;
+}

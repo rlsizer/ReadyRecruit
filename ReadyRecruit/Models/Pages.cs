@@ -7,11 +7,15 @@ namespace ReadyRecruit.Models
 {
     public class Pages
     {
+        public int LinkID { get; set; }
         public string Title { get; set; }
+        public int MainID { get; set; }
         public int NumHeadings { get; set; }
         public string[] Headings { get; set; } = new string[20];
+        public int[] HeadID { get; set; } = new int[20];
         public int[] NumSubsteps { get; set; } = new int[20];
         public string[,] Substeps { get; set; } = new string[20,20];
+        public int[,] SubID { get; set; } = new int[20, 20];
         public Nullable<System.DateTime> TitleDue { get; set; }
         public Nullable<System.DateTime>[] HeadingsDue { get; set; } = new Nullable<System.DateTime>[20];
         public Nullable<System.DateTime>[,] SubstepsDue { get; set; } = new Nullable<System.DateTime>[20,20];
