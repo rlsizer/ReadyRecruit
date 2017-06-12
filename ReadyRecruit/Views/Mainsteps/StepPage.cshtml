@@ -17,11 +17,13 @@
                     <h1>@one.Title</h1><hr />
                     @for (int i = 1; i <= one.NumHeadings; i++)
                     {
+                        one.Ihead = i;
                         <h2>@one.Headings[i]</h2>
                         for (int j = 1; j <= one.NumSubsteps[i]; j++)
                         {
+                            one.Jsub = j;
                             <h3>
-                                <a href="@Url.Action("ToggleDone", new { id = one.LinkID, id2 = one.SubID[i,j], id3 = 3})">
+                                <a href="@Url.Action("ToggleDone",one)">
                                     @if (one.IsSubDone[i, j])
                                     {
                                         <span class="glyphicon glyphicon-check"></span>
@@ -43,25 +45,24 @@
                     @*popup a window to congratulate them on their decision and give them
                         option to continue to explore or logoff*@
                 </div>
-            </div>
+            </div> @* end of col-md-8 *@
 
 
-            <div class="col-md-4">
+            <div class="col-md-4 rightcolumn">
                 <div class="row">
-
+                    <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
                 </div>
-                <div class="row progress-bar-striped">
-
+                <div class="row bar">
+                    <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
+                         aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                        <span>70% Complete</span>
+                    </div>
                 </div>
                 <div class="row pic">
-
+                    @*<img src="~/Content/images/iwojima.jpg" />*@
                 </div>
             </div>
+
         </div>
     </div>
-
-
-
-
-
 </section>

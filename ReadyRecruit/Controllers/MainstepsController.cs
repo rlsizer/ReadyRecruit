@@ -268,7 +268,9 @@ namespace ReadyRecruit.Controllers
                         IsSubDone = pages.IsSubDone,
                         TitleNotes = pages.TitleNotes,
                         HeadNotes = pages.HeadNotes,
-                        SubNotes = pages.SubNotes
+                        SubNotes = pages.SubNotes,
+                        Ihead = 0,
+                        Jsub = 0
                     };
                 }
                 if (m.Number == 2)
@@ -292,7 +294,9 @@ namespace ReadyRecruit.Controllers
                         IsSubDone = pages.IsSubDone,
                         TitleNotes = pages.TitleNotes,
                         HeadNotes = pages.HeadNotes,
-                        SubNotes = pages.SubNotes
+                        SubNotes = pages.SubNotes,
+                        Ihead = 0,
+                        Jsub = 0
                     };
                 }
 
@@ -317,7 +321,9 @@ namespace ReadyRecruit.Controllers
                         IsSubDone = pages.IsSubDone,
                         TitleNotes = pages.TitleNotes,
                         HeadNotes = pages.HeadNotes,
-                        SubNotes = pages.SubNotes
+                        SubNotes = pages.SubNotes,
+                        Ihead = 0,
+                        Jsub = 0
                     };
                 }
 
@@ -332,7 +338,8 @@ namespace ReadyRecruit.Controllers
         }
 
         // GET: Items/ToggleDone/5   (Add ability to toggle the IsDone box from the view)
-        public ActionResult ToggleDone(int linkID, int stepID, int key)
+        //public ActionResult ToggleDone(int linkID, int stepID, int key)
+        public ActionResult ToggleDone(Pages page)
         {
             var userStatID = -1;
 
@@ -421,209 +428,211 @@ namespace ReadyRecruit.Controllers
             //}
             //else if (key == 3)
             //{
-                var stats = (from s in db.SubStats
-                             where s.LinkID == linkID &&
-                             s.SubstepID == stepID
-                             select s);
-                if (stats.IsNullOrEmpty())
-                {
-                    var lastStat = (from s in db.SubStats
-                                    select s.LinkID).ToList();
-                    var lastStatID = lastStat[lastStat.Count - 1];
-                    //set table values and save new Stat entry to database
-                    SubStat newStat = new SubStat();
-                    newStat.LinkID = lastStatID + 1;
-                    newStat.IsDone = false;
-                    newStat.SubstepID = stepID;
-                    newStat.LinkID = linkID;
-                    db.SubStats.Add(newStat);
-                    db.SaveChanges();
-                    userStatID = newStat.LinkID;
-                }
-                else
-                {
-                    var statID = (from s in db.SubStats
-                                 where s.LinkID == linkID &&
-                                 s.SubstepID == stepID
-                                 select s.SubStatID);
-                    userStatID = statID.FirstOrDefault();
-                }
-                //toggle isDone now that we know it exists!
-                SubStat item = db.SubStats.Find(userStatID);
-                if (item.IsDone == true)
-                {
-                    item.IsDone = false;
-                }
-                else
-                {
-                    item.IsDone = true;
-                }
-                db.SaveChanges();   //saves change to the database             
-            //}
-            //else
-            //{
-            //    //error!!!!! key must be 1, 2 or 3
-            //}
+            var stats = (from s in db.SubStats
+                             //where s.LinkID == linkID &&
+                             //s.SubstepID == stepID
+                         where s.LinkID == page.LinkID &&
+                         s.SubstepID == page.SubID[page.Ihead, page.Jsub]  //why isn't SubID populated as an array?
+                         select s).ToList();
+            //if (stats.IsNullOrEmpty())
+            if(stats.Count()<1)
+            {
+                var lastStat = (from s in db.SubStats
+                                select s.LinkID).ToList();
+                var lastStatID = lastStat[lastStat.Count - 1];
+                //set table values and save new Stat entry to database
+                SubStat newStat = new SubStat();
+                newStat.LinkID = lastStatID + 1;
+                newStat.IsDone = false;
+                //newStat.SubstepID = stepID;
+                //newStat.LinkID = linkID;
+                newStat.SubstepID = page.SubID[page.Ihead, page.Jsub];
+                newStat.LinkID = page.LinkID;
+                db.SubStats.Add(newStat);
+                db.SaveChanges();
+                userStatID = newStat.LinkID;
+            }
+            else
+            {
+                var statID = (from s in db.SubStats
+                                  //where s.LinkID == linkID &&
+                                  //s.SubstepID == stepID
+                              where s.LinkID == page.LinkID &&
+                                    s.SubstepID == page.SubID[page.Ihead, page.Jsub]
+                              select s.SubStatID);
+                userStatID = statID.FirstOrDefault();
+            }
+            //toggle isDone now that we know it exists!
+            SubStat item = db.SubStats.Find(userStatID);
+            if (item.IsDone == true)
+            {
+                item.IsDone = false;
+            }
+            else
+            {
+                item.IsDone = true;
+            }
+            db.SaveChanges();   
 
-             return View();
+            return View();
             //return RedirectToAction("Index");  //this goes to the method above and calls the View   
-    }
-
-
-    // GET: Mainsteps/Details/5
-    public ActionResult Details(int? id)
-    {
-        if (id == null)
-        {
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
-        Mainstep mainstep = db.Mainsteps.Find(id);
-        if (mainstep == null)
+
+
+        // GET: Mainsteps/Details/5
+        public ActionResult Details(int? id)
         {
-            return HttpNotFound();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Mainstep mainstep = db.Mainsteps.Find(id);
+            if (mainstep == null)
+            {
+                return HttpNotFound();
+            }
+            return View(mainstep);
         }
-        return View(mainstep);
-    }
 
 
 
-    // GET: Mainsteps/Create
-    public ActionResult Create()
-    {
-        ViewBag.RoadmapID = new SelectList(db.Roadmaps, "RoadmapID", "RoadmapName");
-        return View();
-    }
-
-
-    // POST: Mainsteps/Create
-    // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-    // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public ActionResult Create([Bind(Include = "MainstepID,Number,Name,DueDate,IsDone,Notes,Points,RoadmapID")] Mainstep mainstep)
-    {
-        if (ModelState.IsValid)
+        // GET: Mainsteps/Create
+        public ActionResult Create()
         {
-            db.Mainsteps.Add(mainstep);
+            ViewBag.RoadmapID = new SelectList(db.Roadmaps, "RoadmapID", "RoadmapName");
+            return View();
+        }
+
+
+        // POST: Mainsteps/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "MainstepID,Number,Name,DueDate,IsDone,Notes,Points,RoadmapID")] Mainstep mainstep)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Mainsteps.Add(mainstep);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.RoadmapID = new SelectList(db.Roadmaps, "RoadmapID", "RoadmapName", mainstep.RoadmapID);
+            return View(mainstep);
+        }
+
+        // GET: Mainsteps/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Mainstep mainstep = db.Mainsteps.Find(id);
+            if (mainstep == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.RoadmapID = new SelectList(db.Roadmaps, "RoadmapID", "RoadmapName", mainstep.RoadmapID);
+            return View(mainstep);
+        }
+
+        // POST: Mainsteps/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "MainstepID,Number,Name,DueDate,IsDone,Notes,Points,RoadmapID")] Mainstep mainstep)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(mainstep).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.RoadmapID = new SelectList(db.Roadmaps, "RoadmapID", "RoadmapName", mainstep.RoadmapID);
+            return View(mainstep);
+        }
+
+        // GET: Mainsteps/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Mainstep mainstep = db.Mainsteps.Find(id);
+            if (mainstep == null)
+            {
+                return HttpNotFound();
+            }
+            return View(mainstep);
+        }
+
+        // POST: Mainsteps/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Mainstep mainstep = db.Mainsteps.Find(id);
+            db.Mainsteps.Remove(mainstep);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        ViewBag.RoadmapID = new SelectList(db.Roadmaps, "RoadmapID", "RoadmapName", mainstep.RoadmapID);
-        return View(mainstep);
-    }
-
-    // GET: Mainsteps/Edit/5
-    public ActionResult Edit(int? id)
-    {
-        if (id == null)
+        protected override void Dispose(bool disposing)
         {
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        }
-        Mainstep mainstep = db.Mainsteps.Find(id);
-        if (mainstep == null)
-        {
-            return HttpNotFound();
-        }
-        ViewBag.RoadmapID = new SelectList(db.Roadmaps, "RoadmapID", "RoadmapName", mainstep.RoadmapID);
-        return View(mainstep);
-    }
-
-    // POST: Mainsteps/Edit/5
-    // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-    // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public ActionResult Edit([Bind(Include = "MainstepID,Number,Name,DueDate,IsDone,Notes,Points,RoadmapID")] Mainstep mainstep)
-    {
-        if (ModelState.IsValid)
-        {
-            db.Entry(mainstep).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-        ViewBag.RoadmapID = new SelectList(db.Roadmaps, "RoadmapID", "RoadmapName", mainstep.RoadmapID);
-        return View(mainstep);
-    }
-
-    // GET: Mainsteps/Delete/5
-    public ActionResult Delete(int? id)
-    {
-        if (id == null)
-        {
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        }
-        Mainstep mainstep = db.Mainsteps.Find(id);
-        if (mainstep == null)
-        {
-            return HttpNotFound();
-        }
-        return View(mainstep);
-    }
-
-    // POST: Mainsteps/Delete/5
-    [HttpPost, ActionName("Delete")]
-    [ValidateAntiForgeryToken]
-    public ActionResult DeleteConfirmed(int id)
-    {
-        Mainstep mainstep = db.Mainsteps.Find(id);
-        db.Mainsteps.Remove(mainstep);
-        db.SaveChanges();
-        return RedirectToAction("Index");
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            db.Dispose();
-        }
-        base.Dispose(disposing);
-    }
-    public int GetRoadmapID(string branch, string title)
-    {
-        int RoadmapID = 6;
-        if (branch == "in the Army" && title == "enlisted")
-        {
-            RoadmapID = 1;
-        }
-        else if (branch == "in the Airforce" && title == "enlisted")
-        {
-            RoadmapID = 2;
-        }
-        else if (branch == "in the Navy" && title == "enlisted")
-        {
-            RoadmapID = 3;
-        }
-
-        return RoadmapID;
-    }
-}
-
-public static class IsNullOrEmptyExtension
-{
-    public static bool IsNullOrEmpty(this IEnumerable source)
-    {
-        if (source != null)
-        {
-            foreach (object obj in source)
+            if (disposing)
             {
-                return false;
+                db.Dispose();
             }
+            base.Dispose(disposing);
         }
-        return true;
+        public int GetRoadmapID(string branch, string title)
+        {
+            int RoadmapID = 6;
+            if (branch == "in the Army" && title == "enlisted")
+            {
+                RoadmapID = 1;
+            }
+            else if (branch == "in the Airforce" && title == "enlisted")
+            {
+                RoadmapID = 2;
+            }
+            else if (branch == "in the Navy" && title == "enlisted")
+            {
+                RoadmapID = 3;
+            }
+
+            return RoadmapID;
+        }
     }
 
-    public static bool IsNullOrEmpty<T>(this IEnumerable<T> source)
+    public static class IsNullOrEmptyExtension
     {
-        if (source != null)
+        public static bool IsNullOrEmpty(this IEnumerable source)
         {
-            foreach (T obj in source)
+            if (source != null)
             {
-                return false;
+                foreach (object obj in source)
+                {
+                    return false;
+                }
             }
+            return true;
         }
-        return true;
+
+        public static bool IsNullOrEmpty<T>(this IEnumerable<T> source)
+        {
+            if (source != null)
+            {
+                foreach (T obj in source)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
-}
 }

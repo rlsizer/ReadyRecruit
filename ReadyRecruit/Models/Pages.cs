@@ -25,5 +25,7 @@ namespace ReadyRecruit.Models
         public string TitleNotes { get; set; }
         public string[] HeadNotes { get; set; } = new string[20];
         public string[,] SubNotes { get; set; } = new string[20,20];
+        public int Ihead { get; set; }    
+        public int Jsub { get; set; }
     }
 }
