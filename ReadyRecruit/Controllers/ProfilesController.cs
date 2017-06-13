@@ -25,7 +25,7 @@ namespace ReadyRecruit.Controllers
                             where p.Id == currentUserId
                             select p);
             //user must be logged in to see their profile
-            if(profiles.Count()<1)
+            if (profiles.Count() < 1)
             {
                 return RedirectToAction("Login", "Account");
             }
