@@ -125,11 +125,13 @@
             @Html.DisplayFor(modelItem => item.AspNetUser.Email)
         </td>
         <td>
+            
             @Html.ActionLink("Edit", "Edit", new { id=item.ProfileID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProfileID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ProfileID })
+            @Html.ActionLink("Get Started", "../Mainsteps/StepPage")
         </td>
     </tr>
+    }
 }
 
 </table>

@@ -70,6 +70,17 @@
           <Property Name="GenderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Type" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
+        <EntityType Name="HeadStat">
+          <Key>
+            <PropertyRef Name="HeadStatID" />
+          </Key>
+          <Property Name="HeadStatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DueDate" Type="date" />
+          <Property Name="IsDone" Type="bit" Nullable="false" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="2000" />
+          <Property Name="HeadstepID" Type="int" Nullable="false" />
+          <Property Name="LinkID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Headstep">
           <Key>
             <PropertyRef Name="HeadstepID" />
@@ -90,6 +101,17 @@
           <Property Name="LinkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProfileID" Type="int" Nullable="false" />
           <Property Name="RoadmapID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MainStat">
+          <Key>
+            <PropertyRef Name="MainStatID" />
+          </Key>
+          <Property Name="MainStatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DueDate" Type="date" />
+          <Property Name="IsDone" Type="bit" Nullable="false" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="2000" />
+          <Property Name="MainstepID" Type="int" Nullable="false" />
+          <Property Name="LinkID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Mainstep">
           <Key>
@@ -148,6 +170,17 @@
           </Key>
           <Property Name="RoadmapID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoadmapName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SubStat">
+          <Key>
+            <PropertyRef Name="SubStatID" />
+          </Key>
+          <Property Name="SubStatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DueDate" Type="date" />
+          <Property Name="IsDone" Type="bit" Nullable="false" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="2000" />
+          <Property Name="SubstepID" Type="int" Nullable="false" />
+          <Property Name="LinkID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Substep">
           <Key>
@@ -228,6 +261,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HeadStat_Headstep">
+          <End Role="Headstep" Type="Self.Headstep" Multiplicity="1" />
+          <End Role="HeadStat" Type="Self.HeadStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Headstep">
+              <PropertyRef Name="HeadstepID" />
+            </Principal>
+            <Dependent Role="HeadStat">
+              <PropertyRef Name="HeadstepID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HeadStat_Link">
+          <End Role="Link" Type="Self.Link" Multiplicity="1" />
+          <End Role="HeadStat" Type="Self.HeadStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Link">
+              <PropertyRef Name="LinkID" />
+            </Principal>
+            <Dependent Role="HeadStat">
+              <PropertyRef Name="LinkID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Headstep_Mainstep">
           <End Role="Mainstep" Type="Self.Mainstep" Multiplicity="1" />
           <End Role="Headstep" Type="Self.Headstep" Multiplicity="*" />
@@ -261,6 +318,30 @@
             </Principal>
             <Dependent Role="Link">
               <PropertyRef Name="RoadmapID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MainStat_Link">
+          <End Role="Link" Type="Self.Link" Multiplicity="1" />
+          <End Role="MainStat" Type="Self.MainStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Link">
+              <PropertyRef Name="LinkID" />
+            </Principal>
+            <Dependent Role="MainStat">
+              <PropertyRef Name="LinkID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MainStat_Mainstep">
+          <End Role="Mainstep" Type="Self.Mainstep" Multiplicity="1" />
+          <End Role="MainStat" Type="Self.MainStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mainstep">
+              <PropertyRef Name="MainstepID" />
+            </Principal>
+            <Dependent Role="MainStat">
+              <PropertyRef Name="MainstepID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -336,6 +417,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SubStat_Link">
+          <End Role="Link" Type="Self.Link" Multiplicity="1" />
+          <End Role="SubStat" Type="Self.SubStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Link">
+              <PropertyRef Name="LinkID" />
+            </Principal>
+            <Dependent Role="SubStat">
+              <PropertyRef Name="LinkID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubStat_Substep">
+          <End Role="Substep" Type="Self.Substep" Multiplicity="1" />
+          <End Role="SubStat" Type="Self.SubStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Substep">
+              <PropertyRef Name="SubstepID" />
+            </Principal>
+            <Dependent Role="SubStat">
+              <PropertyRef Name="SubstepID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Substep_Headstep">
           <End Role="Headstep" Type="Self.Headstep" Multiplicity="1" />
           <End Role="Substep" Type="Self.Substep" Multiplicity="*" />
@@ -356,13 +461,16 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HeadStat" EntityType="Self.HeadStat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Headstep" EntityType="Self.Headstep" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Link" EntityType="Self.Link" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MainStat" EntityType="Self.MainStat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mainstep" EntityType="Self.Mainstep" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MaritalStat" EntityType="Self.MaritalStat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PriorService" EntityType="Self.PriorService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roadmap" EntityType="Self.Roadmap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubStat" EntityType="Self.SubStat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Substep" EntityType="Self.Substep" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -381,6 +489,14 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_HeadStat_Headstep" Association="Self.FK_HeadStat_Headstep">
+            <End Role="Headstep" EntitySet="Headstep" />
+            <End Role="HeadStat" EntitySet="HeadStat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HeadStat_Link" Association="Self.FK_HeadStat_Link">
+            <End Role="Link" EntitySet="Link" />
+            <End Role="HeadStat" EntitySet="HeadStat" />
+          </AssociationSet>
           <AssociationSet Name="FK_Headstep_Mainstep" Association="Self.FK_Headstep_Mainstep">
             <End Role="Mainstep" EntitySet="Mainstep" />
             <End Role="Headstep" EntitySet="Headstep" />
@@ -392,6 +508,14 @@
           <AssociationSet Name="FK_Link_Roadmap" Association="Self.FK_Link_Roadmap">
             <End Role="Roadmap" EntitySet="Roadmap" />
             <End Role="Link" EntitySet="Link" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MainStat_Link" Association="Self.FK_MainStat_Link">
+            <End Role="Link" EntitySet="Link" />
+            <End Role="MainStat" EntitySet="MainStat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MainStat_Mainstep" Association="Self.FK_MainStat_Mainstep">
+            <End Role="Mainstep" EntitySet="Mainstep" />
+            <End Role="MainStat" EntitySet="MainStat" />
           </AssociationSet>
           <AssociationSet Name="FK_Mainstep_Roadmap" Association="Self.FK_Mainstep_Roadmap">
             <End Role="Roadmap" EntitySet="Roadmap" />
@@ -416,6 +540,14 @@
           <AssociationSet Name="FK_Profile_PriorService" Association="Self.FK_Profile_PriorService">
             <End Role="PriorService" EntitySet="PriorService" />
             <End Role="Profile" EntitySet="Profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubStat_Link" Association="Self.FK_SubStat_Link">
+            <End Role="Link" EntitySet="Link" />
+            <End Role="SubStat" EntitySet="SubStat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubStat_Substep" Association="Self.FK_SubStat_Substep">
+            <End Role="Substep" EntitySet="Substep" />
+            <End Role="SubStat" EntitySet="SubStat" />
           </AssociationSet>
           <AssociationSet Name="FK_Substep_Headstep" Association="Self.FK_Substep_Headstep">
             <End Role="Headstep" EntitySet="Headstep" />
@@ -456,6 +588,7 @@
           <Property Name="MainstepID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Mainstep" Relationship="Self.FK_Headstep_Mainstep" FromRole="Headstep" ToRole="Mainstep" />
           <NavigationProperty Name="Substeps" Relationship="Self.FK_Substep_Headstep" FromRole="Headstep" ToRole="Substep" />
+          <NavigationProperty Name="HeadStats" Relationship="ReadyRecruitModel.FK_HeadStat_Headstep" FromRole="Headstep" ToRole="HeadStat" />
         </EntityType>
         <EntityType Name="Link">
           <Key>
@@ -466,6 +599,9 @@
           <Property Name="RoadmapID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Profile" Relationship="Self.FK_Link_Profile" FromRole="Link" ToRole="Profile" />
           <NavigationProperty Name="Roadmap" Relationship="Self.FK_Link_Roadmap" FromRole="Link" ToRole="Roadmap" />
+          <NavigationProperty Name="HeadStats" Relationship="ReadyRecruitModel.FK_HeadStat_Link" FromRole="Link" ToRole="HeadStat" />
+          <NavigationProperty Name="MainStats" Relationship="ReadyRecruitModel.FK_MainStat_Link" FromRole="Link" ToRole="MainStat" />
+          <NavigationProperty Name="SubStats" Relationship="ReadyRecruitModel.FK_SubStat_Link" FromRole="Link" ToRole="SubStat" />
         </EntityType>
         <EntityType Name="Mainstep">
           <Key>
@@ -481,6 +617,7 @@
           <Property Name="RoadmapID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Headsteps" Relationship="Self.FK_Headstep_Mainstep" FromRole="Mainstep" ToRole="Headstep" />
           <NavigationProperty Name="Roadmap" Relationship="Self.FK_Mainstep_Roadmap" FromRole="Mainstep" ToRole="Roadmap" />
+          <NavigationProperty Name="MainStats" Relationship="ReadyRecruitModel.FK_MainStat_Mainstep" FromRole="Mainstep" ToRole="MainStat" />
         </EntityType>
         <EntityType Name="MaritalStat">
           <Key>
@@ -550,6 +687,7 @@
           <Property Name="Points" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="HeadstepID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Headstep" Relationship="Self.FK_Substep_Headstep" FromRole="Substep" ToRole="Headstep" />
+          <NavigationProperty Name="SubStats" Relationship="ReadyRecruitModel.FK_SubStat_Substep" FromRole="Substep" ToRole="SubStat" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -737,6 +875,33 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="HeadStats" EntityType="ReadyRecruitModel.HeadStat" />
+          <EntitySet Name="MainStats" EntityType="ReadyRecruitModel.MainStat" />
+          <EntitySet Name="SubStats" EntityType="ReadyRecruitModel.SubStat" />
+          <AssociationSet Name="FK_HeadStat_Headstep" Association="ReadyRecruitModel.FK_HeadStat_Headstep">
+            <End Role="Headstep" EntitySet="Headsteps" />
+            <End Role="HeadStat" EntitySet="HeadStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HeadStat_Link" Association="ReadyRecruitModel.FK_HeadStat_Link">
+            <End Role="Link" EntitySet="Links" />
+            <End Role="HeadStat" EntitySet="HeadStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MainStat_Link" Association="ReadyRecruitModel.FK_MainStat_Link">
+            <End Role="Link" EntitySet="Links" />
+            <End Role="MainStat" EntitySet="MainStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubStat_Link" Association="ReadyRecruitModel.FK_SubStat_Link">
+            <End Role="Link" EntitySet="Links" />
+            <End Role="SubStat" EntitySet="SubStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MainStat_Mainstep" Association="ReadyRecruitModel.FK_MainStat_Mainstep">
+            <End Role="Mainstep" EntitySet="Mainsteps" />
+            <End Role="MainStat" EntitySet="MainStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubStat_Substep" Association="ReadyRecruitModel.FK_SubStat_Substep">
+            <End Role="Substep" EntitySet="Substeps" />
+            <End Role="SubStat" EntitySet="SubStats" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -831,6 +996,117 @@
         <Association Name="AspNetUserRoles">
           <End Type="ReadyRecruitModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="ReadyRecruitModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="HeadStat">
+          <Key>
+            <PropertyRef Name="HeadStatID" />
+          </Key>
+          <Property Name="HeadStatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DueDate" Type="DateTime" Precision="0" />
+          <Property Name="IsDone" Type="Boolean" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="HeadstepID" Type="Int32" Nullable="false" />
+          <Property Name="LinkID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Headstep" Relationship="ReadyRecruitModel.FK_HeadStat_Headstep" FromRole="HeadStat" ToRole="Headstep" />
+          <NavigationProperty Name="Link" Relationship="ReadyRecruitModel.FK_HeadStat_Link" FromRole="HeadStat" ToRole="Link" />
+        </EntityType>
+        <EntityType Name="MainStat">
+          <Key>
+            <PropertyRef Name="MainStatID" />
+          </Key>
+          <Property Name="MainStatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DueDate" Type="DateTime" Precision="0" />
+          <Property Name="IsDone" Type="Boolean" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="MainstepID" Type="Int32" Nullable="false" />
+          <Property Name="LinkID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Link" Relationship="ReadyRecruitModel.FK_MainStat_Link" FromRole="MainStat" ToRole="Link" />
+          <NavigationProperty Name="Mainstep" Relationship="ReadyRecruitModel.FK_MainStat_Mainstep" FromRole="MainStat" ToRole="Mainstep" />
+        </EntityType>
+        <EntityType Name="SubStat">
+          <Key>
+            <PropertyRef Name="SubStatID" />
+          </Key>
+          <Property Name="SubStatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DueDate" Type="DateTime" Precision="0" />
+          <Property Name="IsDone" Type="Boolean" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="SubstepID" Type="Int32" Nullable="false" />
+          <Property Name="LinkID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Link" Relationship="ReadyRecruitModel.FK_SubStat_Link" FromRole="SubStat" ToRole="Link" />
+          <NavigationProperty Name="Substep" Relationship="ReadyRecruitModel.FK_SubStat_Substep" FromRole="SubStat" ToRole="Substep" />
+        </EntityType>
+        <Association Name="FK_HeadStat_Headstep">
+          <End Type="ReadyRecruitModel.Headstep" Role="Headstep" Multiplicity="1" />
+          <End Type="ReadyRecruitModel.HeadStat" Role="HeadStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Headstep">
+              <PropertyRef Name="HeadstepID" />
+            </Principal>
+            <Dependent Role="HeadStat">
+              <PropertyRef Name="HeadstepID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HeadStat_Link">
+          <End Type="ReadyRecruitModel.Link" Role="Link" Multiplicity="1" />
+          <End Type="ReadyRecruitModel.HeadStat" Role="HeadStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Link">
+              <PropertyRef Name="LinkID" />
+            </Principal>
+            <Dependent Role="HeadStat">
+              <PropertyRef Name="LinkID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MainStat_Link">
+          <End Type="ReadyRecruitModel.Link" Role="Link" Multiplicity="1" />
+          <End Type="ReadyRecruitModel.MainStat" Role="MainStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Link">
+              <PropertyRef Name="LinkID" />
+            </Principal>
+            <Dependent Role="MainStat">
+              <PropertyRef Name="LinkID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubStat_Link">
+          <End Type="ReadyRecruitModel.Link" Role="Link" Multiplicity="1" />
+          <End Type="ReadyRecruitModel.SubStat" Role="SubStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Link">
+              <PropertyRef Name="LinkID" />
+            </Principal>
+            <Dependent Role="SubStat">
+              <PropertyRef Name="LinkID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MainStat_Mainstep">
+          <End Type="ReadyRecruitModel.Mainstep" Role="Mainstep" Multiplicity="1" />
+          <End Type="ReadyRecruitModel.MainStat" Role="MainStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mainstep">
+              <PropertyRef Name="MainstepID" />
+            </Principal>
+            <Dependent Role="MainStat">
+              <PropertyRef Name="MainstepID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubStat_Substep">
+          <End Type="ReadyRecruitModel.Substep" Role="Substep" Multiplicity="1" />
+          <End Type="ReadyRecruitModel.SubStat" Role="SubStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Substep">
+              <PropertyRef Name="SubstepID" />
+            </Principal>
+            <Dependent Role="SubStat">
+              <PropertyRef Name="SubstepID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1018,6 +1294,42 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="HeadStats">
+            <EntityTypeMapping TypeName="ReadyRecruitModel.HeadStat">
+              <MappingFragment StoreEntitySet="HeadStat">
+                <ScalarProperty Name="LinkID" ColumnName="LinkID" />
+                <ScalarProperty Name="HeadstepID" ColumnName="HeadstepID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="IsDone" ColumnName="IsDone" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="HeadStatID" ColumnName="HeadStatID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MainStats">
+            <EntityTypeMapping TypeName="ReadyRecruitModel.MainStat">
+              <MappingFragment StoreEntitySet="MainStat">
+                <ScalarProperty Name="LinkID" ColumnName="LinkID" />
+                <ScalarProperty Name="MainstepID" ColumnName="MainstepID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="IsDone" ColumnName="IsDone" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="MainStatID" ColumnName="MainStatID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubStats">
+            <EntityTypeMapping TypeName="ReadyRecruitModel.SubStat">
+              <MappingFragment StoreEntitySet="SubStat">
+                <ScalarProperty Name="LinkID" ColumnName="LinkID" />
+                <ScalarProperty Name="SubstepID" ColumnName="SubstepID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="IsDone" ColumnName="IsDone" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="SubStatID" ColumnName="SubStatID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

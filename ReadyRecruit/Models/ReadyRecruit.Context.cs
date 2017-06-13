@@ -40,5 +40,8 @@ namespace ReadyRecruit.Models
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<HeadStat> HeadStats { get; set; }
+        public virtual DbSet<MainStat> MainStats { get; set; }
+        public virtual DbSet<SubStat> SubStats { get; set; }
     }
 }

@@ -15,6 +15,12 @@ namespace ReadyRecruit.Models
 
     public partial class Substep
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Substep()
+        {
+            this.SubStats = new HashSet<SubStat>();
+        }
+    
         public int SubstepID { get; set; }
 
         [Required]
@@ -36,5 +42,7 @@ namespace ReadyRecruit.Models
         public int HeadstepID { get; set; }
     
         public virtual Headstep Headstep { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SubStat> SubStats { get; set; }
     }
 }

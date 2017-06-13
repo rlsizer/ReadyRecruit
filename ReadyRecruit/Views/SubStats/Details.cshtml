@@ -1,0 +1,58 @@
+﻿@model ReadyRecruit.Models.SubStat
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SubStat</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Link.LinkID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Link.LinkID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Substep.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Substep.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SubStatID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

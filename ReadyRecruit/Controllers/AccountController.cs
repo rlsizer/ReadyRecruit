@@ -15,6 +15,7 @@ namespace ReadyRecruit.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private ReadyRecruitEntities db = new ReadyRecruitEntities();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -70,6 +71,12 @@ namespace ReadyRecruit.Controllers
         {
             if (!ModelState.IsValid)
             {
+                //var currentUserId = User.Identity.GetUserId();
+                //var profiles = (from p in db.Profiles
+                //                where p.Id == currentUserId
+                //                select p).Last();
+                //ViewBag.UserFName = profiles.FName;
+                //if (profiles.FName.IsNullOrEmpty()) ViewBag.UserFName = User.Identity.GetUserName();
                 return View(model);
             }
 

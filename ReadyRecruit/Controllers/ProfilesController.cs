@@ -24,6 +24,11 @@ namespace ReadyRecruit.Controllers
             var profiles = (from p in db.Profiles
                             where p.Id == currentUserId
                             select p);
+            //user must be logged in to see their profile
+            if(profiles.Count()<1)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View(profiles.ToList());
         }
 
