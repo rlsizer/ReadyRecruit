@@ -40,13 +40,22 @@ textarea {
 section#Step1 .outline {
     background-color: rgbA(0, 0, 0, 0.8);
     color: gold;
-    min-height:82vh;
+    min-height:100vh;
 }
 
 div.rightcolumn {
     background-color: gold;
     color: black;
-    min-height:82vh;
+    min-height:100vh;
+}
+.selections {
+    position:relative;
+    top:20vh;
+    text-align:center;
+    color:gold;
+}
+.selections a {
+    color:gold;
 }
 
 .rightcolumn .row {
@@ -56,15 +65,26 @@ div.pic {
     background-image: url('images/iwojima.jpg');
     background-size: 33.3vw;
     display: block;
-    height: 48vh;
+    height: 66vh;
 }
-
-section#homepage {
+div.video {
     background-image: url('images/iwojima.jpg');
-    background-size: 100vw 82vh;
-    min-height:82vh
+    background-size: contain;
+    display: block;
+    min-height:50vh;
 }
 
+div.jumbotron {
+    background-image: url('images/iwojima.jpg');
+    background-size: 100vw 50vh;
+    min-height:45vh;
+    margin-bottom: 0px;
+}
+
+div.bottom {
+    padding-top:15px;
+    min-height:50vh;
+}
 section#Step1, section#Step2 {
     min-height: 80vh;
 }

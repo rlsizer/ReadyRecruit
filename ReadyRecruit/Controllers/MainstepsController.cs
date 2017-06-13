@@ -189,9 +189,46 @@ namespace ReadyRecruit.Controllers
                              select ms).ToList();
                 if (mainStats.Count() > 0)
                 {
-                    pages.TitleDue = mainStats[0].DueDate;             //send title due date
-                    pages.IsTitleDone = mainStats[1].IsDone;           //send title isDone status
-                    pages.TitleNotes = mainStats[2].Notes;             //send title notes
+                    pages.MStatID = (from ms in db.MainStats
+                                     where ms.LinkID == userLinkID &&
+                                     ms.MainstepID == m.MainstepID
+                                     select ms.MainStatID).FirstOrDefault();     //send title status id
+                    pages.TitleDue = (from ms in db.MainStats
+                                      where ms.LinkID == userLinkID &&
+                                      ms.MainstepID == m.MainstepID
+                                      select ms.DueDate).FirstOrDefault();        //send title due date
+                    pages.IsTitleDone = (from ms in db.MainStats
+                                         where ms.LinkID == userLinkID &&
+                                         ms.MainstepID == m.MainstepID
+                                         select ms.IsDone).FirstOrDefault();       //send title isDone status
+                    pages.TitleNotes = (from ms in db.MainStats
+                                        where ms.LinkID == userLinkID &&
+                                        ms.MainstepID == m.MainstepID
+                                        select ms.Notes).FirstOrDefault();         //send title notes
+                }
+                else   //must create status table
+                {
+                    var lastStat = (from ms in db.MainStats
+                                    select ms.MainStatID).ToList();
+                    var lastStatID = -1;
+                    if (lastStat.Count() < 1)
+                    {
+                        lastStatID = 1;
+                    }
+                    else
+                    {
+                        lastStatID = lastStat[lastStat.Count - 1];
+                    }
+
+                    //set table values and save new stat entry to database
+                    MainStat newStat = new MainStat();
+                    newStat.MainStatID = lastStatID + 1;
+                    newStat.IsDone = false;
+                    newStat.MainstepID = m.MainstepID;
+                    newStat.LinkID = userLinkID;
+                    db.MainStats.Add(newStat);
+                    db.SaveChanges();
+                    pages.MStatID = newStat.MainStatID;
                 }
                 headsteps = (from h in db.Headsteps
                              where h.MainstepID == m.MainstepID
@@ -213,9 +250,46 @@ namespace ReadyRecruit.Controllers
                                      select hs).ToList();
                         if (headStats.Count() > 0)
                         {
-                            pages.HeadingsDue[count] = headStats[0].DueDate;   //send heading due date
-                            pages.IsHeadDone[count] = mainStats[1].IsDone;     //send heading isDone status
-                            pages.HeadNotes[count] = mainStats[2].Notes;       //send heading notes
+                            pages.HStatID[count] = (from hs in db.HeadStats
+                                             where hs.LinkID == userLinkID &&
+                                             hs.HeadstepID == h.HeadstepID
+                                             select hs.HeadStatID).FirstOrDefault();     //send heaing status id
+                            pages.HeadingsDue[count] = (from hs in db.HeadStats
+                                              where hs.LinkID == userLinkID &&
+                                              hs.HeadstepID == h.HeadstepID
+                                              select hs.DueDate).FirstOrDefault();        //send heading due date
+                            pages.IsHeadDone[count] = (from hs in db.HeadStats
+                                                 where hs.LinkID == userLinkID &&
+                                                 hs.HeadstepID == h.HeadstepID
+                                                 select hs.IsDone).FirstOrDefault();       //send heading isDone status
+                            pages.HeadNotes[count] = (from hs in db.HeadStats
+                                                where hs.LinkID == userLinkID &&
+                                                hs.HeadstepID == h.HeadstepID
+                                                select hs.Notes).FirstOrDefault();         //send heading notes
+                        }
+                        else   //must create status table
+                        {
+                            var lastStat = (from hs in db.HeadStats
+                                            select hs.HeadStatID).ToList();
+                            var lastStatID = -1;
+                            if (lastStat.Count() < 1)
+                            {
+                                lastStatID = 1;
+                            }
+                            else
+                            {
+                                lastStatID = lastStat[lastStat.Count - 1];
+                            }
+
+                            //set table values and save new stat entry to database
+                            HeadStat newStat = new HeadStat();
+                            newStat.HeadStatID = lastStatID + 1;
+                            newStat.IsDone = false;
+                            newStat.HeadstepID = h.HeadstepID;
+                            newStat.LinkID = userLinkID;
+                            db.HeadStats.Add(newStat);
+                            db.SaveChanges();
+                            pages.HStatID[count] = newStat.HeadStatID;
                         }
                         substeps = (from s in db.Substeps
                                     where s.HeadstepID == h.HeadstepID
@@ -237,10 +311,48 @@ namespace ReadyRecruit.Controllers
                                             select ss).ToList();
                                 if (subStats.Count() > 0)
                                 {
-                                    pages.SubstepsDue[count, subcount] = subStats[0].DueDate; //send substep due date
-                                    pages.IsSubDone[count, subcount] = subStats[1].IsDone;    //send substep isDone status
-                                    pages.SubNotes[count, subcount] = subStats[2].Notes;      //send substep notes
+                                    pages.SStatID[count,subcount] = (from ss in db.SubStats
+                                                            where ss.LinkID == userLinkID &&
+                                                            ss.SubstepID == s.SubstepID
+                                                            select ss.SubStatID).FirstOrDefault();     //send substep status id
+                                    pages.SubstepsDue[count,subcount] = (from ss in db.SubStats
+                                                                where ss.LinkID == userLinkID &&
+                                                                ss.SubstepID == s.SubstepID
+                                                                select ss.DueDate).FirstOrDefault();        //send substep due date
+                                    pages.IsSubDone[count,subcount] = (from ss in db.SubStats
+                                                               where ss.LinkID == userLinkID &&
+                                                               ss.SubstepID == s.SubstepID
+                                                               select ss.IsDone).FirstOrDefault();       //send substep isDone status
+                                    pages.SubNotes[count,subcount] = (from ss in db.SubStats
+                                                              where ss.LinkID == userLinkID &&
+                                                              ss.SubstepID == s.SubstepID
+                                                              select ss.Notes).FirstOrDefault();         //send substep notes
                                 }
+                                else   //must create status table
+                                {
+                                    var lastStat = (from ss in db.SubStats
+                                                    select ss.SubStatID).ToList();
+                                    var lastStatID = -1;
+                                    if (lastStat.Count() < 1)
+                                    {
+                                        lastStatID = 1;
+                                    }
+                                    else
+                                    {
+                                        lastStatID = lastStat[lastStat.Count - 1];
+                                    }
+
+                                    //set table values and save new stat entry to database
+                                    SubStat newStat = new SubStat();
+                                    newStat.SubStatID = lastStatID + 1;
+                                    newStat.IsDone = false;
+                                    newStat.SubstepID = s.SubstepID;
+                                    newStat.LinkID = userLinkID;
+                                    db.SubStats.Add(newStat);
+                                    db.SaveChanges();
+                                    pages.SStatID[count, subcount] = newStat.SubStatID;
+                                }
+
                             }
                         }
 
@@ -254,12 +366,15 @@ namespace ReadyRecruit.Controllers
                         LinkID = userLinkID,
                         Title = pages.Title,
                         MainID = pages.MainID,
+                        MStatID = pages.MStatID,
                         NumHeadings = pages.NumHeadings,
                         Headings = pages.Headings,
                         HeadID = pages.HeadID,
+                        HStatID = pages.HStatID,
                         NumSubsteps = pages.NumSubsteps,
                         Substeps = pages.Substeps,
                         SubID = pages.SubID,
+                        SStatID = pages.SStatID,
                         TitleDue = pages.TitleDue,
                         HeadingsDue = pages.HeadingsDue,
                         SubstepsDue = pages.SubstepsDue,
@@ -280,12 +395,15 @@ namespace ReadyRecruit.Controllers
                         LinkID = userLinkID,
                         Title = pages.Title,
                         MainID = pages.MainID,
+                        MStatID = pages.MStatID,
                         NumHeadings = pages.NumHeadings,
                         Headings = pages.Headings,
                         HeadID = pages.HeadID,
+                        HStatID = pages.HStatID,
                         NumSubsteps = pages.NumSubsteps,
                         Substeps = pages.Substeps,
                         SubID = pages.SubID,
+                        SStatID = pages.SStatID,
                         TitleDue = pages.TitleDue,
                         HeadingsDue = pages.HeadingsDue,
                         SubstepsDue = pages.SubstepsDue,
@@ -307,12 +425,15 @@ namespace ReadyRecruit.Controllers
                         LinkID = userLinkID,
                         Title = pages.Title,
                         MainID = pages.MainID,
+                        MStatID = pages.MStatID,
                         NumHeadings = pages.NumHeadings,
                         Headings = pages.Headings,
                         HeadID = pages.HeadID,
+                        HStatID = pages.HStatID,
                         NumSubsteps = pages.NumSubsteps,
                         Substeps = pages.Substeps,
                         SubID = pages.SubID,
+                        SStatID = pages.SStatID,
                         TitleDue = pages.TitleDue,
                         HeadingsDue = pages.HeadingsDue,
                         SubstepsDue = pages.SubstepsDue,
@@ -339,9 +460,9 @@ namespace ReadyRecruit.Controllers
 
         // GET: Items/ToggleDone/5   (Add ability to toggle the IsDone box from the view)
         //public ActionResult ToggleDone(int linkID, int stepID, int key)
-        public ActionResult ToggleDone(Pages page)
+        public ActionResult ToggleDoneSub(int? id)
         {
-            var userStatID = -1;
+            //var userStatID = -1;
 
             //create stat table if it doesn't already exist (for linkID and stepID)
             //if (key == 1)
@@ -428,42 +549,26 @@ namespace ReadyRecruit.Controllers
             //}
             //else if (key == 3)
             //{
-            var stats = (from s in db.SubStats
-                             //where s.LinkID == linkID &&
-                             //s.SubstepID == stepID
-                         where s.LinkID == page.LinkID &&
-                         s.SubstepID == page.SubID[page.Ihead, page.Jsub]  //why isn't SubID populated as an array?
-                         select s).ToList();
+            //var stats = (from s in db.SubStats
+            //             where s.SubStatID == id
+            //             select s).ToList();
             //if (stats.IsNullOrEmpty())
-            if(stats.Count()<1)
-            {
-                var lastStat = (from s in db.SubStats
-                                select s.LinkID).ToList();
-                var lastStatID = lastStat[lastStat.Count - 1];
-                //set table values and save new Stat entry to database
-                SubStat newStat = new SubStat();
-                newStat.LinkID = lastStatID + 1;
-                newStat.IsDone = false;
-                //newStat.SubstepID = stepID;
-                //newStat.LinkID = linkID;
-                newStat.SubstepID = page.SubID[page.Ihead, page.Jsub];
-                newStat.LinkID = page.LinkID;
-                db.SubStats.Add(newStat);
-                db.SaveChanges();
-                userStatID = newStat.LinkID;
-            }
-            else
-            {
-                var statID = (from s in db.SubStats
-                                  //where s.LinkID == linkID &&
-                                  //s.SubstepID == stepID
-                              where s.LinkID == page.LinkID &&
-                                    s.SubstepID == page.SubID[page.Ihead, page.Jsub]
-                              select s.SubStatID);
-                userStatID = statID.FirstOrDefault();
-            }
+            // if (stats.Count() < 1)
+            // {
+            //     //error msg if table doesn't exist -- shouldn't happen
+            //}
+            // else
+            // {
+            //     var statID = (from s in db.SubStats
+            //                       //where s.LinkID == linkID &&
+            //                       //s.SubstepID == stepID
+            //                   where s.LinkID == page.LinkID &&
+            //                         s.SubstepID == page.SubID[page.Ihead, page.Jsub]
+            //                   select s.SubStatID);
+            //     userStatID = statID.FirstOrDefault();
+            // }
             //toggle isDone now that we know it exists!
-            SubStat item = db.SubStats.Find(userStatID);
+            SubStat item = db.SubStats.Find(id);
             if (item.IsDone == true)
             {
                 item.IsDone = false;
@@ -472,10 +577,9 @@ namespace ReadyRecruit.Controllers
             {
                 item.IsDone = true;
             }
-            db.SaveChanges();   
+            db.SaveChanges();
 
-            return View();
-            //return RedirectToAction("Index");  //this goes to the method above and calls the View   
+            return RedirectToAction("StepPage");
         }
 
 

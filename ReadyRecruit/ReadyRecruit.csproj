@@ -210,15 +210,18 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EducationsController.cs" />
     <Compile Include="Controllers\GendersController.cs" />
+    <Compile Include="Controllers\HeadStatsController.cs" />
     <Compile Include="Controllers\HeadstepsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LinksController.cs" />
+    <Compile Include="Controllers\MainStatsController.cs" />
     <Compile Include="Controllers\MainstepsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MaritalStatsController.cs" />
     <Compile Include="Controllers\PriorServicesController.cs" />
     <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Controllers\RoadmapsController.cs" />
+    <Compile Include="Controllers\SubStatsController.cs" />
     <Compile Include="Controllers\SubstepsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -441,6 +444,21 @@
     <Content Include="Views\Links\Edit.cshtml" />
     <Content Include="Views\Links\Index.cshtml" />
     <Content Include="Views\Mainsteps\StepPage.cshtml" />
+    <Content Include="Views\MainStats\Create.cshtml" />
+    <Content Include="Views\MainStats\Delete.cshtml" />
+    <Content Include="Views\MainStats\Details.cshtml" />
+    <Content Include="Views\MainStats\Edit.cshtml" />
+    <Content Include="Views\MainStats\Index.cshtml" />
+    <Content Include="Views\HeadStats\Create.cshtml" />
+    <Content Include="Views\HeadStats\Delete.cshtml" />
+    <Content Include="Views\HeadStats\Details.cshtml" />
+    <Content Include="Views\HeadStats\Edit.cshtml" />
+    <Content Include="Views\HeadStats\Index.cshtml" />
+    <Content Include="Views\SubStats\Create.cshtml" />
+    <Content Include="Views\SubStats\Delete.cshtml" />
+    <Content Include="Views\SubStats\Details.cshtml" />
+    <Content Include="Views\SubStats\Edit.cshtml" />
+    <Content Include="Views\SubStats\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
