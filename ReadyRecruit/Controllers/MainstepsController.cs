@@ -459,116 +459,18 @@ namespace ReadyRecruit.Controllers
         }
 
         // GET: Items/ToggleDone/5   (Add ability to toggle the IsDone box from the view)
-        //public ActionResult ToggleDone(int linkID, int stepID, int key)
         public ActionResult ToggleDoneSub(int? id)
         {
-            //var userStatID = -1;
-
-            //create stat table if it doesn't already exist (for linkID and stepID)
-            //if (key == 1)
-            //{
-            //    var stats = (from m in db.MainStats
-            //                 where m.LinkID == linkID &&
-            //                 m.MainstepID == stepID
-            //                 select m).ToList();
-            //    if (stats.IsNullOrEmpty())
-            //    {
-            //        var lastStat = (from m in db.MainStats
-            //                        select m.LinkID).ToList();
-            //        var lastStatID = lastStat[lastStat.Count - 1];
-            //        //set table values and save new Stat entry to database
-            //        MainStat newStat = new MainStat();
-            //        newStat.LinkID = lastStatID + 1;
-            //        newStat.IsDone = false;
-            //        newStat.MainstepID = stepID;
-            //        newStat.LinkID = linkID;
-            //        db.MainStats.Add(newStat);
-            //        db.SaveChanges();
-            //        userStatID = newStat.LinkID;
-            //    }
-            //    else
-            //    {
-            //        var statID = (from m in db.MainStats
-            //                      where m.LinkID == linkID &&
-            //                      m.MainstepID == stepID
-            //                      select m.MainStatID);
-            //        userStatID = statID.FirstOrDefault();
-            //    }
-            //    //toggle isDone now that we know it exists!
-            //    MainStat item = db.MainStats.Find(userStatID);
-            //    if (item.IsDone==true)
-            //    {
-            //        item.IsDone = false;
-            //    }
-            //    else
-            //    {
-            //        item.IsDone = true;
-            //    }
-            //    db.SaveChanges();   //saves change to the database
-            //}
-            //else if (key == 2)
-            //{
-            //    var stats = (from h in db.HeadStats
-            //                 where h.LinkID == linkID &&
-            //                 h.HeadstepID == stepID
-            //                 select h).ToList();
-            //    if (stats.IsNullOrEmpty())
-            //    {
-            //        var lastStat = (from h in db.HeadStats
-            //                        select h.LinkID).ToList();
-            //        var lastStatID = lastStat[lastStat.Count - 1];
-            //        //set table values and save new Stat entry to database
-            //        HeadStat newStat = new HeadStat();
-            //        newStat.LinkID = lastStatID + 1;
-            //        newStat.IsDone = false;
-            //        newStat.HeadstepID = stepID;
-            //        newStat.LinkID = linkID;
-            //        db.HeadStats.Add(newStat);
-            //        db.SaveChanges();
-            //        userStatID = newStat.LinkID;
-            //    }
-            //    else
-            //    {
-            //        var statID = (from s in db.HeadStats
-            //                      where s.LinkID == linkID &&
-            //                      s.HeadstepID == stepID
-            //                      select s.HeadStatID);
-            //        userStatID = statID.FirstOrDefault();
-            //    }
-            //    //toggle isDone now that we know it exists!
-            //    HeadStat item = db.HeadStats.Find(userStatID);
-            //    if (item.IsDone == true)
-            //    {
-            //        item.IsDone = false;
-            //    }
-            //    else
-            //    {
-            //        item.IsDone = true;
-            //    }
-            //    db.SaveChanges();   //saves change to the database
-            //}
-            //else if (key == 3)
-            //{
-            //var stats = (from s in db.SubStats
-            //             where s.SubStatID == id
-            //             select s).ToList();
-            //if (stats.IsNullOrEmpty())
-            // if (stats.Count() < 1)
-            // {
-            //     //error msg if table doesn't exist -- shouldn't happen
-            //}
-            // else
-            // {
-            //     var statID = (from s in db.SubStats
-            //                       //where s.LinkID == linkID &&
-            //                       //s.SubstepID == stepID
-            //                   where s.LinkID == page.LinkID &&
-            //                         s.SubstepID == page.SubID[page.Ihead, page.Jsub]
-            //                   select s.SubStatID);
-            //     userStatID = statID.FirstOrDefault();
-            // }
-            //toggle isDone now that we know it exists!
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             SubStat item = db.SubStats.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+
             if (item.IsDone == true)
             {
                 item.IsDone = false;
@@ -582,7 +484,57 @@ namespace ReadyRecruit.Controllers
             return RedirectToAction("StepPage");
         }
 
+        // GET: Items/ToggleDone/5   (Add ability to toggle the IsDone box from the view)
+        public ActionResult ToggleDoneHead(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            HeadStat item = db.HeadStats.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
 
+            if (item.IsDone == true)
+            {
+                item.IsDone = false;
+            }
+            else
+            {
+                item.IsDone = true;
+            }
+            db.SaveChanges();
+
+            return RedirectToAction("StepPage");
+        }
+
+        // GET: Items/ToggleDone/5   (Add ability to toggle the IsDone box from the view)
+        public ActionResult ToggleDoneMain(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            MainStat item = db.MainStats.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (item.IsDone == true)
+            {
+                item.IsDone = false;
+            }
+            else
+            {
+                item.IsDone = true;
+            }
+            db.SaveChanges();
+
+            return RedirectToAction("StepPage");
+        }
         // GET: Mainsteps/Details/5
         public ActionResult Details(int? id)
         {

@@ -87,11 +87,15 @@ div.pic {
     display: block;
     height: 66vh;
 }
+section#homepage .row {
+    width: 100vw;
+}
 div.video {
     background-image: url('images/iwojima.jpg');
-    background-size: contain;
-    display: block;
-    min-height:50vh;
+    background-size: 100% 100%;
+    /*display: block;*/
+    min-height:65vh;
+    padding:0px 0px 0px 0px;
 }
 
 div.jumbotron {
