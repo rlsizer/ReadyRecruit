@@ -66,7 +66,16 @@ textarea {
     color: gold;
     min-height:90vh;
 }
+.outlinetext {
+    min-height:75vh;
+}
 
+div.pic {
+    background-image: url('images/iwojima.jpg');
+    background-size: 33.3vw;
+    display: block;
+    height: 50vh;
+}
 div.rightcolumn {
     background-color: gold;
     color: black;
@@ -88,12 +97,7 @@ div.rightcolumn {
 .rightcolumn .row {
     padding: 20px 20px 20px 20px;
 }
-div.pic {
-    background-image: url('images/iwojima.jpg');
-    background-size: 33.3vw;
-    display: block;
-    height: 55vh;
-}
+
 section#homepage .row {
     width: 100vw;
 }
@@ -117,6 +121,7 @@ div.bottom {
     min-height:50vh;
 }
 section#Step1 {
+    /*padding-top:45px;*/
     min-height: 100vh;
 }
 section#Step2, section#Step3 {
@@ -127,18 +132,22 @@ section#Step2, section#Step3 {
 h1 {
     text-shadow: 3px 3px 3px tomato;
     font-weight:600;
+
 }
 .outline h1 {
     text-align:center;
+        font-size: 28px;
 }
 
 .outline h2 {
     padding-left:5vw;
     text-wrap:avoid;
+    font-size: 20px;
 }
 
 .outline h3 {
     padding-left:10vw;
+    font-size: 16px;
 }
 .glyphicon-check, .glyphicon-unchecked {
     font-size: 0.5em;
