@@ -99,11 +99,12 @@
 
         </p>
         <div class="ViewProfileSelections row">
-            <ul>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ProfileID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ProfileID }) |
-                @Html.ActionLink("Get Started", "../Mainsteps/StepPage")
-            </ul>
+            <button type="button" class="btn btn-default">
+                @Html.ActionLink("Update Profile", "Edit", new { id = item.ProfileID }) 
+            </button>
+                <button type="button" class="btn btn-default">
+                    @Html.ActionLink("Get Started!", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: null, routeValues: null, htmlAttributes: null)
+                </button>
         </div>
     }
 </section>

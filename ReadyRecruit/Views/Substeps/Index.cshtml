@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Substeps</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,23 +12,21 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.SubstepID)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Number)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DueDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsDone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Notes)
-        </th>
-        <th>
+      <th>
             @Html.DisplayNameFor(model => model.Points)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Headstep.HeadstepID)
+        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Headstep.Name)
         </th>
@@ -38,22 +36,20 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.SubstepID)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Number)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DueDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsDone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Notes)
-        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.Points)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Headstep.HeadstepID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Headstep.Name)
