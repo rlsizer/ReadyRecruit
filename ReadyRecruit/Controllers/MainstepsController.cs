@@ -177,11 +177,12 @@ namespace ReadyRecruit.Controllers
             //Pages one = new Pages();
             //Pages two = new Pages();
             //Pages three = new Pages();
-
+            int maincount = mainsteps.Count();
+            pages.NumPages = maincount;
             foreach (var m in mainsteps)        //loop through mainsteps - prepare pages 1, 2, 3
             {
                 mcount += 1;
-                if (m.Number > 3) continue;
+                //if (m.Number > 3) continue;
                 pages.Title[mcount] = m.Name;                                //send title
                 pages.MainID[mcount] = m.MainstepID;                         //send MainstepID
 
@@ -360,96 +361,6 @@ namespace ReadyRecruit.Controllers
 
                     }
                 }
-                //if (m.Number == 1)
-                //{
-                //    //name = name + m.Number.ToString();
-                //    one = new Pages
-                //    {
-                //        LinkID = userLinkID,
-                //        Title = pages.Title,
-                //        MainID = pages.MainID,
-                //        MStatID = pages.MStatID,
-                //        NumHeadings = pages.NumHeadings,
-                //        Headings = pages.Headings,
-                //        HeadID = pages.HeadID,
-                //        HStatID = pages.HStatID,
-                //        NumSubsteps = pages.NumSubsteps,
-                //        Substeps = pages.Substeps,
-                //        SubID = pages.SubID,
-                //        SStatID = pages.SStatID,
-                //        TitleDue = pages.TitleDue,
-                //        HeadingsDue = pages.HeadingsDue,
-                //        SubstepsDue = pages.SubstepsDue,
-                //        IsTitleDone = pages.IsTitleDone,
-                //        IsHeadDone = pages.IsHeadDone,
-                //        IsSubDone = pages.IsSubDone,
-                //        TitleNotes = pages.TitleNotes,
-                //        HeadNotes = pages.HeadNotes,
-                //        SubNotes = pages.SubNotes,
-                //        Ihead = 0,
-                //        Jsub = 0
-                //    };
-                //}
-                //if (m.Number == 2)
-                //{
-                //    two = new Pages
-                //    {
-                //        LinkID = userLinkID,
-                //        Title = pages.Title,
-                //        MainID = pages.MainID,
-                //        MStatID = pages.MStatID,
-                //        NumHeadings = pages.NumHeadings,
-                //        Headings = pages.Headings,
-                //        HeadID = pages.HeadID,
-                //        HStatID = pages.HStatID,
-                //        NumSubsteps = pages.NumSubsteps,
-                //        Substeps = pages.Substeps,
-                //        SubID = pages.SubID,
-                //        SStatID = pages.SStatID,
-                //        TitleDue = pages.TitleDue,
-                //        HeadingsDue = pages.HeadingsDue,
-                //        SubstepsDue = pages.SubstepsDue,
-                //        IsTitleDone = pages.IsTitleDone,
-                //        IsHeadDone = pages.IsHeadDone,
-                //        IsSubDone = pages.IsSubDone,
-                //        TitleNotes = pages.TitleNotes,
-                //        HeadNotes = pages.HeadNotes,
-                //        SubNotes = pages.SubNotes,
-                //        Ihead = 0,
-                //        Jsub = 0
-                //    };
-                //}
-
-                //if (m.Number == 3)
-                //{
-                //    three = new Pages
-                //    {
-                //        LinkID = userLinkID,
-                //        Title = pages.Title,
-                //        MainID = pages.MainID,
-                //        MStatID = pages.MStatID,
-                //        NumHeadings = pages.NumHeadings,
-                //        Headings = pages.Headings,
-                //        HeadID = pages.HeadID,
-                //        HStatID = pages.HStatID,
-                //        NumSubsteps = pages.NumSubsteps,
-                //        Substeps = pages.Substeps,
-                //        SubID = pages.SubID,
-                //        SStatID = pages.SStatID,
-                //        TitleDue = pages.TitleDue,
-                //        HeadingsDue = pages.HeadingsDue,
-                //        SubstepsDue = pages.SubstepsDue,
-                //        IsTitleDone = pages.IsTitleDone,
-                //        IsHeadDone = pages.IsHeadDone,
-                //        IsSubDone = pages.IsSubDone,
-                //        TitleNotes = pages.TitleNotes,
-                //        HeadNotes = pages.HeadNotes,
-                //        SubNotes = pages.SubNotes,
-                //        Ihead = 0,
-                //        Jsub = 0
-                //    };
-                //}
-
             }
 
             pages.LinkID = userLinkID;
