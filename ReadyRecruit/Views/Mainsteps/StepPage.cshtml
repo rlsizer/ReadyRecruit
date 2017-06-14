@@ -6,7 +6,7 @@
 }
 <div class="outlinePage">
     @{
-        var one = (Pages)ViewData["PageOne"];
+        var pages = (Pages)ViewData["Pages"];
     }
 
     <section id="Step1">
@@ -14,17 +14,17 @@
             <div class="row">
                 <div class="col-md-8 outline">
                     <div class="row">
-                        <h1>@one.Title</h1><hr />
-                        @for (int i = 1; i <= one.NumHeadings; i++)
+                        <h1>@pages.Title[1]</h1><hr />
+                        @for (int i = 1; i <= pages.NumHeadings[1]; i++)
                         {
-                            one.Ihead = i;
-                            <h2>@one.Headings[i]</h2>
-                            for (int j = 1; j <= one.NumSubsteps[i]; j++)
+                            pages.Ihead = i;
+                            <h2>@pages.Headings[1,i]</h2>
+                            for (int j = 1; j <= pages.NumSubsteps[1,i]; j++)
                             {
-                                one.Jsub = j;
+                                pages.Jsub = j;
                                 <h3>
-                                    <a href="@Url.Action("ToggleDoneSub",new { id = one.SStatID[i,j] })">
-                                        @if (one.IsSubDone[i, j])
+                                    <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[1,i,j] })">
+                                        @if (pages.IsSubDone[1,i, j])
                                         {
                                             <span class="glyphicon glyphicon-check"></span>
                                         }
@@ -33,7 +33,7 @@
                                             <span class="glyphicon glyphicon-unchecked"></span>
                                         }
                                     </a>
-                                    @one.Substeps[i, j]
+                                    @pages.Substeps[1,i, j]
                                 </h3>
                             }
                         }
@@ -80,27 +80,22 @@
     </section>
 
 
-
-    @{
-        var two = (Pages)ViewData["PageTwo"];
-    }
-
     <section id="Step2">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 outline">
                     <div class="row">
-                        <h1>@two.Title</h1><hr />
-                        @for (int i = 1; i <= two.NumHeadings; i++)
+                        <h1>@pages.Title[2]</h1><hr />
+                        @for (int i = 1; i <= pages.NumHeadings[2]; i++)
                         {
-                            two.Ihead = i;
-                            <h2>@two.Headings[i]</h2>
-                            for (int j = 1; j <= two.NumSubsteps[i]; j++)
+                            pages.Ihead = i;
+                            <h2>@pages.Headings[2,i]</h2>
+                            for (int j = 1; j <= pages.NumSubsteps[2,i]; j++)
                             {
-                                two.Jsub = j;
+                                pages.Jsub = j;
                                 <h3>
-                                    <a href="@Url.Action("ToggleDoneSub",new { id = two.SStatID[i,j] })">
-                                        @if (two.IsSubDone[i, j])
+                                    <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[2,i,j] })">
+                                        @if (pages.IsSubDone[2,i, j])
                                         {
                                             <span class="glyphicon glyphicon-check"></span>
                                         }
@@ -109,7 +104,7 @@
                                             <span class="glyphicon glyphicon-unchecked"></span>
                                         }
                                     </a>
-                                    @two.Substeps[i, j]
+                                    @pages.Substeps[2,i, j]
                                 </h3>
                             }
                         }
@@ -117,22 +112,22 @@
                     <div class="row selections">
                         <hr />
                         <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Army", "Army", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = two.LinkID }, htmlAttributes: null)
+                            @Html.ActionLink("Army", "Army", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                          </button>
                         <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Airforce", "Airforce", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = two.LinkID }, htmlAttributes: null)
+                            @Html.ActionLink("Airforce", "Airforce", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                        </button>
                         <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Navy", "Navy", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = two.LinkID }, htmlAttributes: null)
+                            @Html.ActionLink("Navy", "Navy", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                         </button>
                         <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Marines", "Marines", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = two.LinkID }, htmlAttributes: null)
+                            @Html.ActionLink("Marines", "Marines", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                        </button>
                         <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Coast Guard", "CoastGuard", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = two.LinkID }, htmlAttributes: null)
+                            @Html.ActionLink("Coast Guard", "CoastGuard", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                        </button>
                         <button type="button" class="btn btn-default">
-                            @Html.ActionLink("still undecided", "NoBranch", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = two.LinkID }, htmlAttributes: null)
+                            @Html.ActionLink("still undecided", "NoBranch", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                         </button>
 
                     </div>
@@ -165,26 +160,22 @@
 
 
 
-    @{
-        var three = (Pages)ViewData["PageThree"];
-    }
-
     <section id="Step3">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 outline">
                     <div class="row">
-                        <h1>@three.Title</h1><hr />
-                        @for (int i = 1; i <= three.NumHeadings; i++)
+                        <h1>@pages.Title[3]</h1><hr />
+                        @for (int i = 1; i <= pages.NumHeadings[3]; i++)
                         {
-                            three.Ihead = i;
-                            <h2>@three.Headings[i]</h2>
-                            for (int j = 1; j <= three.NumSubsteps[i]; j++)
+                            pages.Ihead = i;
+                            <h2>@pages.Headings[3,i]</h2>
+                            for (int j = 1; j <= pages.NumSubsteps[3,i]; j++)
                             {
-                                three.Jsub = j;
+                                pages.Jsub = j;
                                 <h3>
-                                    <a href="@Url.Action("ToggleDoneSub",new { id = three.SStatID[i,j] })">
-                                        @if (three.IsSubDone[i, j])
+                                    <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[3,i,j] })">
+                                        @if (pages.IsSubDone[3,i, j])
                                         {
                                             <span class="glyphicon glyphicon-check"></span>
                                         }
@@ -193,7 +184,7 @@
                                             <span class="glyphicon glyphicon-unchecked"></span>
                                         }
                                     </a>
-                                    @three.Substeps[i, j]
+                                    @pages.Substeps[3,i, j]
                                 </h3>
                             }
                         }
@@ -201,16 +192,16 @@
                     <div class="row selections">
                         <hr />
                         <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = three.LinkID }, htmlAttributes: null)
+                            @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                         </button>
                         <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = three.LinkID }, htmlAttributes: null)
+                            @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                         </button>
                         <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = three.LinkID }, htmlAttributes: null)
+                            @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                         </button>
                         <button type="button" class="btn btn-default">
-                            @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = three.LinkID }, htmlAttributes: null)
+                            @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                         </button>
                    </div>
                 </div>@* end of col-md-8 *@
