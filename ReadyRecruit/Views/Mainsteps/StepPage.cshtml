@@ -40,13 +40,10 @@
                     </div>
                     <div class="row selections">
                         <hr />
-                        @*<button type="button" class="btn btn-default">*@
-                            @*@Html.ActionLink("Yes", "../Mainsteps/StepPage")*@
-                            @*<a href="@Url.Action("StepPage","Mainsteps")#Step2" type ="button" class="btn btn-default">Yes</a>*@
-                            @Html.ActionLink("Yes", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step2", routeValues: null, htmlAttributes: null)
-                        @*</button>*@
                         <button type="button" class="btn btn-default">
-                            @*@Html.ActionLink("No", "../Mainsteps/StepPage")*@
+                            @Html.ActionLink("Yes", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step2", routeValues: null, htmlAttributes: null)
+                        </button>
+                        <button type="button" class="btn btn-default">
                             @Html.ActionLink("No", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step2", routeValues: null, htmlAttributes: null)
                             @*popup a window to congratulate them on their decision and give them
                                 option to continue to explore or logoff*@
@@ -204,18 +201,18 @@
                     <div class="row selections">
                         <hr />
                         <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Enlisted", "StepPage", "Headsteps")
-                            @*@Html.ActionLink("Enlisted", "StepPage", "Headsteps")*@
+                            @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = three.LinkID }, htmlAttributes: null)
                         </button>
                         <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Commissioned", "StepPage", "Headsteps")
-                            @*@Html.ActionLink("Commissioned", "StepPage", "Headsteps")*@
+                            @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = three.LinkID }, htmlAttributes: null)
                         </button>
                         <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Warrant", "StepPage", "Headsteps")
-                            @*@Html.ActionLink("Warrant", "StepPage", "Headsteps")*@
+                            @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = three.LinkID }, htmlAttributes: null)
                         </button>
-                    </div>
+                        <button type="button" class="btn btn-default">
+                            @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = three.LinkID }, htmlAttributes: null)
+                        </button>
+                   </div>
                 </div>@* end of col-md-8 *@
 
                 <div class="col-md-4 rightcolumn">

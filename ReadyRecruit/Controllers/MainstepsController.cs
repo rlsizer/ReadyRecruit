@@ -651,6 +651,82 @@ namespace ReadyRecruit.Controllers
             return RedirectToAction("StepPage");
         }
 
+        // GET: Items/Enlisted/5   (Change user's military title to enlisted)
+        public ActionResult Enlisted(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Link item = db.Links.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            Profile user = db.Profiles.Find(item.ProfileID);
+            user.Title = "enlisted";
+            db.SaveChanges();
+
+            return RedirectToAction("StepPage");
+        }
+
+        // GET: Items/Commissioned/5   (Change user's military title to commissioned)
+        public ActionResult Commissioned(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Link item = db.Links.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            Profile user = db.Profiles.Find(item.ProfileID);
+            user.Title = "commissioned";
+            db.SaveChanges();
+
+            return RedirectToAction("StepPage");
+        }
+
+        // GET: Items/Warrant/5   (Change user's military title to warrant officer)
+        public ActionResult Warrant(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Link item = db.Links.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            Profile user = db.Profiles.Find(item.ProfileID);
+            user.Title = "a warrant officer";
+            db.SaveChanges();
+
+            return RedirectToAction("StepPage");
+        }
+
+        // GET: Items/NoTitle/5   (Change user's military title to undecided)
+        public ActionResult NoTitle(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Link item = db.Links.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            Profile user = db.Profiles.Find(item.ProfileID);
+            user.Title = null;
+            db.SaveChanges();
+
+            return RedirectToAction("StepPage");
+        }
+
         // GET: Mainsteps/Details/5
         public ActionResult Details(int? id)
         {
