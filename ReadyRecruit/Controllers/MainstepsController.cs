@@ -535,6 +535,122 @@ namespace ReadyRecruit.Controllers
 
             return RedirectToAction("StepPage");
         }
+
+        // GET: Items/Army/5   (Change user's military branch to Army)
+        public ActionResult Army(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Link item = db.Links.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            Profile user = db.Profiles.Find(item.ProfileID);
+            user.Branch = "Army";
+            db.SaveChanges();
+
+            return RedirectToAction("StepPage");
+        }
+
+        // GET: Items/Airforce/5   (Change user's military branch to Airforce)
+        public ActionResult Airforce(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Link item = db.Links.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            Profile user = db.Profiles.Find(item.ProfileID);
+            user.Branch = "Airforce";
+            db.SaveChanges();
+
+            return RedirectToAction("StepPage");
+        }
+
+
+        // GET: Items/Navy/5   (Change user's military branch to Navy)
+        public ActionResult Navy(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Link item = db.Links.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            Profile user = db.Profiles.Find(item.ProfileID);
+            user.Branch = "Navy";
+            db.SaveChanges();
+
+            return RedirectToAction("StepPage");
+        }
+
+        // GET: Items/Marines/5   (Change user's military branch to Marines)
+        public ActionResult Marines(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Link item = db.Links.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            Profile user = db.Profiles.Find(item.ProfileID);
+            user.Branch = "Marines";
+            db.SaveChanges();
+
+            return RedirectToAction("StepPage");
+        }
+
+        // GET: Items/CoastGuard/5   (Change user's military branch to Coast Guard)
+        public ActionResult CoastGuard(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Link item = db.Links.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            Profile user = db.Profiles.Find(item.ProfileID);
+            user.Branch = "Coast Guard";
+            db.SaveChanges();
+
+            return RedirectToAction("StepPage");
+        }
+
+        // GET: Items/NoBranch/5   (Change user's military branch to undecided)
+        public ActionResult NoBranch(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Link item = db.Links.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            Profile user = db.Profiles.Find(item.ProfileID);
+            user.Branch = null;
+            db.SaveChanges();
+
+            return RedirectToAction("StepPage");
+        }
+
         // GET: Mainsteps/Details/5
         public ActionResult Details(int? id)
         {
@@ -648,15 +764,15 @@ namespace ReadyRecruit.Controllers
         public int GetRoadmapID(string branch, string title)
         {
             int RoadmapID = 6;
-            if (branch == "in the Army" && title == "enlisted")
+            if (branch == "Army" && title == "enlisted")
             {
                 RoadmapID = 1;
             }
-            else if (branch == "in the Airforce" && title == "enlisted")
+            else if (branch == "Airforce" && title == "enlisted")
             {
                 RoadmapID = 2;
             }
-            else if (branch == "in the Navy" && title == "enlisted")
+            else if (branch == "Navy" && title == "enlisted")
             {
                 RoadmapID = 3;
             }

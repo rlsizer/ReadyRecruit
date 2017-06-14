@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 225px;
+    padding-top: 45px;
     padding-bottom: 20px;
 }
 
@@ -38,44 +38,51 @@ textarea {
 .navbar-brand, .navbar-fixed-top a {
     color: red;
 }
+.navbar-right {
+    padding-right:2vw;
+}
 
 .nav li {
     font-size: 12px;
 }
 
 #Home img {
-    height: 200px;
-    width: 50%;
-    margin-left:-10px;
+    height: 30px;
+    width: 30px;
+    margin-left:10px;
 }
 
 .navbar.navbar-fixed-top {
-    background-image: url('images/Bald-Eagle-banner-1383.jpg');
+    /*background-image: url('images/Bald-Eagle-banner-1383.jpg');*/
+    background: lightyellow;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
-    height: 225px;
+    height: 45px;
 }
 
-section#Step1 .outline {
+.outline {
     background-color: rgbA(0, 0, 0, 0.8);
     color: gold;
-    min-height:100vh;
+    min-height:90vh;
 }
 
 div.rightcolumn {
     background-color: gold;
     color: black;
-    min-height:100vh;
+    min-height:90vh;
 }
 .selections {
-    position:relative;
-    top:20vh;
     text-align:center;
+    padding-bottom:10px;
     color:gold;
 }
 .selections a {
     color:gold;
+}
+.selections hr {
+    padding-top:0px;
+    padding-bottom:0px;
 }
 
 .rightcolumn .row {
@@ -85,7 +92,7 @@ div.pic {
     background-image: url('images/iwojima.jpg');
     background-size: 33.3vw;
     display: block;
-    height: 66vh;
+    height: 55vh;
 }
 section#homepage .row {
     width: 100vw;
@@ -109,20 +116,24 @@ div.bottom {
     padding-top:15px;
     min-height:50vh;
 }
-section#Step1, section#Step2 {
-    min-height: 80vh;
+section#Step1 {
+    min-height: 100vh;
+}
+section#Step2, section#Step3 {
+    padding-top:45px;
+    min-height:100vh;
 }
 
-section#Step1 h1 {
+.outline h1 {
     text-align:center;
 }
 
-section#Step1 h2 {
+.outline h2 {
     padding-left:5vw;
     text-wrap:avoid;
 }
 
-section#Step1 h3 {
+.outline h3 {
     padding-left:10vw;
 }
 .glyphicon-check, .glyphicon-unchecked {
@@ -158,11 +169,12 @@ background-color: rgbA(0,0,0,1.0);
 color:gold;
 font-size:24px;
 text-align:center;
+padding: 30px 20px 20px 20px;
 margin: auto;
-min-height:65vh;
+min-height:90vh;
 }
 section#viewProfile p {
-    padding: 10vh 15vw 10vh 15vw;
+    padding: 5vh 15vw 10vh 15vw;
 }
 .profileData {
     font-weight: 900;
@@ -174,6 +186,24 @@ section#viewProfile p {
 }
 .container {
     margin: 0px 0px 0px 0px;
-    width:100vw;
+    width:98vw;
     padding:0px 0px 0px 0px;
+}
+.btn.btn-default {
+    background: gold;
+    border: 2px solid tomato;
+}
+.btn.btn-default a {
+    color:black;
+}
+div.nextprev {
+    font-size:18px;
+    color:black;
+}
+div.nextprev .right {
+    float:right;
+}
+div.nextprev .glyphicon {
+    padding-left:5px;
+    padding-left:5px;
 }

@@ -4,133 +4,242 @@
 @{
     ViewBag.Title = "Roadmap";
 }
+<div class="outlinePage">
+    @{
+        var one = (Pages)ViewData["PageOne"];
+    }
 
-@{
-    var one = (Pages)ViewData["PageOne"];
-}
-
-<section id="Step1">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="row outline">
-                    <h1>@one.Title</h1><hr />
-                    @for (int i = 1; i <= one.NumHeadings; i++)
-                    {
-                        one.Ihead = i;
-                        <h2>@one.Headings[i]</h2>
-                        for (int j = 1; j <= one.NumSubsteps[i]; j++)
+    <section id="Step1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 outline">
+                    <div class="row">
+                        <h1>@one.Title</h1><hr />
+                        @for (int i = 1; i <= one.NumHeadings; i++)
                         {
-                            one.Jsub = j;
-                            <h3>
-                                <a href="@Url.Action("ToggleDoneSub",new { id = one.SStatID[i,j] })">
-                                    @if (one.IsSubDone[i, j])
-                                    {
-                                        <span class="glyphicon glyphicon-check"></span>
-                                    }
-                                    else
-                                    {
-                                        <span class="glyphicon glyphicon-unchecked"></span>
-                                    }
-                                </a>
-                                @one.Substeps[i, j]
-                            </h3>
+                            one.Ihead = i;
+                            <h2>@one.Headings[i]</h2>
+                            for (int j = 1; j <= one.NumSubsteps[i]; j++)
+                            {
+                                one.Jsub = j;
+                                <h3>
+                                    <a href="@Url.Action("ToggleDoneSub",new { id = one.SStatID[i,j] })">
+                                        @if (one.IsSubDone[i, j])
+                                        {
+                                            <span class="glyphicon glyphicon-check"></span>
+                                        }
+                                        else
+                                        {
+                                            <span class="glyphicon glyphicon-unchecked"></span>
+                                        }
+                                    </a>
+                                    @one.Substeps[i, j]
+                                </h3>
+                            }
                         }
-                    }
+                    </div>
                     <div class="row selections">
-                        <button type="button" class="btn btn-default btn-lg">
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
+                        <hr />
+                        @*<button type="button" class="btn btn-default">*@
+                            @*@Html.ActionLink("Yes", "../Mainsteps/StepPage")*@
+                            @*<a href="@Url.Action("StepPage","Mainsteps")#Step2" type ="button" class="btn btn-default">Yes</a>*@
+                            @Html.ActionLink("Yes", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step2", routeValues: null, htmlAttributes: null)
+                        @*</button>*@
+                        <button type="button" class="btn btn-default">
+                            @*@Html.ActionLink("No", "../Mainsteps/StepPage")*@
+                            @Html.ActionLink("No", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step2", routeValues: null, htmlAttributes: null)
+                            @*popup a window to congratulate them on their decision and give them
+                                option to continue to explore or logoff*@
                         </button>
-                        @Html.ActionLink("Yes", "#Step2") |
-                        @Html.ActionLink("No", "#") |
-                        @Html.ActionLink("Undecided", "#Step2")
-                        @*popup a window to congratulate them on their decision and give them
-            option to continue to explore or logoff*@
+                        <button type="button" class="btn btn-default">
+                            @Html.ActionLink("Undecided", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step2", routeValues: null, htmlAttributes: null)
+                        </button>
+                    </div>
+                </div>@* end of col-md-8 *@
+
+                <div class="col-md-4 rightcolumn">
+                    <div class="row nextprev">
+                        @*<a href="#" class="glyphicon glyphicon-arrow-left left"></a>
+                        <a href="#" class="left">Prev</a>*@
+                        <a href="#Step2" class="glyphicon glyphicon-arrow-right right"></a>
+                        <a href="#Step2" class="right">Next</a>
+                    </div>
+                    <div class="row">
+                        <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
+                    </div>
+                    <div class="row bar">
+                        <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
+                             aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                            <span>70% Complete</span>
+                        </div>
+                    </div>
+                    <div class="row pic">
+                        @*<img src="~/Content/images/iwojima.jpg" />*@
                     </div>
                 </div>
 
-            </div> @* end of col-md-8 *@
-
-
-            <div class="col-md-4 rightcolumn">
-                <div class="row">
-                    <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
-                </div>
-                <div class="row bar">
-                    <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
-                         aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                        <span>70% Complete</span>
-                    </div>
-                </div>
-                <div class="row pic">
-                    @*<img src="~/Content/images/iwojima.jpg" />*@
-                </div>
             </div>
-
         </div>
-    </div>
-</section>
+    </section>
 
 
-@{
-    var two = (Pages)ViewData["PageTwo"];
-}
 
-<section id="Step2">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="row outline">
-                    <h1>@two.Title</h1><hr />
-                    @for (int i = 1; i <= two.NumHeadings; i++)
-                    {
-                        two.Ihead = i;
-                        <h2>@two.Headings[i]</h2>
-                        for (int j = 1; j <= two.NumSubsteps[i]; j++)
+    @{
+        var two = (Pages)ViewData["PageTwo"];
+    }
+
+    <section id="Step2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 outline">
+                    <div class="row">
+                        <h1>@two.Title</h1><hr />
+                        @for (int i = 1; i <= two.NumHeadings; i++)
                         {
-                            two.Jsub = j;
-                            <h3>
-                                <a href="@Url.Action("ToggleDone",two)">
-                                    @if (two.IsSubDone[i, j])
-                                    {
-                                        <span class="glyphicon glyphicon-check"></span>
-                                    }
-                                    else
-                                    {
-                                        <span class="glyphicon glyphicon-unchecked"></span>
-                                    }
-                                </a>
-                                @two.Substeps[i, j]
-                            </h3>
+                            two.Ihead = i;
+                            <h2>@two.Headings[i]</h2>
+                            for (int j = 1; j <= two.NumSubsteps[i]; j++)
+                            {
+                                two.Jsub = j;
+                                <h3>
+                                    <a href="@Url.Action("ToggleDoneSub",new { id = two.SStatID[i,j] })">
+                                        @if (two.IsSubDone[i, j])
+                                        {
+                                            <span class="glyphicon glyphicon-check"></span>
+                                        }
+                                        else
+                                        {
+                                            <span class="glyphicon glyphicon-unchecked"></span>
+                                        }
+                                    </a>
+                                    @two.Substeps[i, j]
+                                </h3>
+                            }
                         }
-                    }
+                    </div>
+                    <div class="row selections">
+                        <hr />
+                        <button type="button" class="btn btn-default">
+                            @Html.ActionLink("Army", "Army", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = two.LinkID }, htmlAttributes: null)
+                         </button>
+                        <button type="button" class="btn btn-default">
+                            @Html.ActionLink("Airforce", "Airforce", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = two.LinkID }, htmlAttributes: null)
+                       </button>
+                        <button type="button" class="btn btn-default">
+                            @Html.ActionLink("Navy", "Navy", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = two.LinkID }, htmlAttributes: null)
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            @Html.ActionLink("Marines", "Marines", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = two.LinkID }, htmlAttributes: null)
+                       </button>
+                        <button type="button" class="btn btn-default">
+                            @Html.ActionLink("Coast Guard", "CoastGuard", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = two.LinkID }, htmlAttributes: null)
+                       </button>
+                        <button type="button" class="btn btn-default">
+                            @Html.ActionLink("still undecided", "NoBranch", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = two.LinkID }, htmlAttributes: null)
+                        </button>
 
-                </div>
-                <div class="row">
-                    @*@Html.ActionLink("Yes", "#Step2")
-                        @Html.ActionLink("No", "MilitaryNotRight")*@
-                    @*popup a window to congratulate them on their decision and give them
-                        option to continue to explore or logoff*@
-                </div>
-            </div> @* end of col-md-8 *@
+                    </div>
+                </div>@* end of col-md-8 *@
 
-
-            <div class="col-md-4 rightcolumn">
-                <div class="row">
-                    <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
-                </div>
-                <div class="row bar">
-                    <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
-                         aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                        <span>70% Complete</span>
+                <div class="col-md-4 rightcolumn">
+                    <div class="row nextprev">
+                        <a href="#Step1" class="glyphicon glyphicon-arrow-left left"></a>
+                        <a href="#Step1" class="left">Prev</a>
+                        <a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
+                        <a href="#Step3" class="right">Next</a>
+                    </div>
+                    <div class="row">
+                        <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
+                    </div>
+                    <div class="row bar">
+                        <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
+                             aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                            <span>70% Complete</span>
+                        </div>
+                    </div>
+                    <div class="row pic">
+                        @*<img src="~/Content/images/iwojima.jpg" />*@
                     </div>
                 </div>
-                <div class="row pic">
-                    @*<img src="~/Content/images/iwojima.jpg" />*@
-                </div>
+
             </div>
-
         </div>
-    </div>
-</section>
+    </section>
 
+
+
+    @{
+        var three = (Pages)ViewData["PageThree"];
+    }
+
+    <section id="Step3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 outline">
+                    <div class="row">
+                        <h1>@three.Title</h1><hr />
+                        @for (int i = 1; i <= three.NumHeadings; i++)
+                        {
+                            three.Ihead = i;
+                            <h2>@three.Headings[i]</h2>
+                            for (int j = 1; j <= three.NumSubsteps[i]; j++)
+                            {
+                                three.Jsub = j;
+                                <h3>
+                                    <a href="@Url.Action("ToggleDoneSub",new { id = three.SStatID[i,j] })">
+                                        @if (three.IsSubDone[i, j])
+                                        {
+                                            <span class="glyphicon glyphicon-check"></span>
+                                        }
+                                        else
+                                        {
+                                            <span class="glyphicon glyphicon-unchecked"></span>
+                                        }
+                                    </a>
+                                    @three.Substeps[i, j]
+                                </h3>
+                            }
+                        }
+                    </div>
+                    <div class="row selections">
+                        <hr />
+                        <button type="button" class="btn btn-default">
+                            @Html.ActionLink("Enlisted", "StepPage", "Headsteps")
+                            @*@Html.ActionLink("Enlisted", "StepPage", "Headsteps")*@
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            @Html.ActionLink("Commissioned", "StepPage", "Headsteps")
+                            @*@Html.ActionLink("Commissioned", "StepPage", "Headsteps")*@
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            @Html.ActionLink("Warrant", "StepPage", "Headsteps")
+                            @*@Html.ActionLink("Warrant", "StepPage", "Headsteps")*@
+                        </button>
+                    </div>
+                </div>@* end of col-md-8 *@
+
+                <div class="col-md-4 rightcolumn">
+                    <div class="row nextprev">
+                        <a href="#Step2" class="glyphicon glyphicon-arrow-left left"></a>
+                        <a href="#Step2" class="left">Prev</a>
+                        @*<a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
+                        <a href="#Step3" class="right">Next</a>*@
+                    </div>
+                    <div class="row">
+                        <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
+                    </div>
+                    <div class="row bar">
+                        <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
+                             aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                            <span>70% Complete</span>
+                        </div>
+                    </div>
+                    <div class="row pic">
+                        @*<img src="~/Content/images/iwojima.jpg" />*@
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
