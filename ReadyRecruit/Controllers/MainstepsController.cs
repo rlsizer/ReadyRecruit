@@ -135,7 +135,7 @@ namespace ReadyRecruit.Controllers
                          select l);
             //Mainsteps for Roadmap selected
             var mainsteps = (from m in db.Mainsteps
-                             where m.RoadmapID == userRoadmapID
+                             where m.RoadmapID == userRoadmapID 
                              orderby m.Number
                              select m).ToList();
 
@@ -418,7 +418,7 @@ namespace ReadyRecruit.Controllers
                     };
                 }
 
-                if (m.Number == 3) three = pages;
+                if (m.Number == 3)
                 {
                     three = new Pages
                     {
