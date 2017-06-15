@@ -406,6 +406,15 @@ namespace ReadyRecruit.Controllers
             var substep = (from ss in db.Substeps
                            where ss.SubstepID == item.SubstepID
                            select ss).FirstOrDefault();
+            var headstep = (from hs in db.Headsteps
+                           where hs.HeadstepID == substep.HeadstepID
+                           select hs).FirstOrDefault();
+            var mainstep = (from ms in db.Mainsteps
+                            where ms.MainstepID == headstep.MainstepID
+                            select ms).FirstOrDefault();
+            int main = Decimal.ToInt32(mainstep.Number);
+            string pageID = "#Step" + main.ToString();
+
 
             if (item.IsDone == true)
             {
@@ -419,7 +428,8 @@ namespace ReadyRecruit.Controllers
             }
             db.SaveChanges();
 
-            return RedirectToAction("StepPage");
+            //return RedirectToAction("StepPage");
+            return Redirect(Url.Action("StepPage", "Mainsteps") + pageID);
         }
 
         // GET: Items/ToggleDone/5   (Add ability to toggle the IsDone box from the view)
