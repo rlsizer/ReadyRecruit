@@ -61,10 +61,10 @@ namespace ReadyRecruit.Controllers
                 {
                     //should be if(p.IsDone==true)  but it isn't working
                     //if (p.Id == User.Identity.GetUserId())
-                    if (p.IsDone == true)
-                    {
+                    //if (p.IsDone == true)
+                    //{
                         return RedirectToAction("Index");
-                    }
+                    //}
                 }
             }
 

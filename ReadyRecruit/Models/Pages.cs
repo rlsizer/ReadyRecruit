@@ -8,6 +8,9 @@ namespace ReadyRecruit.Models
     public class Pages
     {
         public int LinkID { get; set; }
+        public int NumPages { get; set; }
+        public decimal PointsTotal { get; set; }
+        public decimal PointsEarned { get; set; }
         public string[] Title { get; set; } = new string[20];
         public int[] MainID { get; set; } = new int[20];
         public int[] MStatID { get; set; } = new int[20];

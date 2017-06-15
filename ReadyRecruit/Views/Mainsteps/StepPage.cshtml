@@ -4,230 +4,803 @@
 @{
     ViewBag.Title = "Roadmap";
 }
-<div class="outlinePage">
-    @{
-        var pages = (Pages)ViewData["Pages"];
-    }
+@{
+    var pages = (Pages)ViewData["Pages"];
+    var m = 0;
+}
 
-    <section id="Step1">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 outline">
-                    <div class="row">
-                        <h1>@pages.Title[1]</h1><hr />
-                        @for (int i = 1; i <= pages.NumHeadings[1]; i++)
-                        {
-                            pages.Ihead = i;
-                            <h2>@pages.Headings[1,i]</h2>
-                            for (int j = 1; j <= pages.NumSubsteps[1,i]; j++)
-                            {
-                                pages.Jsub = j;
-                                <h3>
-                                    <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[1,i,j] })">
-                                        @if (pages.IsSubDone[1,i, j])
-                                        {
-                                            <span class="glyphicon glyphicon-check"></span>
-                                        }
-                                        else
-                                        {
-                                            <span class="glyphicon glyphicon-unchecked"></span>
-                                        }
-                                    </a>
-                                    @pages.Substeps[1,i, j]
-                                </h3>
-                            }
-                        }
-                    </div>
-                    <div class="row selections">
-                        <hr />
-                        <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Yes", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step2", routeValues: null, htmlAttributes: null)
-                        </button>
-                        <button type="button" class="btn btn-default">
-                            @Html.ActionLink("No", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step2", routeValues: null, htmlAttributes: null)
-                            @*popup a window to congratulate them on their decision and give them
-                                option to continue to explore or logoff*@
-                        </button>
-                        <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Undecided", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step2", routeValues: null, htmlAttributes: null)
-                        </button>
-                    </div>
-                </div>@* end of col-md-8 *@
 
-                <div class="col-md-4 rightcolumn">
-                    <div class="row nextprev">
-                        @*<a href="#" class="glyphicon glyphicon-arrow-left left"></a>
-                        <a href="#" class="left">Prev</a>*@
-                        <a href="#Step2" class="glyphicon glyphicon-arrow-right right"></a>
-                        <a href="#Step2" class="right">Next</a>
-                    </div>
+
+    @* Facebook SDK script *@
+    <div id="fb-root"></div>
+
+    <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '826214930878628',
+      xfbml      : true,
+      version    : 'v2.9'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=826214930878628";
+     fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+
+    </script>
+
+
+    <div class="outlinePage">
+
+        @if (pages.NumPages >= 1)
+        {
+            m = 1;
+            <section id="Step1">
+                <div class="container">
                     <div class="row">
-                        <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
-                    </div>
-                    <div class="row bar">
-                        <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
-                             aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                            <span>70% Complete</span>
+                        <div class="col-md-8 outline">
+                            <div class="row outlinetext">
+                                <h1>@pages.Title[m]</h1><hr />
+                                @for (int i = 1; i <= pages.NumHeadings[m]; i++)
+                                {
+                                    pages.Ihead = i;
+                                    <h2>@pages.Headings[m, i]</h2>
+                                    for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
+                                    {
+                                        pages.Jsub = j;
+                                        <h3>
+                                            <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
+                                                @if (pages.IsSubDone[m, i, j])
+                                                {
+                                                    <span class="glyphicon glyphicon-check"></span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="glyphicon glyphicon-unchecked"></span>
+                                                }
+                                            </a>
+                                            @pages.Substeps[m, i, j]
+                                        </h3>
+                                    }
+                                }
+                            </div>
+                            <div class="row selections">
+                                <hr />
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Yes", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step2", routeValues: null, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("No", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step2", routeValues: null, htmlAttributes: null)
+                                    @*popup a window to congratulate them on their decision and give them
+                                        option to continue to explore or logoff*@
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Undecided", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step2", routeValues: null, htmlAttributes: null)
+                                </button>
+                            </div>
+                        </div>@* end of col-md-8 *@
+
+                        <div class="col-md-4 rightcolumn">
+                            <div class="row bar">
+                                <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
+                                     aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                    <span>70% Complete</span>
+                                </div>
+
+                                <div class="row nextprev">
+                                    <a href="#" class="glyphicon glyphicon-arrow-left left"></a>
+                                    <a href="#" class="left">Prev</a>
+                                    <a href="#Step2" class="glyphicon glyphicon-arrow-right right"></a>
+                                    <a href="#Step2" class="right">Next</a>
+                                </div>
+
+                                <div class="row facebookAPI">
+                                    <div class="fb-page" data-href="https://www.facebook.com/USMilitary/" data-tabs="timeline, events" data-width="500" data-height="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/USMilitary/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/USMilitary/">U.S. Military on Facebook</a></blockquote></div>
+                                    @*<p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>*@
+                                </div>
+                                @* Facebook like/share plugin code *@
+                                <div class="fb-like"
+                                     data-share="true"
+                                     data-width="450"
+                                     data-show-faces="true">
+                                </div>
+                            </div>
+                            <div class="redditAPI">
+                                <script src="https://www.reddit.com/r/Militaryfaq/.embed?limit=5" type="text/javascript"></script>
+                            </div>
+                            <div class="row pic">
+                                @*<img src="~/Content/images/iwojima.jpg" />*@
+                            </div>
                         </div>
-                    </div>
-                    <div class="row pic">
-                        @*<img src="~/Content/images/iwojima.jpg" />*@
+
                     </div>
                 </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <section id="Step2">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 outline">
+            </section>
+        }
+        @if (pages.NumPages >= 2)
+        {
+            m = 2;
+            <section id="Step2">
+                <div class="container">
                     <div class="row">
-                        <h1>@pages.Title[2]</h1><hr />
-                        @for (int i = 1; i <= pages.NumHeadings[2]; i++)
-                        {
-                            pages.Ihead = i;
-                            <h2>@pages.Headings[2,i]</h2>
-                            for (int j = 1; j <= pages.NumSubsteps[2,i]; j++)
-                            {
-                                pages.Jsub = j;
-                                <h3>
-                                    <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[2,i,j] })">
-                                        @if (pages.IsSubDone[2,i, j])
-                                        {
-                                            <span class="glyphicon glyphicon-check"></span>
-                                        }
-                                        else
-                                        {
-                                            <span class="glyphicon glyphicon-unchecked"></span>
-                                        }
-                                    </a>
-                                    @pages.Substeps[2,i, j]
-                                </h3>
-                            }
-                        }
-                    </div>
-                    <div class="row selections">
-                        <hr />
-                        <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Army", "Army", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                         </button>
-                        <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Airforce", "Airforce", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                       </button>
-                        <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Navy", "Navy", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                        </button>
-                        <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Marines", "Marines", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                       </button>
-                        <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Coast Guard", "CoastGuard", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                       </button>
-                        <button type="button" class="btn btn-default">
-                            @Html.ActionLink("still undecided", "NoBranch", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                        </button>
+                        <div class="col-md-8 outline">
+                            <div class="row outlinetext">
+                                <h1>@pages.Title[m]</h1><hr />
+                                @for (int i = 1; i <= pages.NumHeadings[m]; i++)
+                                {
+                                    pages.Ihead = i;
+                                    <h2>@pages.Headings[m, i]</h2>
+                                    for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
+                                    {
+                                        pages.Jsub = j;
+                                        <h3>
+                                            <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
+                                                @if (pages.IsSubDone[m, i, j])
+                                                {
+                                                    <span class="glyphicon glyphicon-check"></span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="glyphicon glyphicon-unchecked"></span>
+                                                }
+                                            </a>
+                                            @pages.Substeps[m, i, j]
+                                        </h3>
+                                    }
+                                }
+                            </div>
+                            <div class="row selections">
+                                <hr />
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Army", "Army", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Airforce", "Airforce", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Navy", "Navy", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Marines", "Marines", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Coast Guard", "CoastGuard", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("still undecided", "NoBranch", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
 
-                    </div>
-                </div>@* end of col-md-8 *@
+                            </div>
+                        </div>@* end of col-md-8 *@
 
-                <div class="col-md-4 rightcolumn">
-                    <div class="row nextprev">
-                        <a href="#Step1" class="glyphicon glyphicon-arrow-left left"></a>
-                        <a href="#Step1" class="left">Prev</a>
-                        <a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
-                        <a href="#Step3" class="right">Next</a>
-                    </div>
-                    <div class="row">
-                        <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
-                    </div>
-                    <div class="row bar">
-                        <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
-                             aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                            <span>70% Complete</span>
+                        <div class="col-md-4 rightcolumn">
+                            <div class="row nextprev">
+                                <a href="#Step1" class="glyphicon glyphicon-arrow-left left"></a>
+                                <a href="#Step1" class="left">Prev</a>
+                                <a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
+                                <a href="#Step3" class="right">Next</a>
+                            </div>
+                            <div class="row">
+                                <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
+                            </div>
+                            <div class="row bar">
+                                <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
+                                     aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                    <span>70% Complete</span>
+                                </div>
+                            </div>
+                            <div class="row pic">
+                                @*<img src="~/Content/images/iwojima.jpg" />*@
+                            </div>
                         </div>
-                    </div>
-                    <div class="row pic">
-                        @*<img src="~/Content/images/iwojima.jpg" />*@
+
                     </div>
                 </div>
-
-            </div>
-        </div>
-    </section>
-
-
-
-    <section id="Step3">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 outline">
+            </section>
+        }
+        @if (pages.NumPages >= 3)
+        {
+            m = 3;
+            <section id="Step3">
+                <div class="container">
                     <div class="row">
-                        <h1>@pages.Title[3]</h1><hr />
-                        @for (int i = 1; i <= pages.NumHeadings[3]; i++)
-                        {
-                            pages.Ihead = i;
-                            <h2>@pages.Headings[3,i]</h2>
-                            for (int j = 1; j <= pages.NumSubsteps[3,i]; j++)
-                            {
-                                pages.Jsub = j;
-                                <h3>
-                                    <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[3,i,j] })">
-                                        @if (pages.IsSubDone[3,i, j])
-                                        {
-                                            <span class="glyphicon glyphicon-check"></span>
-                                        }
-                                        else
-                                        {
-                                            <span class="glyphicon glyphicon-unchecked"></span>
-                                        }
-                                    </a>
-                                    @pages.Substeps[3,i, j]
-                                </h3>
-                            }
-                        }
-                    </div>
-                    <div class="row selections">
-                        <hr />
-                        <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                        </button>
-                        <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                        </button>
-                        <button type="button" class="btn btn-default">
-                            @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                        </button>
-                        <button type="button" class="btn btn-default">
-                            @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                        </button>
-                   </div>
-                </div>@* end of col-md-8 *@
+                        <div class="col-md-8 outline">
+                            <div class="row outlinetext">
+                                <h1>@pages.Title[m]</h1><hr />
+                                @for (int i = 1; i <= pages.NumHeadings[m]; i++)
+                                {
+                                    pages.Ihead = i;
+                                    <h2>@pages.Headings[m, i]</h2>
+                                    for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
+                                    {
+                                        pages.Jsub = j;
+                                        <h3>
+                                            <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[m,i,j] })">
+                                                @if (pages.IsSubDone[m, i, j])
+                                                {
+                                                    <span class="glyphicon glyphicon-check"></span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="glyphicon glyphicon-unchecked"></span>
+                                                }
+                                            </a>
+                                            @pages.Substeps[m, i, j]
+                                        </h3>
+                                    }
+                                }
+                            </div>
+                            <div class="row selections">
+                                <hr />
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                            </div>
+                        </div>@* end of col-md-8 *@
 
-                <div class="col-md-4 rightcolumn">
-                    <div class="row nextprev">
-                        <a href="#Step2" class="glyphicon glyphicon-arrow-left left"></a>
-                        <a href="#Step2" class="left">Prev</a>
-                        @*<a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
-                        <a href="#Step3" class="right">Next</a>*@
-                    </div>
-                    <div class="row">
-                        <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
-                    </div>
-                    <div class="row bar">
-                        <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
-                             aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                            <span>70% Complete</span>
+                        <div class="col-md-4 rightcolumn">
+                            <div class="row nextprev">
+                                <a href="#Step2" class="glyphicon glyphicon-arrow-left left"></a>
+                                <a href="#Step2" class="left">Prev</a>
+                                @*<a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
+                                    <a href="#Step3" class="right">Next</a>*@
+                            </div>
+                            <div class="row">
+                                <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
+                            </div>
+                            <div class="row bar">
+                                <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
+                                     aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                    <span>70% Complete</span>
+                                </div>
+                            </div>
+                            <div class="row pic">
+                                @*<img src="~/Content/images/iwojima.jpg" />*@
+                            </div>
                         </div>
-                    </div>
-                    <div class="row pic">
-                        @*<img src="~/Content/images/iwojima.jpg" />*@
+
                     </div>
                 </div>
+            </section>
+        }
+        @if (pages.NumPages >= 4)
+        {
+            m = 4;
+            <section id="Step3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 outline">
+                            <div class="row outlinetext">
+                                <h1>@pages.Title[m]</h1><hr />
+                                @for (int i = 1; i <= pages.NumHeadings[m]; i++)
+                                {
+                                    pages.Ihead = i;
+                                    <h2>@pages.Headings[m, i]</h2>
+                                    for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
+                                    {
+                                        pages.Jsub = j;
+                                        <h3>
+                                            <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[m,i,j] })">
+                                                @if (pages.IsSubDone[m, i, j])
+                                                {
+                                                    <span class="glyphicon glyphicon-check"></span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="glyphicon glyphicon-unchecked"></span>
+                                                }
+                                            </a>
+                                            @pages.Substeps[m, i, j]
+                                        </h3>
+                                    }
+                                }
+                            </div>
+                            <div class="row selections">
+                                <hr />
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                            </div>
+                        </div>@* end of col-md-8 *@
 
-            </div>
-        </div>
-    </section>
-</div>
+                        <div class="col-md-4 rightcolumn">
+                            <div class="row nextprev">
+                                <a href="#Step2" class="glyphicon glyphicon-arrow-left left"></a>
+                                <a href="#Step2" class="left">Prev</a>
+                                @*<a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
+                                    <a href="#Step3" class="right">Next</a>*@
+                            </div>
+                            <div class="row">
+                                <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
+                            </div>
+                            <div class="row bar">
+                                <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
+                                     aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                    <span>70% Complete</span>
+                                </div>
+                            </div>
+                            <div class="row pic">
+                                @*<img src="~/Content/images/iwojima.jpg" />*@
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        }
+        @if (pages.NumPages >= 5)
+        {
+            m = 5;
+            <section id="Step3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 outline">
+                            <div class="row outlinetext">
+                                <h1>@pages.Title[m]</h1><hr />
+                                @for (int i = 1; i <= pages.NumHeadings[m]; i++)
+                                {
+                                    pages.Ihead = i;
+                                    <h2>@pages.Headings[m, i]</h2>
+                                    for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
+                                    {
+                                        pages.Jsub = j;
+                                        <h3>
+                                            <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[m,i,j] })">
+                                                @if (pages.IsSubDone[m, i, j])
+                                                {
+                                                    <span class="glyphicon glyphicon-check"></span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="glyphicon glyphicon-unchecked"></span>
+                                                }
+                                            </a>
+                                            @pages.Substeps[m, i, j]
+                                        </h3>
+                                    }
+                                }
+                            </div>
+                            <div class="row selections">
+                                <hr />
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                            </div>
+                        </div>@* end of col-md-8 *@
+
+                        <div class="col-md-4 rightcolumn">
+                            <div class="row nextprev">
+                                <a href="#Step2" class="glyphicon glyphicon-arrow-left left"></a>
+                                <a href="#Step2" class="left">Prev</a>
+                                @*<a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
+                                    <a href="#Step3" class="right">Next</a>*@
+                            </div>
+                            <div class="row">
+                                <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
+                            </div>
+                            <div class="row bar">
+                                <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
+                                     aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                    <span>70% Complete</span>
+                                </div>
+                            </div>
+                            <div class="row pic">
+                                @*<img src="~/Content/images/iwojima.jpg" />*@
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        }
+        @if (pages.NumPages >= 6)
+        {
+            m = 6;
+            <section id="Step3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 outline">
+                            <div class="row outlinetext">
+                                <h1>@pages.Title[m]</h1><hr />
+                                @for (int i = 1; i <= pages.NumHeadings[m]; i++)
+                                {
+                                    pages.Ihead = i;
+                                    <h2>@pages.Headings[m, i]</h2>
+                                    for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
+                                    {
+                                        pages.Jsub = j;
+                                        <h3>
+                                            <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[m,i,j] })">
+                                                @if (pages.IsSubDone[m, i, j])
+                                                {
+                                                    <span class="glyphicon glyphicon-check"></span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="glyphicon glyphicon-unchecked"></span>
+                                                }
+                                            </a>
+                                            @pages.Substeps[m, i, j]
+                                        </h3>
+                                    }
+                                }
+                            </div>
+                            <div class="row selections">
+                                <hr />
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                            </div>
+                        </div>@* end of col-md-8 *@
+
+                        <div class="col-md-4 rightcolumn">
+                            <div class="row nextprev">
+                                <a href="#Step2" class="glyphicon glyphicon-arrow-left left"></a>
+                                <a href="#Step2" class="left">Prev</a>
+                                @*<a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
+                                    <a href="#Step3" class="right">Next</a>*@
+                            </div>
+                            <div class="row">
+                                <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
+                            </div>
+                            <div class="row bar">
+                                <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
+                                     aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                    <span>70% Complete</span>
+                                </div>
+                            </div>
+                            <div class="row pic">
+                                @*<img src="~/Content/images/iwojima.jpg" />*@
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        }
+        @if (pages.NumPages >= 7)
+        {
+            m = 7;
+            <section id="Step3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 outline">
+                            <div class="row outlinetext">
+                                <h1>@pages.Title[m]</h1><hr />
+                                @for (int i = 1; i <= pages.NumHeadings[m]; i++)
+                                {
+                                    pages.Ihead = i;
+                                    <h2>@pages.Headings[m, i]</h2>
+                                    for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
+                                    {
+                                        pages.Jsub = j;
+                                        <h3>
+                                            <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[m,i,j] })">
+                                                @if (pages.IsSubDone[m, i, j])
+                                                {
+                                                    <span class="glyphicon glyphicon-check"></span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="glyphicon glyphicon-unchecked"></span>
+                                                }
+                                            </a>
+                                            @pages.Substeps[m, i, j]
+                                        </h3>
+                                    }
+                                }
+                            </div>
+                            <div class="row selections">
+                                <hr />
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                            </div>
+                        </div>@* end of col-md-8 *@
+
+                        <div class="col-md-4 rightcolumn">
+                            <div class="row nextprev">
+                                <a href="#Step2" class="glyphicon glyphicon-arrow-left left"></a>
+                                <a href="#Step2" class="left">Prev</a>
+                                @*<a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
+                                    <a href="#Step3" class="right">Next</a>*@
+                            </div>
+                            <div class="row">
+                                <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
+                            </div>
+                            <div class="row bar">
+                                <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
+                                     aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                    <span>70% Complete</span>
+                                </div>
+                            </div>
+                            <div class="row pic">
+                                @*<img src="~/Content/images/iwojima.jpg" />*@
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        }
+        @if (pages.NumPages >= 8)
+        {
+            m = 8;
+            <section id="Step3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 outline">
+                            <div class="row outlinetext">
+                                <h1>@pages.Title[m]</h1><hr />
+                                @for (int i = 1; i <= pages.NumHeadings[m]; i++)
+                                {
+                                    pages.Ihead = i;
+                                    <h2>@pages.Headings[m, i]</h2>
+                                    for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
+                                    {
+                                        pages.Jsub = j;
+                                        <h3>
+                                            <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[m,i,j] })">
+                                                @if (pages.IsSubDone[m, i, j])
+                                                {
+                                                    <span class="glyphicon glyphicon-check"></span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="glyphicon glyphicon-unchecked"></span>
+                                                }
+                                            </a>
+                                            @pages.Substeps[m, i, j]
+                                        </h3>
+                                    }
+                                }
+                            </div>
+                            <div class="row selections">
+                                <hr />
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                            </div>
+                        </div>@* end of col-md-8 *@
+
+                        <div class="col-md-4 rightcolumn">
+                            <div class="row nextprev">
+                                <a href="#Step2" class="glyphicon glyphicon-arrow-left left"></a>
+                                <a href="#Step2" class="left">Prev</a>
+                                @*<a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
+                                    <a href="#Step3" class="right">Next</a>*@
+                            </div>
+                            <div class="row">
+                                <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
+                            </div>
+                            <div class="row bar">
+                                <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
+                                     aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                    <span>70% Complete</span>
+                                </div>
+                            </div>
+                            <div class="row pic">
+                                @*<img src="~/Content/images/iwojima.jpg" />*@
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        }
+        @if (pages.NumPages >= 9)
+        {
+            m = 9;
+            <section id="Step3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 outline">
+                            <div class="row outlinetext">
+                                <h1>@pages.Title[m]</h1><hr />
+                                @for (int i = 1; i <= pages.NumHeadings[m]; i++)
+                                {
+                                    pages.Ihead = i;
+                                    <h2>@pages.Headings[m, i]</h2>
+                                    for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
+                                    {
+                                        pages.Jsub = j;
+                                        <h3>
+                                            <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[m,i,j] })">
+                                                @if (pages.IsSubDone[m, i, j])
+                                                {
+                                                    <span class="glyphicon glyphicon-check"></span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="glyphicon glyphicon-unchecked"></span>
+                                                }
+                                            </a>
+                                            @pages.Substeps[m, i, j]
+                                        </h3>
+                                    }
+                                }
+                            </div>
+                            <div class="row selections">
+                                <hr />
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                            </div>
+                        </div>@* end of col-md-8 *@
+
+                        <div class="col-md-4 rightcolumn">
+                            <div class="row nextprev">
+                                <a href="#Step2" class="glyphicon glyphicon-arrow-left left"></a>
+                                <a href="#Step2" class="left">Prev</a>
+                                @*<a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
+                                    <a href="#Step3" class="right">Next</a>*@
+                            </div>
+                            <div class="row">
+                                <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
+                            </div>
+                            <div class="row bar">
+                                <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
+                                     aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                    <span>70% Complete</span>
+                                </div>
+                            </div>
+                            <div class="row pic">
+                                @*<img src="~/Content/images/iwojima.jpg" />*@
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        }
+        @if (pages.NumPages >= 10)
+        {
+            m = 10;
+            <section id="Step3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 outline">
+                            <div class="row outlinetext">
+                                <h1>@pages.Title[m]</h1><hr />
+                                @for (int i = 1; i <= pages.NumHeadings[m]; i++)
+                                {
+                                    pages.Ihead = i;
+                                    <h2>@pages.Headings[m, i]</h2>
+                                    for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
+                                    {
+                                        pages.Jsub = j;
+                                        <h3>
+                                            <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[m,i,j] })">
+                                                @if (pages.IsSubDone[m, i, j])
+                                                {
+                                                    <span class="glyphicon glyphicon-check"></span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="glyphicon glyphicon-unchecked"></span>
+                                                }
+                                            </a>
+                                            @pages.Substeps[m, i, j]
+                                        </h3>
+                                    }
+                                }
+                            </div>
+                            <div class="row selections">
+                                <hr />
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                            </div>
+                        </div>@* end of col-md-8 *@
+
+                        <div class="col-md-4 rightcolumn">
+                            <div class="row nextprev">
+                                <a href="#Step2" class="glyphicon glyphicon-arrow-left left"></a>
+                                <a href="#Step2" class="left">Prev</a>
+                                @*<a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
+                                    <a href="#Step3" class="right">Next</a>*@
+                            </div>
+                            <div class="row">
+                                <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
+                            </div>
+                            <div class="row bar">
+                                <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
+                                     aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                    <span>70% Complete</span>
+                                </div>
+                            </div>
+                            <div class="row pic">
+                                @*<img src="~/Content/images/iwojima.jpg" />*@
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        }
+    </div>
+   
+    <script>
+    $('#updateprogress').on('click', function(){
+        $('.progress-bar-striped').css('width',progress+'%').attr('aria-valuenow',progress);
+    _});
+    </script>
+    

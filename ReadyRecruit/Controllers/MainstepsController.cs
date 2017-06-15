@@ -127,7 +127,7 @@ namespace ReadyRecruit.Controllers
             //profile of current user
             var profiles = (from pr in db.Profiles
                             where pr.Id == currentUserId
-                            select pr);
+                            select pr).FirstOrDefault();
             //Link table for current user and roadmap selection
             var links = (from l in db.Links
                          where l.ProfileID == userProfileID &&
@@ -174,14 +174,14 @@ namespace ReadyRecruit.Controllers
             int count = 0;
             int subcount = 0;
             Pages pages = new Pages();
-            //Pages one = new Pages();
-            //Pages two = new Pages();
-            //Pages three = new Pages();
-
+            pages.PointsTotal = 0;
+            pages.PointsEarned = 0;
+            int maincount = mainsteps.Count();
+            pages.NumPages = maincount;
             foreach (var m in mainsteps)        //loop through mainsteps - prepare pages 1, 2, 3
             {
                 mcount += 1;
-                if (m.Number > 3) continue;
+                //if (m.Number > 3) continue;
                 pages.Title[mcount] = m.Name;                                //send title
                 pages.MainID[mcount] = m.MainstepID;                         //send MainstepID
 
@@ -306,6 +306,7 @@ namespace ReadyRecruit.Controllers
                                 subcount += 1;
                                 pages.Substeps[mcount,count, subcount] = s.Name;    //send substep name
                                 pages.SubID[mcount,count, subcount] = s.SubstepID; //send SubstepID
+                                pages.PointsTotal += s.Points;
 
                                 subStats = (from ss in db.SubStats
                                             where ss.LinkID == userLinkID &&
@@ -329,6 +330,7 @@ namespace ReadyRecruit.Controllers
                                                               where ss.LinkID == userLinkID &&
                                                               ss.SubstepID == s.SubstepID
                                                               select ss.Notes).FirstOrDefault();         //send substep notes
+                                    if (pages.IsSubDone[mcount, count, subcount] == true) pages.PointsEarned += s.Points; 
                                 }
                                 else   //must create status table
                                 {
@@ -360,105 +362,20 @@ namespace ReadyRecruit.Controllers
 
                     }
                 }
-                //if (m.Number == 1)
-                //{
-                //    //name = name + m.Number.ToString();
-                //    one = new Pages
-                //    {
-                //        LinkID = userLinkID,
-                //        Title = pages.Title,
-                //        MainID = pages.MainID,
-                //        MStatID = pages.MStatID,
-                //        NumHeadings = pages.NumHeadings,
-                //        Headings = pages.Headings,
-                //        HeadID = pages.HeadID,
-                //        HStatID = pages.HStatID,
-                //        NumSubsteps = pages.NumSubsteps,
-                //        Substeps = pages.Substeps,
-                //        SubID = pages.SubID,
-                //        SStatID = pages.SStatID,
-                //        TitleDue = pages.TitleDue,
-                //        HeadingsDue = pages.HeadingsDue,
-                //        SubstepsDue = pages.SubstepsDue,
-                //        IsTitleDone = pages.IsTitleDone,
-                //        IsHeadDone = pages.IsHeadDone,
-                //        IsSubDone = pages.IsSubDone,
-                //        TitleNotes = pages.TitleNotes,
-                //        HeadNotes = pages.HeadNotes,
-                //        SubNotes = pages.SubNotes,
-                //        Ihead = 0,
-                //        Jsub = 0
-                //    };
-                //}
-                //if (m.Number == 2)
-                //{
-                //    two = new Pages
-                //    {
-                //        LinkID = userLinkID,
-                //        Title = pages.Title,
-                //        MainID = pages.MainID,
-                //        MStatID = pages.MStatID,
-                //        NumHeadings = pages.NumHeadings,
-                //        Headings = pages.Headings,
-                //        HeadID = pages.HeadID,
-                //        HStatID = pages.HStatID,
-                //        NumSubsteps = pages.NumSubsteps,
-                //        Substeps = pages.Substeps,
-                //        SubID = pages.SubID,
-                //        SStatID = pages.SStatID,
-                //        TitleDue = pages.TitleDue,
-                //        HeadingsDue = pages.HeadingsDue,
-                //        SubstepsDue = pages.SubstepsDue,
-                //        IsTitleDone = pages.IsTitleDone,
-                //        IsHeadDone = pages.IsHeadDone,
-                //        IsSubDone = pages.IsSubDone,
-                //        TitleNotes = pages.TitleNotes,
-                //        HeadNotes = pages.HeadNotes,
-                //        SubNotes = pages.SubNotes,
-                //        Ihead = 0,
-                //        Jsub = 0
-                //    };
-                //}
-
-                //if (m.Number == 3)
-                //{
-                //    three = new Pages
-                //    {
-                //        LinkID = userLinkID,
-                //        Title = pages.Title,
-                //        MainID = pages.MainID,
-                //        MStatID = pages.MStatID,
-                //        NumHeadings = pages.NumHeadings,
-                //        Headings = pages.Headings,
-                //        HeadID = pages.HeadID,
-                //        HStatID = pages.HStatID,
-                //        NumSubsteps = pages.NumSubsteps,
-                //        Substeps = pages.Substeps,
-                //        SubID = pages.SubID,
-                //        SStatID = pages.SStatID,
-                //        TitleDue = pages.TitleDue,
-                //        HeadingsDue = pages.HeadingsDue,
-                //        SubstepsDue = pages.SubstepsDue,
-                //        IsTitleDone = pages.IsTitleDone,
-                //        IsHeadDone = pages.IsHeadDone,
-                //        IsSubDone = pages.IsSubDone,
-                //        TitleNotes = pages.TitleNotes,
-                //        HeadNotes = pages.HeadNotes,
-                //        SubNotes = pages.SubNotes,
-                //        Ihead = 0,
-                //        Jsub = 0
-                //    };
-                //}
-
             }
 
+            profiles.PointsTotal = pages.PointsTotal;
+            profiles.PointsEarned = pages.PointsEarned;
+            if(pages.PointsTotal <=0)
+            {
+                pages.PointsTotal = 1;
+                profiles.PointsTotal = 1;
+            }
             pages.LinkID = userLinkID;
             pages.Ihead = 0;
             pages.Jsub = 0;
 
             ViewData["Pages"] = pages;
-            //ViewData["PageTwo"] = two;
-            //ViewData["PageThree"] = three;
 
             return View();
 

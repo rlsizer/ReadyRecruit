@@ -2,60 +2,97 @@
     ViewBag.Title = "Home Page";
 }
 
+
 <section id="homepage">
-    <div class="row">
-        <div class="col-md-3 video">
+    
 
-        </div>
-        <div class="col-md-6 video">
+    <!--Jumbotron-->
 
-        </div>
-        <div class="col-md-3 video">
 
-        </div>
-    </div>
-    @*<div class="jumbotron">
-            <h1>ASP.NET</h1>
-            <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-            <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-        </div>*@
-    @*<div class="jumbotron">
-    </div>*@
-    @*<div class="row bottom">
-        <div class="col-md-4">
-            <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
-        </div>
-        <div class="col-md-4 video">
-            <div >
+    <div class="jumbotron">
 
+        <div class="container">
+
+            <div id="myCarousel" class="carousel slide col-md-6" data-ride="carousel">
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+
+                    <div class="item active">
+
+                        <img src="http://placehold.it/760x400/cccccc/ffffff">
+
+                    </div><!-- End Item -->
+
+                    <div class="item">
+                        <img src="http://placehold.it/760x400/999999/cccccc">
+
+                    </div><!-- End Item -->
+
+                    <div class="item">
+
+                        <img src="http://placehold.it/760x400/dddddd/333333">
+
+
+                    </div><!-- End Item -->
+
+                    <div class="item">
+
+                        <img src="http://placehold.it/760x400/cccccc/ffffff">
+
+                    </div><!-- End Item -->
+
+                    <div class="item">
+
+                        <img src="http://placehold.it/760x400/cccccc/ffffff">
+
+                    </div><!-- End Item -->
+
+                </div><!-- End Carousel Inner -->
+
+                <ul class="list-group col-md-3 carousel-indicators">
+
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                    <li data-target="#myCarousel" data-slide-to="4"></li>
+
+
+                </ul>
+            </div><!-- End Carousel -->
+
+            <div class="col-md-4">
+                <!--TRAILER SECTION-->
+                <h1 class="container" id="trailer"><iframe width="560" height="315" src="https://www.youtube.com/embed/jD-PdA4-W9A" frameborder="0" allowfullscreen></iframe></h1>
             </div>
-        </div>
-        <div class="col-md-4">
-            <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
-        </div>
-    </div>*@
+
+        </div><!-- End Container -->
+    </div> <!-- End Jumbotron-->
+
+
+       @*<div class="row bottom">
+           <div class="col-md-3">
+               <h2>Getting started</h2>
+               <p>
+                   ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                   enables a clean separation of concerns and gives you full control over markup
+                   for enjoyable, agile development.
+               </p>
+               <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+           </div>
+
+           <div class="col-md-6">
+               /*TRAILER SECTION*/
+               @*<h1 class="container" id="trailer"><iframe width="560" height="315" src="https://www.youtube.com/embed/jD-PdA4-W9A" frameborder="0" allowfullscreen></iframe></h1>
+           </div>
+
+           <div class="col-md-3">
+               <h2>Web Hosting</h2>
+               <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+               <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+           </div>
+       </div>*@
 
 
 </section>
-
-@*<div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </div>
-    </div>*@
