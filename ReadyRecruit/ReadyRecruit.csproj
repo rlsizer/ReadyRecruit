@@ -308,9 +308,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\images\Bald-Eagle-banner-1383.jpg" />
     <Content Include="Content\images\iwojima.jpg" />
     <Content Include="Content\images\Ready Recruit!_clipped_rev_1.png" />
+    <Content Include="Content\Java\carousel.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

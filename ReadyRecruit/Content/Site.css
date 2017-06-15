@@ -1,6 +1,7 @@
 ﻿body {
-    padding-top: 45px;
-    padding-bottom: 20px;
+    background-color: black;
+    padding-top: 0px;
+    padding-bottom: 25px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -26,17 +27,12 @@ textarea {
 
 /*NAVBAR*/
 
-.navbar-collapse {
-    /*border-bottom:10px solid red;
-    border-width: 0px 0px 5px;*/
-    border-bottom:40px,solid;
-    border-bottom-color:blue;
-    border-width:0px,0px,5px;
-    border-top:0px;
+.glyphicon.glyphicon-glass{
+    color:white;
 }
 
-.navbar-brand, .navbar-fixed-top a {
-    color: red;
+.navbar-brand, .navbar/*-fixed-top*/ a {
+    color: white;
 }
 .navbar-right {
     padding-right:2vw;
@@ -47,19 +43,29 @@ textarea {
 }
 
 #Home img {
-    height: 30px;
-    width: 30px;
-    margin-left:10px;
+    height: 101px;
+    padding-top: 0px;
+    float: left;
+    width: 147px;
+    z-index: 4;
+    margin-top: -25px
+
 }
 
-.navbar.navbar-fixed-top {
-    /*background-image: url('images/Bald-Eagle-banner-1383.jpg');*/
-    background: lightyellow;
+div#navvy.navbar.navbar-static-top {
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
     height: 45px;
+    background-color: grey;
 }
+.nav li {
+    background-color: grey;
+    z-index: 2;
+}
+
+
+/* --- */
 
 .outline {
     background-color: rgbA(0, 0, 0, 0.8);
@@ -97,6 +103,7 @@ div.rightcolumn {
 .rightcolumn .row {
     padding: 20px 20px 20px 20px;
 }
+<<<<<<< HEAD
 
 section#homepage .row {
     width: 100vw;
@@ -108,13 +115,9 @@ div.video {
     min-height:65vh;
     padding:0px 0px 0px 0px;
 }
+=======
+>>>>>>> FrontEnd
 
-div.jumbotron {
-    background-image: url('images/iwojima.jpg');
-    background-size: 100vw 50vh;
-    min-height:45vh;
-    margin-bottom: 0px;
-}
 
 div.bottom {
     padding-top:15px;
@@ -219,4 +222,39 @@ div.nextprev .right {
 div.nextprev .glyphicon {
     padding-left:5px;
     padding-left:5px;
+}
+
+/*Jumbotron*/
+
+div.jumbotron {
+    background-color: rgb(65,83,59);
+    background-position:center;
+}
+
+/* Carousel */
+
+#myCarousel .list-group{
+	position:absolute;
+	top:5px;
+	right:0px;  
+}
+
+#myCarousel .list-group-item {
+	border-radius:2px;
+	cursor:pointer;
+}
+
+#myCarousel .list-group .active {
+	background-color:#337ab7;	
+}
+
+@media (min-width: 992px) { 
+	#myCarousel {padding-right:0%;}
+}
+@media (max-width: 991px) { 
+	#myCarousel .list-group {display:none;} 
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: white;
 }
