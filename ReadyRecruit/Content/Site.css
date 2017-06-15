@@ -103,21 +103,6 @@ div.rightcolumn {
 .rightcolumn .row {
     padding: 20px 20px 20px 20px;
 }
-<<<<<<< HEAD
-
-section#homepage .row {
-    width: 100vw;
-}
-div.video {
-    background-image: url('images/iwojima.jpg');
-    background-size: 100% 100%;
-    /*display: block;*/
-    min-height:65vh;
-    padding:0px 0px 0px 0px;
-}
-=======
->>>>>>> FrontEnd
-
 
 div.bottom {
     padding-top:15px;
