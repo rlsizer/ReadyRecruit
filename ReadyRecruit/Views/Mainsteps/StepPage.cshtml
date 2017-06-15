@@ -7,6 +7,7 @@
 @{
     var pages = (Pages)ViewData["Pages"];
     var m = 0;
+    var progress = (pages.PointsEarned * 100/pages.PointsTotal);
 }
 
 
@@ -29,14 +30,16 @@
                                 {
                                     pages.Jsub = j;
                                     <h3>
-                                        <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
+                                        <a id="updateprogress" href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
                                             @if (pages.IsSubDone[m, i, j])
                                             {
                                                 <span class="glyphicon glyphicon-check"></span>
+                                                progress = pages.PointsEarned * 100 / pages.PointsTotal;
                                             }
                                             else
                                             {
                                                 <span class="glyphicon glyphicon-unchecked"></span>
+                                                progress = pages.PointsEarned * 100 / pages.PointsTotal;
                                             }
                                         </a>
                                         @pages.Substeps[m, i, j]
@@ -759,3 +762,8 @@
         </section>
     }
     </div>
+<script>
+    $('#updateprogress').on('click', function(){
+        $('.progress-bar-striped').css('width',progress+'%').attr('aria-valuenow',progress);
+    _});
+</script>
