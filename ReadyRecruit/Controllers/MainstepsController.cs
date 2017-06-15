@@ -388,19 +388,34 @@ namespace ReadyRecruit.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var currentUserId = User.Identity.GetUserId();
+
+            //get profileID for that user
+            var userProfileID = (from pr in db.Profiles
+                                 where pr.Id == currentUserId
+                                 select pr.ProfileID).FirstOrDefault();
+
             SubStat item = db.SubStats.Find(id);
-            if (item == null)
+            Profile user = db.Profiles.Find(userProfileID);
+        
+            if (item == null || user == null)
             {
                 return HttpNotFound();
             }
 
+            var substep = (from ss in db.Substeps
+                           where ss.SubstepID == item.SubstepID
+                           select ss).FirstOrDefault();
+
             if (item.IsDone == true)
             {
                 item.IsDone = false;
+                user.PointsEarned -= substep.Points;
             }
             else
             {
                 item.IsDone = true;
+                user.PointsEarned += substep.Points;
             }
             db.SaveChanges();
 

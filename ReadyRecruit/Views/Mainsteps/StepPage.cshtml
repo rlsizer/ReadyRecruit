@@ -7,7 +7,7 @@
 @{
     var pages = (Pages)ViewData["Pages"];
     var m = 0;
-    var progress = (pages.PointsEarned * 100/pages.PointsTotal);
+    int progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
 }
 
 
@@ -30,16 +30,16 @@
                                 {
                                     pages.Jsub = j;
                                     <h3>
-                                        <a id="updateprogress" href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
+                                        <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
                                             @if (pages.IsSubDone[m, i, j])
                                             {
                                                 <span class="glyphicon glyphicon-check"></span>
-                                                progress = pages.PointsEarned * 100 / pages.PointsTotal;
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                             else
                                             {
                                                 <span class="glyphicon glyphicon-unchecked"></span>
-                                                progress = pages.PointsEarned * 100 / pages.PointsTotal;
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
                                         @pages.Substeps[m, i, j]
@@ -74,9 +74,9 @@
                             <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
                         </div>
                         <div class="row bar">
-                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                <span>70% Complete</span>
+                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
+                                 aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
+                                <span>@progress% Complete</span>
                             </div>
                         </div>
                         <div class="row pic">
@@ -109,10 +109,12 @@
                                             @if (pages.IsSubDone[m, i, j])
                                             {
                                                 <span class="glyphicon glyphicon-check"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                             else
                                             {
                                                 <span class="glyphicon glyphicon-unchecked"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
                                         @pages.Substeps[m, i, j]
@@ -155,9 +157,9 @@
                             <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
                         </div>
                         <div class="row bar">
-                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                <span>70% Complete</span>
+                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
+                                 aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
+                                <span>@progress% Complete</span>
                             </div>
                         </div>
                         <div class="row pic">
@@ -186,14 +188,16 @@
                                 {
                                     pages.Jsub = j;
                                     <h3>
-                                        <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[m,i,j] })">
+                                        <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
                                             @if (pages.IsSubDone[m, i, j])
                                             {
                                                 <span class="glyphicon glyphicon-check"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                             else
                                             {
                                                 <span class="glyphicon glyphicon-unchecked"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
                                         @pages.Substeps[m, i, j]
@@ -229,9 +233,9 @@
                             <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
                         </div>
                         <div class="row bar">
-                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                <span>70% Complete</span>
+                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
+                                 aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
+                                <span>@progress% Complete</span>
                             </div>
                         </div>
                         <div class="row pic">
@@ -260,14 +264,16 @@
                                 {
                                     pages.Jsub = j;
                                     <h3>
-                                        <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[m,i,j] })">
+                                        <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
                                             @if (pages.IsSubDone[m, i, j])
                                             {
                                                 <span class="glyphicon glyphicon-check"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                             else
                                             {
                                                 <span class="glyphicon glyphicon-unchecked"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
                                         @pages.Substeps[m, i, j]
@@ -303,9 +309,9 @@
                             <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
                         </div>
                         <div class="row bar">
-                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                <span>70% Complete</span>
+                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
+                                 aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
+                                <span>@progress% Complete</span>
                             </div>
                         </div>
                         <div class="row pic">
@@ -334,14 +340,16 @@
                                 {
                                     pages.Jsub = j;
                                     <h3>
-                                        <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[m,i,j] })">
+                                        <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
                                             @if (pages.IsSubDone[m, i, j])
                                             {
                                                 <span class="glyphicon glyphicon-check"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                             else
                                             {
                                                 <span class="glyphicon glyphicon-unchecked"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
                                         @pages.Substeps[m, i, j]
@@ -377,16 +385,16 @@
                             <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
                         </div>
                         <div class="row bar">
-                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                <span>70% Complete</span>
+                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
+                                 aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
+                                <span>@progress% Complete</span>
+                            </div>
+                            <div class="row pic">
+                                @*<img src="~/Content/images/iwojima.jpg" />*@
                             </div>
                         </div>
-                        <div class="row pic">
-                            @*<img src="~/Content/images/iwojima.jpg" />*@
-                        </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </section>
@@ -408,14 +416,16 @@
                                 {
                                     pages.Jsub = j;
                                     <h3>
-                                        <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[m,i,j] })">
+                                        <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
                                             @if (pages.IsSubDone[m, i, j])
                                             {
                                                 <span class="glyphicon glyphicon-check"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                             else
                                             {
                                                 <span class="glyphicon glyphicon-unchecked"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
                                         @pages.Substeps[m, i, j]
@@ -451,9 +461,9 @@
                             <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
                         </div>
                         <div class="row bar">
-                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                <span>70% Complete</span>
+                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
+                                 aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
+                                <span>@progress% Complete</span>
                             </div>
                         </div>
                         <div class="row pic">
@@ -482,14 +492,16 @@
                                 {
                                     pages.Jsub = j;
                                     <h3>
-                                        <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[m,i,j] })">
+                                        <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
                                             @if (pages.IsSubDone[m, i, j])
                                             {
                                                 <span class="glyphicon glyphicon-check"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                             else
                                             {
                                                 <span class="glyphicon glyphicon-unchecked"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
                                         @pages.Substeps[m, i, j]
@@ -525,9 +537,9 @@
                             <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
                         </div>
                         <div class="row bar">
-                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                <span>70% Complete</span>
+                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
+                                 aria-valuemin="0" aria-valuemax="100" style="width:@progress%" >
+                                <span>@progress% Complete</span>
                             </div>
                         </div>
                         <div class="row pic">
@@ -556,14 +568,16 @@
                                 {
                                     pages.Jsub = j;
                                     <h3>
-                                        <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[m,i,j] })">
+                                        <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
                                             @if (pages.IsSubDone[m, i, j])
                                             {
                                                 <span class="glyphicon glyphicon-check"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                             else
                                             {
                                                 <span class="glyphicon glyphicon-unchecked"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
                                         @pages.Substeps[m, i, j]
@@ -599,9 +613,9 @@
                             <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
                         </div>
                         <div class="row bar">
-                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                <span>70% Complete</span>
+                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
+                                 aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
+                                <span>@progress% Complete</span>
                             </div>
                         </div>
                         <div class="row pic">
@@ -630,14 +644,16 @@
                                 {
                                     pages.Jsub = j;
                                     <h3>
-                                        <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[m,i,j] })">
+                                        <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
                                             @if (pages.IsSubDone[m, i, j])
                                             {
                                                 <span class="glyphicon glyphicon-check"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                             else
                                             {
                                                 <span class="glyphicon glyphicon-unchecked"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
                                         @pages.Substeps[m, i, j]
@@ -673,9 +689,9 @@
                             <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
                         </div>
                         <div class="row bar">
-                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                <span>70% Complete</span>
+                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
+                                 aria-valuemin="0" aria-valuemax="100" style="width:@progress%" >
+                                <span>@progress% Complete</span>
                             </div>
                         </div>
                         <div class="row pic">
@@ -704,14 +720,16 @@
                                 {
                                     pages.Jsub = j;
                                     <h3>
-                                        <a href="@Url.Action("ToggleDoneSub",new { id = pages.SStatID[m,i,j] })">
+                                        <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
                                             @if (pages.IsSubDone[m, i, j])
                                             {
                                                 <span class="glyphicon glyphicon-check"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                             else
                                             {
                                                 <span class="glyphicon glyphicon-unchecked"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
                                         @pages.Substeps[m, i, j]
@@ -747,9 +765,9 @@
                             <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
                         </div>
                         <div class="row bar">
-                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                <span>70% Complete</span>
+                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
+                                 aria-valuemin="0" aria-valuemax="100" style="width:@progress%" >
+                                <span>@progress% Complete</span>
                             </div>
                         </div>
                         <div class="row pic">
@@ -761,9 +779,4 @@
             </div>
         </section>
     }
-    </div>
-<script>
-    $('#updateprogress').on('click', function(){
-        $('.progress-bar-striped').css('width',progress+'%').attr('aria-valuenow',progress);
-    _});
-</script>
+</div>

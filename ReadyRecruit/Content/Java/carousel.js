@@ -1,5 +1,9 @@
 ﻿$(document).ready(function () {
 
+    //$("#toggle").on('click', function () {
+    //    $("#updateprogress").css('width', '50%').attr('aria-valuenow', 50);
+    //});
+
     var clickEvent = false;
     $('#myCarousel').carousel({
         interval: 4000
