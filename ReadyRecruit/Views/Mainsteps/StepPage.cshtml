@@ -9,6 +9,32 @@
     var m = 0;
 }
 
+<body>
+
+    @* Facebook SDK script *@
+    <div id="fb-root"></div>
+
+    <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '826214930878628',
+      xfbml      : true,
+      version    : 'v2.9'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=826214930878628";
+     fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+
+    </script>
+
 
 <div class="outlinePage">
 
@@ -61,21 +87,33 @@
                     </div>@* end of col-md-8 *@
 
                     <div class="col-md-4 rightcolumn">
-                        <div class="row nextprev">
-                            @*<a href="#" class="glyphicon glyphicon-arrow-left left"></a>
-                                <a href="#" class="left">Prev</a>*@
-                            <a href="#Step2" class="glyphicon glyphicon-arrow-right right"></a>
-                            <a href="#Step2" class="right">Next</a>
-                        </div>
-                        <div class="row">
-                            <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
-                        </div>
                         <div class="row bar">
                             <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow="70"
                                  aria-valuemin="0" aria-valuemax="100" style="width:70%">
                                 <span>70% Complete</span>
                             </div>
+
+                            <div class="row nextprev">
+                                <a href="#" class="glyphicon glyphicon-arrow-left left"></a>
+                <a href="#" class="left">Prev</a>
+                                <a href="#Step2" class="glyphicon glyphicon-arrow-right right"></a>
+                                <a href="#Step2" class="right">Next</a>
+                            </div>
+
+                            <div class="row facebookAPI">
+                                <div class="fb-page" data-href="https://www.facebook.com/USMilitary/" data-tabs="timeline, events" data-width="500" data-height="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/USMilitary/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/USMilitary/">U.S. Military on Facebook</a></blockquote></div>
+                                @*<p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>*@
+                            </div>
+                            @* Facebook like/share plugin code *@
+                            <div class="fb-like"
+                                 data-share="true"
+                                 data-width="450"
+                                 data-show-faces="true">
+                            </div>
                         </div>
+                        <div class="redditAPI">
+                        <script src="https://www.reddit.com/r/Militaryfaq/.embed?limit=5" type="text/javascript"></script>
+                            </div>
                         <div class="row pic">
                             @*<img src="~/Content/images/iwojima.jpg" />*@
                         </div>
@@ -759,3 +797,4 @@
         </section>
     }
     </div>
+    </body>
