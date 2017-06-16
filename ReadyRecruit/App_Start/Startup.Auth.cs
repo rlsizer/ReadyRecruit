@@ -54,9 +54,9 @@ namespace ReadyRecruit
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "826214930878628",
+               appSecret: "c51d604fc6ba66e78e36ec32df4abddf");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
