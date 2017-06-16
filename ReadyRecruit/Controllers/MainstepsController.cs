@@ -485,37 +485,40 @@ namespace ReadyRecruit.Controllers
         }
 
         // GET: Items/SaveNotes/5   (Add ability to save user notes from the view)
-        public ActionResult SaveNotes(int? id)
+        [HttpPost]
+        public ActionResult SaveNotes(int? id, int? id2, string Notes)
         {
-            if (id == null)
+            if (id == null || id2 == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var currentUserId = User.Identity.GetUserId();
+            //var currentUserId = User.Identity.GetUserId();
 
-            //get profileID for that user
-            var userProfileID = (from pr in db.Profiles
-                                 where pr.Id == currentUserId
-                                 select pr.ProfileID).FirstOrDefault();
+            ////get profileID for that user
+            //var userProfileID = (from pr in db.Profiles
+            //                     where pr.Id == currentUserId
+            //                     select pr.ProfileID).FirstOrDefault();
 
             HeadStat item = db.HeadStats.Find(id);
-            Profile user = db.Profiles.Find(userProfileID);
+            //Profile user = db.Profiles.Find(userProfileID);
 
-            if (item == null || user == null)
+            if (item == null)
             {
                 return HttpNotFound();
             }
 
-            var headstep = (from hs in db.Headsteps
-                            where hs.HeadstepID == item.HeadstepID
-                            select hs).FirstOrDefault();
-            var mainstep = (from ms in db.Mainsteps
-                            where ms.MainstepID == headstep.MainstepID
-                            select ms).FirstOrDefault();
-            int main = Decimal.ToInt32(mainstep.Number);
-            string pageID = "#Step" + main.ToString();
+            //var headstep = (from hs in db.Headsteps
+            //                where hs.HeadstepID == item.HeadstepID
+            //                select hs).FirstOrDefault();
+            //var mainstep = (from ms in db.Mainsteps
+            //                where ms.MainstepID == headstep.MainstepID
+            //                select ms).FirstOrDefault();
+            //int main = Decimal.ToInt32(mainstep.Number);
+            string pageID = "#Step" + id2.ToString();
+            //set item.Notes equal to user input and save to database  
+            item.Notes = Notes;
 
-//set item.Notes equal to user input and save to database    
+  
             db.SaveChanges();
 
             return Redirect(Url.Action("StepPage", "Mainsteps") + pageID);

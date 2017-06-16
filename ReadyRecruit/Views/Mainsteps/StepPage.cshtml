@@ -49,18 +49,20 @@
                             {
                                 pages.Ihead = i;
                                 <h2>
-                                    @*@using (Html.BeginForm())
-                                        {
-                                            <input type="text" name="Notes" />
-                                            <input type="submit" value="Save Notes" />
-                                        }
-                                        <a href="@Url.Action("SaveNotes", new { id = pages.HStatID[m, i],id2=m,notes = @Notes})">
-                                                <span class="glyphicon glyphicon-list"></span>
+                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes"}))
 
-                                        </a>*@
-                                    <a href="#">
+                                    {
+                                            <input type = "text" name = "Notes" />
+                                            <input type = "submit" value = "Save Notes" />
+
+                                        @*<a href="@Url.Action("SaveNotes", new { id = pages.HStatID[m, i],id2=m,notes = })">*@
+                                                      <span class="glyphicon glyphicon-list"></span>
+
+                                        @*</a>*@
+                                    @*<a href="#">
                                         <span class="glyphicon glyphicon-list"></span>
-                                    </a>
+                                    </a>*@
+                                    }
                                     @pages.Headings[m, i]
                                 </h2>
 
