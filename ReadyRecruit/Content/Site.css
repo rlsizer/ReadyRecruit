@@ -9,6 +9,10 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -58,6 +62,7 @@ div#navvy.navbar.navbar-static-top {
     background-position: center;
     height: 45px;
     background-color: grey;
+    margin-bottom:0px;
 }
 .nav li {
     background-color: grey;
@@ -83,10 +88,12 @@ div.pic {
     height: 50vh;
 }
 div.rightcolumn {
-    background-color: gold;
+    background-color: black;
     color: black;
     min-height:90vh;
+    /*width: 33.3%;*/
 }
+
 .selections {
     text-align:center;
     padding-bottom:10px;
@@ -100,10 +107,6 @@ div.rightcolumn {
     padding-bottom:0px;
 }
 
-.rightcolumn .row {
-    padding: 20px 20px 20px 20px;
-}
-
 div.bottom {
     padding-top:15px;
     min-height:50vh;
@@ -113,7 +116,7 @@ section#Step1 {
     min-height: 100vh;
 }
 section#Step2, section#Step3 {
-    padding-top:45px;
+    padding-top:0px;
     min-height:100vh;
 }
 
@@ -138,28 +141,32 @@ h1 {
     font-size: 16px;
 }
 .glyphicon-check, .glyphicon-unchecked {
-    font-size: 0.5em;
+    font-size: 0.7em;
     top: -3px;
     color: tomato;
 }
 div.row.bar {
+    margin-top:15px;
+    margin-bottom:5px;
     padding: 0px 0px 0px 0px;
-    border-top: 5px solid black;
-    border-bottom: 5px solid black;
-    color: black;
+    border: 3px solid tomato;
+    background-color: rgbA(0,0,0,0.5);
 }
 
 .progress-bar-warning {
     background-color:tomato;
-    padding-left:10px;
-    padding-top:12px;
+
 }
 div.progress-bar-striped {
-    min-height:50px;
-    width: 100%;
-    height:100%;
-}
 
+}
+.fb-like {
+    margin-top:20px;
+   margin-left:35%;
+}
+div.redditAPI {
+    max-height: 300px;
+}
 hr {
     border-top: 1px solid tomato;
 }
@@ -197,21 +204,30 @@ section#viewProfile p {
 .btn.btn-default a {
     color:black;
 }
-div.nextprev {
+.right a , .left a {
     font-size:18px;
-    color:black;
+    color:white;
 }
-div.nextprev .right {
+.left {
+    float: left;
+    margin: 0px 5px 0px 10px;
+}
+.right {
     float:right;
+    margin: 0px 10px 0px 5px;
 }
-div.nextprev .glyphicon {
-    padding-left:5px;
-    padding-left:5px;
+/*div.glyphicon.left, div.glyphicon.right {
+    margin-left: 10px;
+
 }
+div.glyphicon.right {
+    margin-right:10px;
+}*/
 
 /*Jumbotron*/
 
 div.jumbotron {
+    margin-top:20px;
     background-color: rgb(65,83,59);
     background-position:center;
 }
