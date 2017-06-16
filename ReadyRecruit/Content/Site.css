@@ -54,7 +54,7 @@ textarea {
     float: left;
     width: 147px;
     z-index: 4;
-    margin-top: -25px
+    margin-top: -35px
 
 }
 
@@ -72,7 +72,7 @@ div#navvy.navbar.navbar-static-top {
 }
 
 
-/* --- */
+/* Outline */
 
 .outline {
     background-color: rgbA(0, 0, 0, 0.8);
@@ -204,11 +204,15 @@ section#viewProfile p {
     padding:0px 0px 0px 0px;
 }
 .btn.btn-default {
-    background: gold;
-    border: 2px solid tomato;
+    background: rgb(28,34,46);
+    font-family: 'Merienda', cursive;
+    border: 1px solid blue;
+    color: white;
 }
 .btn.btn-default a {
-    color:black;
+    background: rgb(28,34,46);
+    font-family: 'Merienda', cursive;
+    color: white;
 }
 .right a , .left a {
     font-size:18px;
@@ -266,8 +270,21 @@ div.jumbotron {
 	#myCarousel .list-group {display:none;} 
 }
 
-h1, h2, h3, h4, h5, h6 {
+/*Front End*/
+
+h6, h2, h3, h4, h5, h1, h6 {
     color: white;
+    font-family: 'Merienda', cursive;
+}
+
+div.container.body-content {
+    color: rgb(65,83,59);
+}
+
+.ViewBag.Title a{
+    color:white;
+    font-size:49px;
+    font-family: 'Merienda', cursive;
 }
 
 .fontStyleTitles
@@ -277,7 +294,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Merienda', cursive;
 }
 
-.paragraphFontStyle
+p.paragraphFontStyle, p.paragraphFontStyle a
 {
     color:rgb(158,154,117);
 }
@@ -285,6 +302,29 @@ h1, h2, h3, h4, h5, h6 {
 .btn 
 {
     background-color:rgb(28,34,46);
-    
+    font-family: 'Merienda', cursive;
+}
 
+/* Login + Register */
+
+div.row#Color {
+    background-color: rgb(65,83,59);
+    color:white;
+    font-family: 'Merienda', cursive;
+}
+
+/* Create Profile */
+
+div.form-horizontal {
+    background-color: rgb(65,83,59);
+    color:white;
+    font-family: 'Merienda', cursive;
+}
+
+/* Manage Profile */
+
+div#Color {
+    background-color: rgb(65,83,59);
+    color:white;
+    font-family: 'Merienda', cursive;
 }
