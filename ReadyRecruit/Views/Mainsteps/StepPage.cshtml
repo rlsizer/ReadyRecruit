@@ -47,8 +47,18 @@
                             <h1>@pages.Title[m]</h1><hr />
                             @for (int i = 1; i <= pages.NumHeadings[m]; i++)
                             {
-                                pages.Ihead = i;
-                                <h2>@pages.Headings[m, i]</h2>
+                                @*@using (Html.BeginForm())
+                                    {
+                                        <input type="text" name="Notes" />
+                                        <input type="submit" value="Save Notes" />
+                                    }
+                                    <a href="@Url.Action("SaveNotes", new { id = pages.HStatID[m, i],id2=m,notes = @Notes})">
+                                            <span class="glyphicon glyphicon-list"></span>
+
+                                    </a>*@
+                            pages.Ihead = i;
+                            <h2>@pages.Headings[m, i]</h2>
+
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
                                     pages.Jsub = j;
@@ -238,6 +248,10 @@
                         </div>
                         <div class="row selections">
                             <hr />
+                            <div class="left">
+                                <a href="#Step2" class="glyphicon glyphicon-triangle-left"></a>
+                                <a href="#Step2">prev</a>
+                            </div>
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
@@ -250,19 +264,15 @@
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
+                            <div class="right">
+                                <a href="#Step4">Next</a>
+                                <a href="#Step4" class="glyphicon glyphicon-triangle-right"></a>
+                            </div>
                         </div>
                     </div>@* end of col-md-8 *@
 
                     <div class="col-md-4 rightcolumn">
-                        <div class="row nextprev">
-                            <a href="#Step2" class="glyphicon glyphicon-arrow-left left"></a>
-                            <a href="#Step2" class="left">Prev</a>
-                            @*<a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
-                                <a href="#Step3" class="right">Next</a>*@
-                        </div>
-                        <div class="row">
-                            <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
-                        </div>
+
                         <div class="row bar">
                             <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
                                  aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
@@ -314,6 +324,10 @@
                         </div>
                         <div class="row selections">
                             <hr />
+                            <div class="left">
+                                <a href="#Step3" class="glyphicon glyphicon-triangle-left"></a>
+                                <a href="#Step3">prev</a>
+                            </div>
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
@@ -326,19 +340,18 @@
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
+                            @if (pages.NumPages != m)
+                            {
+                                <div class="right">
+                                    <a href="#Step5">Next</a>
+                                    <a href="#Step5" class="glyphicon glyphicon-triangle-right"></a>
+                                </div>
+                            }
                         </div>
                     </div>@* end of col-md-8 *@
 
                     <div class="col-md-4 rightcolumn">
-                        <div class="row nextprev">
-                            <a href="#Step2" class="glyphicon glyphicon-arrow-left left"></a>
-                            <a href="#Step2" class="left">Prev</a>
-                            @*<a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
-                                <a href="#Step3" class="right">Next</a>*@
-                        </div>
-                        <div class="row">
-                            <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
-                        </div>
+
                         <div class="row bar">
                             <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
                                  aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
@@ -390,6 +403,10 @@
                         </div>
                         <div class="row selections">
                             <hr />
+                            <div class="left">
+                                <a href="#Step4" class="glyphicon glyphicon-triangle-left"></a>
+                                <a href="#Step4">prev</a>
+                            </div>
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
@@ -402,19 +419,18 @@
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
+                            @if (pages.NumPages != m)
+                            {
+                                <div class="right">
+                                    <a href="#Step6">Next</a>
+                                    <a href="#Step6" class="glyphicon glyphicon-triangle-right"></a>
+                                </div>
+                            }
                         </div>
                     </div>@* end of col-md-8 *@
 
                     <div class="col-md-4 rightcolumn">
-                        <div class="row nextprev">
-                            <a href="#Step2" class="glyphicon glyphicon-arrow-left left"></a>
-                            <a href="#Step2" class="left">Prev</a>
-                            @*<a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
-                                <a href="#Step3" class="right">Next</a>*@
-                        </div>
-                        <div class="row">
-                            <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
-                        </div>
+
                         <div class="row bar">
                             <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
                                  aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
@@ -466,6 +482,10 @@
                         </div>
                         <div class="row selections">
                             <hr />
+                            <div class="left">
+                                <a href="#Step5" class="glyphicon glyphicon-triangle-left"></a>
+                                <a href="#Step5">prev</a>
+                            </div>
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
@@ -478,19 +498,18 @@
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
+                            @if (pages.NumPages != m)
+                            {
+                                <div class="right">
+                                    <a href="#Step7">Next</a>
+                                    <a href="#Step7" class="glyphicon glyphicon-triangle-right"></a>
+                                </div>
+                            }
                         </div>
                     </div>@* end of col-md-8 *@
 
                     <div class="col-md-4 rightcolumn">
-                        <div class="row nextprev">
-                            <a href="#Step2" class="glyphicon glyphicon-arrow-left left"></a>
-                            <a href="#Step2" class="left">Prev</a>
-                            @*<a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
-                                <a href="#Step3" class="right">Next</a>*@
-                        </div>
-                        <div class="row">
-                            <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
-                        </div>
+
                         <div class="row bar">
                             <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
                                  aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
@@ -542,6 +561,10 @@
                         </div>
                         <div class="row selections">
                             <hr />
+                            <div class="left">
+                                <a href="#Step6" class="glyphicon glyphicon-triangle-left"></a>
+                                <a href="#Step6">prev</a>
+                            </div>
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
@@ -554,19 +577,18 @@
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
+                            @if (pages.NumPages != m)
+                            {
+                                <div class="right">
+                                    <a href="#Step8">Next</a>
+                                    <a href="#Step8" class="glyphicon glyphicon-triangle-right"></a>
+                                </div>
+                            }
                         </div>
                     </div>@* end of col-md-8 *@
 
                     <div class="col-md-4 rightcolumn">
-                        <div class="row nextprev">
-                            <a href="#Step2" class="glyphicon glyphicon-arrow-left left"></a>
-                            <a href="#Step2" class="left">Prev</a>
-                            @*<a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
-                                <a href="#Step3" class="right">Next</a>*@
-                        </div>
-                        <div class="row">
-                            <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
-                        </div>
+
                         <div class="row bar">
                             <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
                                  aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
@@ -618,6 +640,10 @@
                         </div>
                         <div class="row selections">
                             <hr />
+                            <div class="left">
+                                <a href="#Step7" class="glyphicon glyphicon-triangle-left"></a>
+                                <a href="#Step7">prev</a>
+                            </div>
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
@@ -630,19 +656,18 @@
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
+                            @if (pages.NumPages != m)
+                            {
+                                <div class="right">
+                                    <a href="#Step9">Next</a>
+                                    <a href="#Step9" class="glyphicon glyphicon-triangle-right"></a>
+                                </div>
+                            }
                         </div>
                     </div>@* end of col-md-8 *@
 
                     <div class="col-md-4 rightcolumn">
-                        <div class="row nextprev">
-                            <a href="#Step2" class="glyphicon glyphicon-arrow-left left"></a>
-                            <a href="#Step2" class="left">Prev</a>
-                            @*<a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
-                                <a href="#Step3" class="right">Next</a>*@
-                        </div>
-                        <div class="row">
-                            <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
-                        </div>
+
                         <div class="row bar">
                             <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
                                  aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
@@ -694,6 +719,10 @@
                         </div>
                         <div class="row selections">
                             <hr />
+                            <div class="left">
+                                <a href="#Step8" class="glyphicon glyphicon-triangle-left"></a>
+                                <a href="#Step8">prev</a>
+                            </div>
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
@@ -706,19 +735,18 @@
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
+                            @if (pages.NumPages != m)
+                            {
+                                <div class="right">
+                                    <a href="#Step10">Next</a>
+                                    <a href="#Step10" class="glyphicon glyphicon-triangle-right"></a>
+                                </div>
+                            }
                         </div>
                     </div>@* end of col-md-8 *@
 
                     <div class="col-md-4 rightcolumn">
-                        <div class="row nextprev">
-                            <a href="#Step2" class="glyphicon glyphicon-arrow-left left"></a>
-                            <a href="#Step2" class="left">Prev</a>
-                            @*<a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
-                                <a href="#Step3" class="right">Next</a>*@
-                        </div>
-                        <div class="row">
-                            <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
-                        </div>
+
                         <div class="row bar">
                             <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
                                  aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
@@ -770,6 +798,10 @@
                         </div>
                         <div class="row selections">
                             <hr />
+                            <div class="left">
+                                <a href="#Step9" class="glyphicon glyphicon-triangle-left"></a>
+                                <a href="#Step9">prev</a>
+                            </div>
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
@@ -786,15 +818,7 @@
                     </div>@* end of col-md-8 *@
 
                     <div class="col-md-4 rightcolumn">
-                        <div class="row nextprev">
-                            <a href="#Step2" class="glyphicon glyphicon-arrow-left left"></a>
-                            <a href="#Step2" class="left">Prev</a>
-                            @*<a href="#Step3" class="glyphicon glyphicon-arrow-right right"></a>
-                                <a href="#Step3" class="right">Next</a>*@
-                        </div>
-                        <div class="row">
-                            <p>There can be lots of links and information here.  We have articles from API's, forums, testimonial videos, or links to newsletters.  We can also put the overall roadmap here -- the main steps.</p>
-                        </div>
+
                         <div class="row bar">
                             <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
                                  aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
@@ -811,4 +835,3 @@
         </section>
     }
 </div>
-

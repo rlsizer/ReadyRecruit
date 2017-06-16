@@ -1,19 +1,17 @@
 ﻿@model ReadyRecruit.Models.Profile
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Update Profile";
 }
-
-<h2>Edit</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Profile</h4>
-        <hr />
+
+    <section id="viewProfile">
+        <h1>Update Profile</h1>
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ProfileID)
 
@@ -65,7 +63,6 @@
             </div>
         </div>
 
-
         <div class="form-group">
             @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -90,13 +87,13 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.PracticeScore, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PracticeScore, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PracticeScore, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.PointsTotal, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -156,25 +153,146 @@
             </div>
         </div>
 
-        @*<div class="form-group">
+        <div class="form-group">
             @Html.LabelFor(model => model.Id, "Id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Id", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
             </div>
-        </div>*@
+        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+
+
+
+
+
+
+
+
+
+
+
+        @*<p class="row profile">
+            Hi!  My name is
+            <span class="profileData">
+                @Html.EditorFor(model => model.FName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FName, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.LName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LName, "", new { @class = "text-danger" }).
+            </span>
+            I am a
+            <span class="profileData">
+                @Html.DropDownList("GenderID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.GenderID, "", new { @class = "text-danger" })
+            </span>
+            who was born on
+            <span class="profileData">
+                @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+            </span>
+            and am
+            <span class="profileData">
+                @Html.EditorFor(model => model.Height, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Height, "", new { @class = "text-danger" })
+            </span>
+            inches tall and weigh
+            <span class="profileData">
+                @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
+            </span>
+            pounds
+            <span class="profileData">.</span>
+            I
+            <span class="profileData">
+                @Html.DropDownList("EducationID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EducationID, "", new { @class = "text-danger" })
+            </span>
+            and am
+            <span class="profileData">
+                @Html.DropDownList("MaritalStatID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaritalStatID, "", new { @class = "text-danger" })
+            </span>
+            with
+            <span class="profileData">
+                @Html.EditorFor(model => model.Dependents, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Dependents, "", new { @class = "text-danger" })
+            </span>
+            children or others that depend on me for their support
+            <span class="profileData">.</span>
+            Based on my research so far, I think I would like to be
+            <span class="profileData">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </span>
+            in the
+            <span class="profileData">
+                @Html.EditorFor(model => model.Branch, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Branch, "", new { @class = "text-danger" })
+            </span>
+            @*I have had
+                <a href="@Url.Action("ToggleIsServe",new { id = Model.PriorserviceID })">
+                    @{
+                        var priorServe = Model.PriorServiceID;
+                        if (priorServe == 1)
+                        {
+                            <span class="glyphicon glyphicon-check"></span>
+                        }
+                        else
+                        {
+                            <span class="glyphicon glyphicon-unchecked"></span>
+                        }
+                        </a>
+
+
+                    }
+
+                    @if (pages.IsSubDone[2, i, j])
+                    {
+                        <span class="glyphicon glyphicon-check"></span>
+                    }
+                    else
+                    {
+                        <span class="glyphicon glyphicon-unchecked"></span>
+                    }
+                    </a>
+                    prior service in the military
+
+            <span class="profileData">.</span>
+        </p>*@
+
+
+        <div class="ViewProfileSelections row">
+            <div class="form-group">
+                <input type="submit" value="Update Profile" class="btn btn-default" />
+                <button type="button" class="btn btn-default">
+                    @Html.ActionLink("Go Back", "Index")
+                </button>
             </div>
         </div>
-    </div>
+
+    </section>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+@*<div class="form-group">
+        @Html.LabelFor(model => model.AsvabScore, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.AsvabScore, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.AsvabScore, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PracticeScore, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PracticeScore, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PracticeScore, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    }*@
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

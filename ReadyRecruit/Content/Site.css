@@ -115,7 +115,7 @@ section#Step1 {
     /*padding-top:45px;*/
     min-height: 100vh;
 }
-section#Step2, section#Step3 {
+section#Step2, section#Step3, section#Step4, section#Step5, section#Step6, section#Step7, section#Step8, section#Step9, section#Step10 {
     padding-top:0px;
     min-height:100vh;
 }
@@ -191,6 +191,10 @@ section#viewProfile p {
 .ViewProfileSelections a {
     color:gold;
     font-size:14px;
+}
+.form-control {
+    width: auto;
+    display: inline;
 }
 .container {
     margin: 0px 0px 0px 0px;

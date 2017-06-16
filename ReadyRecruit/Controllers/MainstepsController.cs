@@ -484,6 +484,43 @@ namespace ReadyRecruit.Controllers
             return RedirectToAction("StepPage");
         }
 
+        // GET: Items/SaveNotes/5   (Add ability to save user notes from the view)
+        public ActionResult SaveNotes(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var currentUserId = User.Identity.GetUserId();
+
+            //get profileID for that user
+            var userProfileID = (from pr in db.Profiles
+                                 where pr.Id == currentUserId
+                                 select pr.ProfileID).FirstOrDefault();
+
+            HeadStat item = db.HeadStats.Find(id);
+            Profile user = db.Profiles.Find(userProfileID);
+
+            if (item == null || user == null)
+            {
+                return HttpNotFound();
+            }
+
+            var headstep = (from hs in db.Headsteps
+                            where hs.HeadstepID == item.HeadstepID
+                            select hs).FirstOrDefault();
+            var mainstep = (from ms in db.Mainsteps
+                            where ms.MainstepID == headstep.MainstepID
+                            select ms).FirstOrDefault();
+            int main = Decimal.ToInt32(mainstep.Number);
+            string pageID = "#Step" + main.ToString();
+
+//set item.Notes equal to user input and save to database    
+            db.SaveChanges();
+
+            return Redirect(Url.Action("StepPage", "Mainsteps") + pageID);
+        }
+
         // GET: Items/Army/5   (Change user's military branch to Army)
         public ActionResult Army(int? id)
         {

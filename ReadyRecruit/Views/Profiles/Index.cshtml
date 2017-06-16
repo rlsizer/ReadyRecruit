@@ -77,6 +77,10 @@
             {
                 <span class="profileData">no</span>
             }
+            else
+            {
+                <span class="profileData">some</span>
+            }
             prior service in the military.
 
             @if (item.PracticeScore > 0)
@@ -102,11 +106,15 @@
         </p>
         <div class="ViewProfileSelections row">
             <button type="button" class="btn btn-default">
-                @Html.ActionLink("Update Profile", "Edit", new { id = item.ProfileID }) 
+                @Html.ActionLink("Update Profile", "Edit", new { id = item.ProfileID })
             </button>
-                <button type="button" class="btn btn-default">
-                    @Html.ActionLink("Get Started!", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: null, routeValues: null, htmlAttributes: null)
-                </button>
+            <button type="button" class="btn btn-default">
+                @Html.ActionLink("Get Started!", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: null, routeValues: null, htmlAttributes: null)
+            </button>
+            @*<button type="button" class="btn btn-default">
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProfileID })
+            </button>*@
+
         </div>
     }
 </section>

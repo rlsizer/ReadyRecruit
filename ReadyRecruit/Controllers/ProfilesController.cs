@@ -57,15 +57,15 @@ namespace ReadyRecruit.Controllers
                             select p);
             if (profiles.Count() > 0)
             {
-                foreach (var p in profiles)
-                {
+                //foreach (var p in profiles)
+                //{
                     //should be if(p.IsDone==true)  but it isn't working
                     //if (p.Id == User.Identity.GetUserId())
                     //if (p.IsDone == true)
                     //{
                         return RedirectToAction("Index");
                     //}
-                }
+                //}
             }
 
             ViewBag.EducationID = new SelectList(db.Educations, "EducationID", "EduLevel");
@@ -116,7 +116,7 @@ namespace ReadyRecruit.Controllers
             ViewBag.GenderID = new SelectList(db.Genders, "GenderID", "Type", profile.GenderID);
             ViewBag.MaritalStatID = new SelectList(db.MaritalStats, "MaritalStatID", "Status", profile.MaritalStatID);
             ViewBag.PriorServiceID = new SelectList(db.PriorServices, "PriorServiceID", "PriorServiceID", profile.PriorServiceID);
-            //ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email", profile.Id);
+            ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email", profile.Id);
             return View(profile);
         }
 
@@ -126,6 +126,8 @@ namespace ReadyRecruit.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ProfileID,FName,LName,BirthDate,Height,Weight,Dependents,Title,Branch,AsvabScore,PracticeScore,PointsTotal,PointsEarned,IsDone,GenderID,EducationID,MaritalStatID,PriorServiceID,Id")] Profile profile)
+        //public ActionResult Edit([Bind(Include = "ProfileID,FName,LName,GenderID,BirthDate,Height,Weight,EducationID,MaritalStatID,Dependents,Title,Branch")] Profile profile)
+
         {
             if (ModelState.IsValid)
             {
@@ -139,7 +141,7 @@ namespace ReadyRecruit.Controllers
             ViewBag.GenderID = new SelectList(db.Genders, "GenderID", "Type", profile.GenderID);
             ViewBag.MaritalStatID = new SelectList(db.MaritalStats, "MaritalStatID", "Status", profile.MaritalStatID);
             ViewBag.PriorServiceID = new SelectList(db.PriorServices, "PriorServiceID", "PriorServiceID", profile.PriorServiceID);
-            //ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email", profile.Id);
+            ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email", profile.Id);
             return View(profile);
         }
 
