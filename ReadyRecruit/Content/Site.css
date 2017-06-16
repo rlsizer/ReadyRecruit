@@ -21,6 +21,8 @@
     white-space: normal;
 }
 
+
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
@@ -230,10 +232,14 @@ div.glyphicon.right {
 
 /*Jumbotron*/
 
+
 div.jumbotron {
     margin-top:20px;
     background-color: rgb(65,83,59);
-    background-position:center;
+    background-position:left;
+    padding: 70px 50px 70px 50px;
+    background-size: cover;
+    border-radius:0px 0px 5px 5px;
 }
 
 /* Carousel */
@@ -262,4 +268,23 @@ div.jumbotron {
 
 h1, h2, h3, h4, h5, h6 {
     color: white;
+}
+
+.fontStyleTitles
+{
+    color:white;
+    font-size:49px;
+    font-family: 'Merienda', cursive;
+}
+
+.paragraphFontStyle
+{
+    color:rgb(158,154,117);
+}
+
+.btn 
+{
+    background-color:rgb(28,34,46);
+    
+
 }
