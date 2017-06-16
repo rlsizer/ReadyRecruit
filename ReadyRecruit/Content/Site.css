@@ -83,6 +83,13 @@ div#navvy.navbar.navbar-static-top {
     min-height:75vh;
 }
 
+h2 input{
+    background-color: tan;
+    color:black;
+    border:2px solid tomato;
+    
+}
+
 div.pic {
     background-image: url('images/iwojima.jpg');
     background-size: 33.3vw;
