@@ -63,10 +63,12 @@ div#navvy.navbar.navbar-static-top {
     background-repeat: no-repeat;
     background-position: center;
     height: 45px;
+    background-color: #337ab7;
     background-color: grey;
     margin-bottom:0px;
 }
 .nav li {
+    background-color: #337ab7;
     background-color: grey;
     z-index: 2;
 }
@@ -154,8 +156,13 @@ h1 {
     top: -3px;
     color: tomato;
 }
+h4.goal {
+    color:dodgerblue;
+    margin-top:20px;
+    margin-bottom:5px;
+}
 div.row.bar {
-    margin-top:30px;
+    margin-top:0px;
     margin-bottom:10px;
     padding: 0px 0px 0px 0px;
     border: 3px solid tomato;

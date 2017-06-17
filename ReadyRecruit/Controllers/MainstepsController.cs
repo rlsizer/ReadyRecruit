@@ -133,6 +133,10 @@ namespace ReadyRecruit.Controllers
                          where l.ProfileID == userProfileID &&
                                l.RoadmapID == userRoadmapID
                          select l);
+            //Roadmap Name for displaying on outline pages
+            var roadmapName = (from r in db.Roadmaps
+                               where r.RoadmapID == userRoadmapID
+                               select r.RoadmapName).FirstOrDefault();
             //Mainsteps for Roadmap selected
             var mainsteps = (from m in db.Mainsteps
                              where m.RoadmapID == userRoadmapID 
@@ -176,6 +180,7 @@ namespace ReadyRecruit.Controllers
             Pages pages = new Pages();
             pages.PointsTotal = 0;
             pages.PointsEarned = 0;
+            pages.RoadmapName = roadmapName;
             int maincount = mainsteps.Count();
             pages.NumPages = maincount;
             foreach (var m in mainsteps)        //loop through mainsteps - prepare pages 1, 2, 3
