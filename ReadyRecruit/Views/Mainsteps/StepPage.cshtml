@@ -49,28 +49,22 @@
                             {
                                 pages.Ihead = i;
                                 <h2>
-                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes"}))
-
-                                    {
-                                            
-                                            <input type = "text" name = "Notes" value = "@pages.HeadNotes[m,i]" />
-                                            <input type = "submit" value = "Save Notes" />
-
-                                        @*<a href="@Url.Action("SaveNotes", new { id = pages.HStatID[m, i],id2=m,notes = })">*@
-                                                      <span class="glyphicon glyphicon-list"></span>
-
-                                        @*</a>*@
-                                    @*<a href="#">
-                                        <span class="glyphicon glyphicon-list"></span>
-                                    </a>*@
-                                    }
+                                    <span class="glyphicon glyphicon-list"></span>
                                     @pages.Headings[m, i]
                                 </h2>
-
+                                <div>
+                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                    {
+                                        <div class="NotesForm hidden">
+                                            <input type="text" name="Notes" value="@pages.HeadNotes[m, i]" />
+                                            <input type="submit" value="Save Notes" />
+                                        </div>
+                                    }
+                                </div>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
                                     pages.Jsub = j;
-                                    <h3>
+                                    <h3 style="width: (@pages.Substeps[m,i,j].Length)px">
                                         <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
                                             @if (pages.IsSubDone[m, i, j])
                                             {
@@ -83,10 +77,39 @@
                                                 progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
-                                        @pages.Substeps[m, i, j]
+                                        @* The following if statements are for adding links *@
+                                        @* for pages 1, 2, and 3, all the roadmaps are the same*@
+                                        @* Adjust i and j and put links in like this*@
+                                        @if (i == 2 && j == 1)
+                                        {
+                                            <a href="#" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        @* Add more else if statements to add links for other lines*@
+                                        @* Otherwise, the heading will just get printed without a link here*@
+                                        else
+                                        {
+                                            @pages.Substeps[m, i, j]
+                                        }
                                     </h3>
-                                }
-                            }
+                                    @*Put drow down menu for resources here. Set i and j accordingly*@
+                                    @*if (i == 2 && j == 2)
+                                         {
+                                         <div class="dropdown" style="display: inline">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                               Select Resource
+                                               <span class="caret"></span>
+                                            </button>
+                                             <ul class="dropdown-menu">
+                                               <li><a href="#">Resource 1</a></li>
+                                               <li><a href="#">Resource 2</a></li>
+                                               <li><a href="#">Resource 3</a></li>
+                                             </ul>
+                                         </div>
+                                        }*@
+                                    @* Add other drop down boxes here*@
+
+                                }  @* end of j loop (substeps)*@
+                            }  @* end of i loop (Headings)*@
                         </div>
                         <div class="row selections">
                             <hr />
@@ -113,9 +136,18 @@
                     </div>@* end of col-md-8 *@
 
                     <div class="col-md-4 rightcolumn">
-                        <div class="row">
-                            <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
-                        </div>
+                        @if (pages.RoadmapID == 6)
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to explore a military career.</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
+                            </div>
+                        }
                         <div class="row bar">
                             <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
                                  aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
@@ -155,7 +187,8 @@
                                 <h2>
                                     <a href="#">
                                         <span class="glyphicon glyphicon-list"></span>
-                                    </a>@pages.Headings[m, i]
+                                    </a>
+                                    @pages.Headings[m, i]
                                 </h2>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
@@ -173,10 +206,39 @@
                                                 progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
-                                        @pages.Substeps[m, i, j]
+                                        @* The following if statements are for adding links *@
+                                        @* for pages 1, 2, and 3, all the roadmaps are the same*@
+                                        @* Adjust i and j and put links in like this*@
+                                        @if (i == 2 && j == 1)
+                                        {
+                                            <a href="#" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        @* Add more else if statements to add links for other lines*@
+                                        @* Otherwise, the heading will just get printed without a link here*@
+                                        else
+                                        {
+                                            @pages.Substeps[m, i, j]
+                                        }
                                     </h3>
-                                }
-                            }
+                                    @*Put drow down menu for resources here. Set i and j accordingly*@
+                                    @*if (i == 2 && j == 2)
+                                         {
+                                         <div class="dropdown" style="display: inline">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                               Select Resource
+                                               <span class="caret"></span>
+                                            </button>
+                                             <ul class="dropdown-menu">
+                                               <li><a href="#">Resource 1</a></li>
+                                               <li><a href="#">Resource 2</a></li>
+                                               <li><a href="#">Resource 3</a></li>
+                                             </ul>
+                                         </div>
+                                        }*@
+                                    @* Add other drop down boxes here*@
+
+                                }  @* end of j loop (substeps)*@
+                            }  @* end of i loop (Headings)*@
                         </div>
                         <div class="row selections">
                             <hr />
@@ -210,6 +272,18 @@
                     </div>@* end of col-md-8 *@
 
                     <div class="col-md-4 rightcolumn">
+                        @if (pages.RoadmapID == 6)
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to explore a military career.</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
+                            </div>
+                        }
                         <div class="row bar">
                             <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
                                  aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
@@ -260,10 +334,40 @@
                                                 progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
-                                        @pages.Substeps[m, i, j]
+                                        @* The following if statements are for adding links *@
+                                        @* for pages 1, 2, and 3, all the roadmaps are the same*@
+                                        @* Adjust i and j and put links in like this*@
+                                        @if (i == 2 && j == 1)
+                                        {
+                                            <a href="#" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        @* Add more else if statements to add links for other lines*@
+                                        @* Otherwise, the heading will just get printed without a link here*@
+                                        else
+                                        {
+                                            @pages.Substeps[m, i, j]
+                                        }
                                     </h3>
-                                }
-                            }
+                                    @*Put drow down menu for resources here. Set i and j accordingly*@
+                                    @*if (i == 2 && j == 2)
+                                         {
+                                         <div class="dropdown" style="display: inline">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                               Select Resource
+                                               <span class="caret"></span>
+                                            </button>
+                                             <ul class="dropdown-menu">
+                                               <li><a href="#">Resource 1</a></li>
+                                               <li><a href="#">Resource 2</a></li>
+                                               <li><a href="#">Resource 3</a></li>
+                                             </ul>
+                                         </div>
+                                        }*@
+                                    @* Add other drop down boxes here*@
+
+                                }  @* end of j loop (substeps)*@
+                            }  @* end of i loop (Headings)*@
+
                         </div>
                         <div class="row selections">
                             <hr />
@@ -291,7 +395,18 @@
                     </div>@* end of col-md-8 *@
 
                     <div class="col-md-4 rightcolumn">
-
+                        @if (pages.RoadmapID == 6)
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to explore a military career.</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
+                            </div>
+                        }
                         <div class="row bar">
                             <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
                                  aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
@@ -340,10 +455,41 @@
                                                 progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
-                                        @pages.Substeps[m, i, j]
+                                        @* Starting on this page, you need to include the roadmap number as well as the i and j*@
+                                        @* The following if statements are for adding links *@
+                                        @* for pages 1, 2, and 3, all the roadmaps are the same*@
+                                        @* Adjust i and j and put links in like this*@
+                                        @if (i == 2 && j == 1)
+                                        {
+                                            <a href="#" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        @* Add more else if statements to add links for other lines*@
+                                        @* Otherwise, the heading will just get printed without a link here*@
+                                        else
+                                        {
+                                            @pages.Substeps[m, i, j]
+                                        }
                                     </h3>
-                                }
-                            }
+                                    @*Put drow down menu for resources here. Set i and j accordingly*@
+                                    @*if (i == 2 && j == 2)
+                                         {
+                                         <div class="dropdown" style="display: inline">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                               Select Resource
+                                               <span class="caret"></span>
+                                            </button>
+                                             <ul class="dropdown-menu">
+                                               <li><a href="#">Resource 1</a></li>
+                                               <li><a href="#">Resource 2</a></li>
+                                               <li><a href="#">Resource 3</a></li>
+                                             </ul>
+                                         </div>
+                                        }*@
+                                    @* Add other drop down boxes here*@
+
+                                }  @* end of j loop (substeps)*@
+                            }  @* end of i loop (Headings)*@
+
                         </div>
                         <div class="row selections">
                             <hr />
@@ -374,6 +520,18 @@
                     </div>@* end of col-md-8 *@
 
                     <div class="col-md-4 rightcolumn">
+                        @if (pages.RoadmapID == 6)
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to explore a military career.</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
+                            </div>
+                        }
 
                         <div class="row bar">
                             <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
@@ -423,10 +581,40 @@
                                                 progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
-                                        @pages.Substeps[m, i, j]
+                                        @* The following if statements are for adding links *@
+                                        @* for pages 1, 2, and 3, all the roadmaps are the same*@
+                                        @* Adjust i and j and put links in like this*@
+                                        @if (i == 2 && j == 1)
+                                        {
+                                            <a href="#" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        @* Add more else if statements to add links for other lines*@
+                                        @* Otherwise, the heading will just get printed without a link here*@
+                                        else
+                                        {
+                                            @pages.Substeps[m, i, j]
+                                        }
                                     </h3>
-                                }
-                            }
+                                    @*Put drow down menu for resources here. Set i and j accordingly*@
+                                    @*if (i == 2 && j == 2)
+                                         {
+                                         <div class="dropdown" style="display: inline">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                               Select Resource
+                                               <span class="caret"></span>
+                                            </button>
+                                             <ul class="dropdown-menu">
+                                               <li><a href="#">Resource 1</a></li>
+                                               <li><a href="#">Resource 2</a></li>
+                                               <li><a href="#">Resource 3</a></li>
+                                             </ul>
+                                         </div>
+                                        }*@
+                                    @* Add other drop down boxes here*@
+
+                                }  @* end of j loop (substeps)*@
+                            }  @* end of i loop (Headings)*@
+
                         </div>
                         <div class="row selections">
                             <hr />
@@ -457,6 +645,18 @@
                     </div>@* end of col-md-8 *@
 
                     <div class="col-md-4 rightcolumn">
+                        @if (pages.RoadmapID == 6)
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to explore a military career.</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
+                            </div>
+                        }
 
                         <div class="row bar">
                             <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
@@ -506,10 +706,40 @@
                                                 progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
-                                        @pages.Substeps[m, i, j]
+                                        @* The following if statements are for adding links *@
+                                        @* for pages 1, 2, and 3, all the roadmaps are the same*@
+                                        @* Adjust i and j and put links in like this*@
+                                        @if (i == 2 && j == 1)
+                                        {
+                                            <a href="#" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        @* Add more else if statements to add links for other lines*@
+                                        @* Otherwise, the heading will just get printed without a link here*@
+                                        else
+                                        {
+                                            @pages.Substeps[m, i, j]
+                                        }
                                     </h3>
-                                }
-                            }
+                                    @*Put drow down menu for resources here. Set i and j accordingly*@
+                                    @*if (i == 2 && j == 2)
+                                         {
+                                         <div class="dropdown" style="display: inline">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                               Select Resource
+                                               <span class="caret"></span>
+                                            </button>
+                                             <ul class="dropdown-menu">
+                                               <li><a href="#">Resource 1</a></li>
+                                               <li><a href="#">Resource 2</a></li>
+                                               <li><a href="#">Resource 3</a></li>
+                                             </ul>
+                                         </div>
+                                        }*@
+                                    @* Add other drop down boxes here*@
+
+                                }  @* end of j loop (substeps)*@
+                            }  @* end of i loop (Headings)*@
+
                         </div>
                         <div class="row selections">
                             <hr />
@@ -540,6 +770,18 @@
                     </div>@* end of col-md-8 *@
 
                     <div class="col-md-4 rightcolumn">
+                        @if (pages.RoadmapID == 6)
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to explore a military career.</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
+                            </div>
+                        }
 
                         <div class="row bar">
                             <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
@@ -589,10 +831,40 @@
                                                 progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
-                                        @pages.Substeps[m, i, j]
+                                        @* The following if statements are for adding links *@
+                                        @* for pages 1, 2, and 3, all the roadmaps are the same*@
+                                        @* Adjust i and j and put links in like this*@
+                                        @if (i == 2 && j == 1)
+                                        {
+                                            <a href="#" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        @* Add more else if statements to add links for other lines*@
+                                        @* Otherwise, the heading will just get printed without a link here*@
+                                        else
+                                        {
+                                            @pages.Substeps[m, i, j]
+                                        }
                                     </h3>
-                                }
-                            }
+                                    @*Put drow down menu for resources here. Set i and j accordingly*@
+                                    @*if (i == 2 && j == 2)
+                                         {
+                                         <div class="dropdown" style="display: inline">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                               Select Resource
+                                               <span class="caret"></span>
+                                            </button>
+                                             <ul class="dropdown-menu">
+                                               <li><a href="#">Resource 1</a></li>
+                                               <li><a href="#">Resource 2</a></li>
+                                               <li><a href="#">Resource 3</a></li>
+                                             </ul>
+                                         </div>
+                                        }*@
+                                    @* Add other drop down boxes here*@
+
+                                }  @* end of j loop (substeps)*@
+                            }  @* end of i loop (Headings)*@
+
                         </div>
                         <div class="row selections">
                             <hr />
@@ -623,6 +895,18 @@
                     </div>@* end of col-md-8 *@
 
                     <div class="col-md-4 rightcolumn">
+                        @if (pages.RoadmapID == 6)
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to explore a military career.</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
+                            </div>
+                        }
 
                         <div class="row bar">
                             <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
@@ -672,10 +956,40 @@
                                                 progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
-                                        @pages.Substeps[m, i, j]
+                                        @* The following if statements are for adding links *@
+                                        @* for pages 1, 2, and 3, all the roadmaps are the same*@
+                                        @* Adjust i and j and put links in like this*@
+                                        @if (i == 2 && j == 1)
+                                        {
+                                            <a href="#" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        @* Add more else if statements to add links for other lines*@
+                                        @* Otherwise, the heading will just get printed without a link here*@
+                                        else
+                                        {
+                                            @pages.Substeps[m, i, j]
+                                        }
                                     </h3>
-                                }
-                            }
+                                    @*Put drow down menu for resources here. Set i and j accordingly*@
+                                    @*if (i == 2 && j == 2)
+                                         {
+                                         <div class="dropdown" style="display: inline">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                               Select Resource
+                                               <span class="caret"></span>
+                                            </button>
+                                             <ul class="dropdown-menu">
+                                               <li><a href="#">Resource 1</a></li>
+                                               <li><a href="#">Resource 2</a></li>
+                                               <li><a href="#">Resource 3</a></li>
+                                             </ul>
+                                         </div>
+                                        }*@
+                                    @* Add other drop down boxes here*@
+
+                                }  @* end of j loop (substeps)*@
+                            }  @* end of i loop (Headings)*@
+
                         </div>
                         <div class="row selections">
                             <hr />
@@ -706,6 +1020,18 @@
                     </div>@* end of col-md-8 *@
 
                     <div class="col-md-4 rightcolumn">
+                        @if (pages.RoadmapID == 6)
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to explore a military career.</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
+                            </div>
+                        }
 
                         <div class="row bar">
                             <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
@@ -755,10 +1081,40 @@
                                                 progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
-                                        @pages.Substeps[m, i, j]
+                                        @* The following if statements are for adding links *@
+                                        @* for pages 1, 2, and 3, all the roadmaps are the same*@
+                                        @* Adjust i and j and put links in like this*@
+                                        @if (i == 2 && j == 1)
+                                        {
+                                            <a href="#" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        @* Add more else if statements to add links for other lines*@
+                                        @* Otherwise, the heading will just get printed without a link here*@
+                                        else
+                                        {
+                                            @pages.Substeps[m, i, j]
+                                        }
                                     </h3>
-                                }
-                            }
+                                    @*Put drow down menu for resources here. Set i and j accordingly*@
+                                    @*if (i == 2 && j == 2)
+                                         {
+                                         <div class="dropdown" style="display: inline">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                               Select Resource
+                                               <span class="caret"></span>
+                                            </button>
+                                             <ul class="dropdown-menu">
+                                               <li><a href="#">Resource 1</a></li>
+                                               <li><a href="#">Resource 2</a></li>
+                                               <li><a href="#">Resource 3</a></li>
+                                             </ul>
+                                         </div>
+                                        }*@
+                                    @* Add other drop down boxes here*@
+
+                                }  @* end of j loop (substeps)*@
+                            }  @* end of i loop (Headings)*@
+
                         </div>
                         <div class="row selections">
                             <hr />
@@ -789,6 +1145,18 @@
                     </div>@* end of col-md-8 *@
 
                     <div class="col-md-4 rightcolumn">
+                        @if (pages.RoadmapID == 6)
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to explore a military career.</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
+                            </div>
+                        }
 
                         <div class="row bar">
                             <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
@@ -838,10 +1206,40 @@
                                                 progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
                                         </a>
-                                        @pages.Substeps[m, i, j]
+                                        @* The following if statements are for adding links *@
+                                        @* for pages 1, 2, and 3, all the roadmaps are the same*@
+                                        @* Adjust i and j and put links in like this*@
+                                        @if (i == 2 && j == 1)
+                                        {
+                                            <a href="#" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        @* Add more else if statements to add links for other lines*@
+                                        @* Otherwise, the heading will just get printed without a link here*@
+                                        else
+                                        {
+                                            @pages.Substeps[m, i, j]
+                                        }
                                     </h3>
-                                }
-                            }
+                                    @*Put drow down menu for resources here. Set i and j accordingly*@
+                                    @*if (i == 2 && j == 2)
+                                         {
+                                         <div class="dropdown" style="display: inline">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                               Select Resource
+                                               <span class="caret"></span>
+                                            </button>
+                                             <ul class="dropdown-menu">
+                                               <li><a href="#">Resource 1</a></li>
+                                               <li><a href="#">Resource 2</a></li>
+                                               <li><a href="#">Resource 3</a></li>
+                                             </ul>
+                                         </div>
+                                        }*@
+                                    @* Add other drop down boxes here*@
+
+                                }  @* end of j loop (substeps)*@
+                            }  @* end of i loop (Headings)*@
+
                         </div>
                         <div class="row selections">
                             <hr />
@@ -865,6 +1263,18 @@
                     </div>@* end of col-md-8 *@
 
                     <div class="col-md-4 rightcolumn">
+                        @if (pages.RoadmapID == 6)
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to explore a military career.</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
+                            </div>
+                        }
 
                         <div class="row bar">
                             <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'

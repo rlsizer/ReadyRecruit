@@ -181,6 +181,7 @@ namespace ReadyRecruit.Controllers
             pages.PointsTotal = 0;
             pages.PointsEarned = 0;
             pages.RoadmapName = roadmapName;
+            pages.RoadmapID = userRoadmapID;
             int maincount = mainsteps.Count();
             pages.NumPages = maincount;
             foreach (var m in mainsteps)        //loop through mainsteps - prepare pages 1, 2, 3
