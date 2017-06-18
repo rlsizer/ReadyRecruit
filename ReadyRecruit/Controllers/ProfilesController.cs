@@ -87,6 +87,12 @@ namespace ReadyRecruit.Controllers
             {
                 profile.Id = User.Identity.GetUserId();
                 profile.IsDone = true;
+                profile.Title = null;
+                profile.Branch = null;
+                profile.AsvabScore = null;
+                profile.PracticeScore = null;
+                profile.PointsEarned = null;
+                profile.PointsTotal = null;
                 db.Profiles.Add(profile);
                 db.SaveChanges();
                 return RedirectToAction("Index");

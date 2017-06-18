@@ -489,45 +489,8 @@ namespace ReadyRecruit.Controllers
 
             return RedirectToAction("StepPage");
         }
-        //// GET: Items/SaveNotes/5   (Add ability to save user notes from the view)
-        //public ActionResult SaveNotes(int? id, int? id2, string Notes)
-        //{
-        //    if (id == null || id2 == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    //var currentUserId = User.Identity.GetUserId();
 
-        //    ////get profileID for that user
-        //    //var userProfileID = (from pr in db.Profiles
-        //    //                     where pr.Id == currentUserId
-        //    //                     select pr.ProfileID).FirstOrDefault();
-
-        //    HeadStat item = db.HeadStats.Find(id);
-        //    //Profile user = db.Profiles.Find(userProfileID);
-
-        //    if (item == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    //var headstep = (from hs in db.Headsteps
-        //    //                where hs.HeadstepID == item.HeadstepID
-        //    //                select hs).FirstOrDefault();
-        //    //var mainstep = (from ms in db.Mainsteps
-        //    //                where ms.MainstepID == headstep.MainstepID
-        //    //                select ms).FirstOrDefault();
-        //    //int main = Decimal.ToInt32(mainstep.Number);
-        //    string pageID = "#Step" + id2.ToString();
-        //    //set item.Notes equal to user input and save to database  
-        //    item.Notes = Notes;
-
-
-        //    db.SaveChanges();
-
-        //    return Redirect(Url.Action("StepPage", "Mainsteps") + pageID);
-        //}
-        // POST: Items/SaveNotes/5   (Add ability to save user notes from the view)
+         // POST: Items/SaveNotes/5   (Add ability to save user notes from the view)
         [HttpPost]
         public ActionResult SaveNotes(int? id, int? id2, string Notes)
         {
@@ -550,13 +513,6 @@ namespace ReadyRecruit.Controllers
                 return HttpNotFound();
             }
 
-            //var headstep = (from hs in db.Headsteps
-            //                where hs.HeadstepID == item.HeadstepID
-            //                select hs).FirstOrDefault();
-            //var mainstep = (from ms in db.Mainsteps
-            //                where ms.MainstepID == headstep.MainstepID
-            //                select ms).FirstOrDefault();
-            //int main = Decimal.ToInt32(mainstep.Number);
             string pageID = "#Step" + id2.ToString();
             //set item.Notes equal to user input and save to database  
             item.Notes = Notes;
@@ -599,7 +555,7 @@ namespace ReadyRecruit.Controllers
                 return HttpNotFound();
             }
             Profile user = db.Profiles.Find(item.ProfileID);
-            user.Branch = "Airforce";
+            user.Branch = "Air Force";
             db.SaveChanges();
 
             return RedirectToAction("StepPage");
@@ -714,7 +670,7 @@ namespace ReadyRecruit.Controllers
                 return HttpNotFound();
             }
             Profile user = db.Profiles.Find(item.ProfileID);
-            user.Title = "commissioned";
+            user.Title = "a commissioned officer";
             db.SaveChanges();
 
             return RedirectToAction("StepPage");
@@ -870,12 +826,16 @@ namespace ReadyRecruit.Controllers
         }
         public int GetRoadmapID(string branch, string title)
         {
-            int RoadmapID = 6;
-            if (branch == "Army" && title == "enlisted")
+            var RoadmapID = 6;
+            if (branch == null || title == null)
+            {
+                RoadmapID = 6;
+            }
+            else if (branch == "Army" && title == "enlisted")
             {
                 RoadmapID = 1;
             }
-            else if (branch == "Airforce" && title == "enlisted")
+            else if (branch == "Air Force" && title == "enlisted")
             {
                 RoadmapID = 2;
             }
@@ -883,7 +843,58 @@ namespace ReadyRecruit.Controllers
             {
                 RoadmapID = 3;
             }
-
+            else if (branch == "Marines" && title == "enlisted")
+            {
+                RoadmapID = 4;
+            }
+            else if (branch == "Coast Guard" && title == "enlisted")
+            {
+                RoadmapID = 5;
+            }
+            else if (branch == "Army" && title == "a commissioned officer")
+            {
+                RoadmapID = 7;
+            }
+            else if (branch == "Air Force" && title == "a commissioned officer")
+            {
+                RoadmapID = 8;
+            }
+            else if (branch == "Navy" && title == "a commissioned officer")
+            {
+                RoadmapID = 9;
+            }
+            else if (branch == "Marines" && title == "a commissioned officer")
+            {
+                RoadmapID = 10;
+            }
+            else if (branch == "Coast Guard" && title == "a commissioned officer")
+            {
+                RoadmapID = 11;
+            }
+            else if (branch == "Army" && title == "a warrant Officer")
+            {
+                RoadmapID = 12;
+            }
+            else if (branch == "Air Force" && title == "a warrant Officer")
+            {
+                RoadmapID = 13;
+            }
+            else if (branch == "Navy" && title == "a warrant Officer")
+            {
+                RoadmapID = 14;
+            }
+            else if (branch == "Marines" && title == "a warrant Officer")
+            {
+                RoadmapID = 15;
+            }
+            else if (branch == "Coast Guard" && title == "a warrant Officer")
+            {
+                RoadmapID = 16;
+            }
+            else
+            {
+                RoadmapID = 6;
+            }
             return RoadmapID;
         }
     }

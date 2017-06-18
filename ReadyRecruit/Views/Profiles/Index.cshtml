@@ -50,18 +50,18 @@
 
             @if ((item.Title == null || item.Title == "" || item.Title == "undecided") && (item.Branch == null || item.Branch == "" || item.Branch == "undecided"))
             {
-                <span>I have <span class="profileData">not yet decided</span> on a branch of the military (Army, Air Force, etc...) or whether I want to go in as <span class="profileData">an officer or an enlisted soldier</span>.</span>
+                <span>I have <span class="profileData">not yet decided</span> on a branch of the military (Army, Air Force, etc...) or whether I want to go in as <span class="profileData">an officer or an enlisted soldier</span></span>
             }
             else if (item.Title == null || item.Title == "" || item.Title == "undecided")
             {
                 <span>
-                    I want to join the <span class="profileData">@Html.DisplayFor(modelItem => item.Branch) </span>, but have not yet decided whether to go in as <span class="profileData">an officer or an enlisted soldier</span>.
+                    I want to join the <span class="profileData">@Html.DisplayFor(modelItem => item.Branch) </span>, but have not yet decided whether to go in as <span class="profileData">an officer or an enlisted soldier</span>
                 </span>
             }
             else if (item.Branch == null || item.Branch == "" || item.Branch == "undecided")
             {
                 <span>
-                    I want to be <span class="profileData">@Html.DisplayFor(modelItem => item.Title) </span>, but have <span class="profileData">not yet decided</span> on a branch (Army, Air Force, etc...).
+                    I want to be <span class="profileData">@Html.DisplayFor(modelItem => item.Title) </span>, but have <span class="profileData">not yet decided</span> on a branch (Army, Air Force, etc...)
                 </span>
             }
             else
@@ -89,7 +89,7 @@
             }
             @if (item.AsvabScore > 0)
             {
-                <span>My score on the real ASVAB test is <span class="profileData">@Html.DisplayFor(modelItem => item.AsvabScore) </span>.</span>
+                <span>My best score on the real ASVAB test is <span class="profileData">@Html.DisplayFor(modelItem => item.AsvabScore) </span>.</span>
             }
 
 

@@ -206,6 +206,23 @@ min-height:90vh;
 section#viewProfile p {
     padding: 5vh 15vw 10vh 15vw;
 }
+.profileCreate {
+    padding: 50px 20px 20px 20px;
+    margin:auto;
+    line-height: 1.8;
+    max-width: 75vw;
+}
+select {
+    color: black;
+    border-radius: 4px;
+    font-size: 14px;
+    height: 34px;
+    padding: 6px 12px;
+    line-height: 1.42857143;
+}
+/*#EducationID.form-control.text-box.single-line {
+    width: 400px;
+}*/
 .profileData {
     font-weight: 900;
     color:tomato;
@@ -214,7 +231,7 @@ section#viewProfile p {
     color:gold;
     font-size:14px;
 }
-.form-control {
+.form-control, .form-group {
     width: auto;
     display: inline;
 }

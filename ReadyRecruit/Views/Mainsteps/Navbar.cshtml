@@ -1,0 +1,19 @@
+﻿<div class="navbar navbar-static-top" id="navvy">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a id="Home" class="navbar-brand" href="~/Home/Index"><span><img src="~/Content/images/Ready Recruit!_clipped_rev_1.png" /></span></a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="glyphicon glyphicon-glass"></span>
+            </button>
+            @*@Html.ActionLink("Ready Recruit", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+</div>

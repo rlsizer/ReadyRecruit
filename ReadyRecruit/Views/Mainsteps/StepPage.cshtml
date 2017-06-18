@@ -376,16 +376,16 @@
                                 <a href="#Step2">prev</a>
                             </div>
                             <button type="button" class="btn btn-default">
-                                @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step4", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
                             <button type="button" class="btn btn-default">
-                                @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step4", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
                             <button type="button" class="btn btn-default">
-                                @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step4", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
                             <button type="button" class="btn btn-default">
-                                @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step4", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
                             <div class="right">
                                 <a href="#Step4">Next</a>
@@ -497,19 +497,11 @@
                                 <a href="#Step3" class="glyphicon glyphicon-triangle-left"></a>
                                 <a href="#Step3">prev</a>
                             </div>
-                            <button type="button" class="btn btn-default">
-                                @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                            </button>
-                            <button type="button" class="btn btn-default">
-                                @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                            </button>
-                            <button type="button" class="btn btn-default">
-                                @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                            </button>
-                            <button type="button" class="btn btn-default">
-                                @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                            </button>
-                            @if (pages.NumPages != m)
+
+                            <a class="btn btn-default" href="#" target="_blank">Resource 1</a>
+                            <a class="btn btn-default" href="#" target="_blank">Video 1</a>
+
+                           @if (pages.NumPages != m)
                             {
                                 <div class="right">
                                     <a href="#Step5">Next</a>

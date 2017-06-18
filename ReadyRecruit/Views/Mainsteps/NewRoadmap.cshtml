@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ReadyRecruit.Models.Pages>
+@using ReadyRecruit.Models
+
+@{
+    ViewBag.Title = "NewRoadmap";
+}
+
+
+
+<div class="specialVideo">
+@if (ViewBag.Rdmap == 1)
+{
+    <h1 class="container" id="trailer"><iframe width="560" height="315" src="https://www.youtube.com/embed/jD-PdA4-W9A" frameborder="0" allowfullscreen></iframe>
+    Welcome to the Army!</h1>
+    <button type="button" class="btn btn-default">
+        @Html.ActionLink("Continue", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step4", routeValues: null, htmlAttributes: null)
+    </button>
+
+}
+else if (ViewBag.Rdmap == 2)
+{ 
+    <h2>Welcome to the Air Force!</h2>
+    <h1 class="container" id="trailer"><iframe width="1000" height="600" src="https://www.youtube.com/watch?v=y3XMUBU6HLc" frameborder="0" allowfullscreen></iframe>
+    Welcome to the Air Force!</h1>
+    <button type="button" class="btn btn-default">
+        @Html.ActionLink("Continue", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step4", routeValues: null, htmlAttributes: null)
+    </button>
+
+}
+else if (ViewBag.Rdmap == 3)
+{
+    <h1 class="container" id="trailer"><iframe width="560" height="315" src="https://www.youtube.com/embed/jD-PdA4-W9A" frameborder="0" allowfullscreen></iframe>
+    Welcome to the Navy!</h1>
+    <button type="button" class="btn btn-default">
+        @Html.ActionLink("Continue", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step4", routeValues: null, htmlAttributes: null)
+    </button>
+
+}
+else if (ViewBag.Rdmap == 4)
+{
+    <h1 class="container" id="trailer"><iframe width="560" height="315" src="https://www.youtube.com/embed/jD-PdA4-W9A" frameborder="0" allowfullscreen>
+        Welcome to the Marines</iframe></h1>        
+        <button type="button" class="btn btn-default">
+            @Html.ActionLink("Continue", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step4", routeValues: null, htmlAttributes: null)
+        </button>
+
+}
+else if (ViewBag.Rdmap == 5)
+{
+    <h1 class="container" id="trailer"><iframe width="560" height="315" src="https://www.youtube.com/embed/jD-PdA4-W9A" frameborder="0" allowfullscreen>
+        Welcome to the Coast Guard</iframe></h1>
+        <button type="button" class="btn btn-default">
+            @Html.ActionLink("Continue", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step4", routeValues: null, htmlAttributes: null)
+        </button>
+}
+else
+{
+    <h1 class="container" id="trailer"><iframe width="560" height="315" src="https://www.youtube.com/embed/jD-PdA4-W9A" frameborder="0" allowfullscreen></iframe></h1>
+    <button type="button" class="btn btn-default">
+        @Html.ActionLink("Continue", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step4", routeValues: null, htmlAttributes: null)
+    </button>
+
+}
+</div>
