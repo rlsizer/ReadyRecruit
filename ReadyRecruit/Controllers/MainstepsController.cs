@@ -28,32 +28,124 @@ namespace ReadyRecruit.Controllers
         {
             var mainsteps = db.Mainsteps.Include(m => m.Roadmap);
 
+            //populates mainsteps for roadmaps 2 through 5 (1 and 6 already exist
+            //Mainstep newitem = new Mainstep();
+            //for (int road = 2; road < 6; road++)
+            //{
+            //    for (int m = 1; m <= 7; m++)
+            //    {
+            //        newitem.Number = (from ms in db.Mainsteps
+            //                          where ms.RoadmapID == 1 &&
+            //                          ms.Number == m
+            //                          select ms.Number).FirstOrDefault();
+            //        newitem.Name = (from ms in db.Mainsteps
+            //                        where ms.RoadmapID == 1 &&
+            //                        ms.Number == m
+            //                        select ms.Name).FirstOrDefault();
+            //        newitem.IsDone = false;
+            //        newitem.Points = 0;
+            //        newitem.RoadmapID = road;
+            //        db.Mainsteps.Add(newitem);
+            //        db.SaveChanges();
+            //    }
+            //}
 
-            int count = 14;
-            Mainstep newitem = new Mainstep();
-            for (int road = 2; road < 6; road++)
+            //must populate roadmaps next
+            //Roadmap rditem = new Roadmap();
+
+            //rditem.RoadmapName = "a commissioned officer in the Army";
+            //db.Roadmaps.Add(rditem);
+            //db.SaveChanges();
+            //rditem.RoadmapName = "a commissioned officer in the Air Force";
+            //db.Roadmaps.Add(rditem);
+            //db.SaveChanges();
+            //rditem.RoadmapName = "a commissioned officer in the Navy";
+            //db.Roadmaps.Add(rditem);
+            //db.SaveChanges();
+            //rditem.RoadmapName = "a commissioned officer in the Marines";
+            //db.Roadmaps.Add(rditem);
+            //db.SaveChanges();
+            //rditem.RoadmapName = "a commissioned officer in the Coast Guard";
+            //db.Roadmaps.Add(rditem);
+            //db.SaveChanges();
+            //rditem.RoadmapName = "a warrant officer in the Army";
+            //db.Roadmaps.Add(rditem);
+            //db.SaveChanges();
+            //rditem.RoadmapName = "a warrant officer in the Air Force";
+            //db.Roadmaps.Add(rditem);
+            //db.SaveChanges();
+            //rditem.RoadmapName = "a warrant officer in the Navy";
+            //db.Roadmaps.Add(rditem);
+            //db.SaveChanges();
+            //rditem.RoadmapName = "a warrant officer in the Marines";
+            //db.Roadmaps.Add(rditem);
+            //db.SaveChanges();
+            //rditem.RoadmapName = "a warrant officer in the Coast Guard";
+            //db.Roadmaps.Add(rditem);
+            //db.SaveChanges();
+
+
+            //populates mainsteps for roadmaps 7 through 16 (1 through 6 already exist)
+            //Mainstep newitem = new Mainstep();
+            //for (int road = 7; road < 17; road++)
+            //{
+            //    for (int m = 1; m <= 7; m++)
+            //    {
+            //        newitem.Number = (from ms in db.Mainsteps
+            //                          where ms.RoadmapID == 1 &&
+            //                          ms.Number == m
+            //                          select ms.Number).FirstOrDefault();
+            //        newitem.Name = (from ms in db.Mainsteps
+            //                        where ms.RoadmapID == 1 &&
+            //                        ms.Number == m
+            //                        select ms.Name).FirstOrDefault();
+            //        newitem.IsDone = false;
+            //        newitem.Points = 0;
+            //        newitem.RoadmapID = road;
+            //        db.Mainsteps.Add(newitem);
+            //        db.SaveChanges();
+            //    }
+            //}
+            //populates headsteps for roadmaps 2 through 5
+            //Headstep newheadstep = new Headstep();
+            //for (int road = 2; road < 6; road++)
+            //{
+            //    //select first 17 headsteps (for roadmap 1, mainsteps 1 through 7)
+            //    var headsteps = (from step in db.Headsteps
+            //                     where step.MainstepID <= 7
+            //                     select step).ToList();
+            //    foreach (var h in headsteps)
+            //    {
+            //        newheadstep.Number = h.Number;
+            //        newheadstep.Name = h.Name;
+            //        newheadstep.IsDone = false;
+            //        newheadstep.Points = 0;
+            //        newheadstep.MainstepID = road * 7 + h.MainstepID;
+            //        db.Headsteps.Add(newheadstep);
+            //        db.SaveChanges();
+            //    }
+            //}
+
+            //populates headsteps for roadmaps 7 through 16
+            Headstep newheadstep = new Headstep();
+            for (int road = 7; road < 17; road++)
             {
-                for (int m = 1; m <= 7; m++)
+                //select first 17 headsteps (for roadmap 1, mainsteps 1 through 7)
+                var headsteps = (from step in db.Headsteps
+                                 where step.MainstepID <= 7
+                                 select step).ToList();
+                foreach (var h in headsteps)
                 {
-                    count += 1;
-                    if (count == 15 || count == 16) continue;
-
-                    newitem.MainstepID = count;
-                    newitem.Number = (from ms in db.Mainsteps
-                                      where ms.RoadmapID == 1 &&
-                                      ms.Number == m
-                                      select ms.Number).FirstOrDefault();
-                    newitem.Name = (from ms in db.Mainsteps
-                                    where ms.RoadmapID == 1 &&
-                                    ms.Number == m
-                                    select ms.Name).FirstOrDefault();
-                    newitem.IsDone = false;
-                    newitem.Points = 0;
-                    newitem.RoadmapID = road;
-                    db.Mainsteps.Add(newitem);
+                    newheadstep.Number = h.Number;
+                    newheadstep.Name = h.Name;
+                    newheadstep.IsDone = false;
+                    newheadstep.Points = 0;
+                    newheadstep.MainstepID = (road-1) * 7 + 1 + h.MainstepID;
+                    db.Headsteps.Add(newheadstep);
                     db.SaveChanges();
                 }
             }
+
 
             return RedirectToAction("StepPage");
         }
@@ -175,7 +267,7 @@ namespace ReadyRecruit.Controllers
                                select r.RoadmapName).FirstOrDefault();
             //Mainsteps for Roadmap selected
             var mainsteps = (from m in db.Mainsteps
-                             where m.RoadmapID == userRoadmapID 
+                             where m.RoadmapID == userRoadmapID
                              orderby m.Number
                              select m).ToList();
 
@@ -234,21 +326,21 @@ namespace ReadyRecruit.Controllers
                 if (mainStats.Count() > 0)
                 {
                     pages.MStatID[mcount] = (from ms in db.MainStats
-                                     where ms.LinkID == userLinkID &&
-                                     ms.MainstepID == m.MainstepID
-                                     select ms.MainStatID).FirstOrDefault();     //send title status id
+                                             where ms.LinkID == userLinkID &&
+                                             ms.MainstepID == m.MainstepID
+                                             select ms.MainStatID).FirstOrDefault();     //send title status id
                     pages.TitleDue[mcount] = (from ms in db.MainStats
-                                      where ms.LinkID == userLinkID &&
-                                      ms.MainstepID == m.MainstepID
-                                      select ms.DueDate).FirstOrDefault();        //send title due date
+                                              where ms.LinkID == userLinkID &&
+                                              ms.MainstepID == m.MainstepID
+                                              select ms.DueDate).FirstOrDefault();        //send title due date
                     pages.IsTitleDone[mcount] = (from ms in db.MainStats
-                                         where ms.LinkID == userLinkID &&
-                                         ms.MainstepID == m.MainstepID
-                                         select ms.IsDone).FirstOrDefault();       //send title isDone status
+                                                 where ms.LinkID == userLinkID &&
+                                                 ms.MainstepID == m.MainstepID
+                                                 select ms.IsDone).FirstOrDefault();       //send title isDone status
                     pages.TitleNotes[mcount] = (from ms in db.MainStats
-                                        where ms.LinkID == userLinkID &&
-                                        ms.MainstepID == m.MainstepID
-                                        select ms.Notes).FirstOrDefault();         //send title notes
+                                                where ms.LinkID == userLinkID &&
+                                                ms.MainstepID == m.MainstepID
+                                                select ms.Notes).FirstOrDefault();         //send title notes
                 }
                 else   //must create status table
                 {
@@ -285,8 +377,8 @@ namespace ReadyRecruit.Controllers
                     foreach (var h in headsteps)
                     {
                         count += 1;
-                        pages.Headings[mcount,count] = h.Name;            //send heading name
-                        pages.HeadID[mcount,count] = h.HeadstepID;        //send HeadstepID
+                        pages.Headings[mcount, count] = h.Name;            //send heading name
+                        pages.HeadID[mcount, count] = h.HeadstepID;        //send HeadstepID
 
                         headStats = (from hs in db.HeadStats
                                      where hs.LinkID == userLinkID &&
@@ -294,22 +386,22 @@ namespace ReadyRecruit.Controllers
                                      select hs).ToList();
                         if (headStats.Count() > 0)
                         {
-                            pages.HStatID[mcount,count] = (from hs in db.HeadStats
-                                             where hs.LinkID == userLinkID &&
-                                             hs.HeadstepID == h.HeadstepID
-                                             select hs.HeadStatID).FirstOrDefault();     //send heaing status id
-                            pages.HeadingsDue[mcount,count] = (from hs in db.HeadStats
-                                              where hs.LinkID == userLinkID &&
-                                              hs.HeadstepID == h.HeadstepID
-                                              select hs.DueDate).FirstOrDefault();        //send heading due date
-                            pages.IsHeadDone[mcount,count] = (from hs in db.HeadStats
-                                                 where hs.LinkID == userLinkID &&
-                                                 hs.HeadstepID == h.HeadstepID
-                                                 select hs.IsDone).FirstOrDefault();       //send heading isDone status
-                            pages.HeadNotes[mcount,count] = (from hs in db.HeadStats
-                                                where hs.LinkID == userLinkID &&
-                                                hs.HeadstepID == h.HeadstepID
-                                                select hs.Notes).FirstOrDefault();         //send heading notes
+                            pages.HStatID[mcount, count] = (from hs in db.HeadStats
+                                                            where hs.LinkID == userLinkID &&
+                                                            hs.HeadstepID == h.HeadstepID
+                                                            select hs.HeadStatID).FirstOrDefault();     //send heaing status id
+                            pages.HeadingsDue[mcount, count] = (from hs in db.HeadStats
+                                                                where hs.LinkID == userLinkID &&
+                                                                hs.HeadstepID == h.HeadstepID
+                                                                select hs.DueDate).FirstOrDefault();        //send heading due date
+                            pages.IsHeadDone[mcount, count] = (from hs in db.HeadStats
+                                                               where hs.LinkID == userLinkID &&
+                                                               hs.HeadstepID == h.HeadstepID
+                                                               select hs.IsDone).FirstOrDefault();       //send heading isDone status
+                            pages.HeadNotes[mcount, count] = (from hs in db.HeadStats
+                                                              where hs.LinkID == userLinkID &&
+                                                              hs.HeadstepID == h.HeadstepID
+                                                              select hs.Notes).FirstOrDefault();         //send heading notes
                         }
                         else   //must create status table
                         {
@@ -333,21 +425,21 @@ namespace ReadyRecruit.Controllers
                             newStat.LinkID = userLinkID;
                             db.HeadStats.Add(newStat);
                             db.SaveChanges();
-                            pages.HStatID[mcount,count] = newStat.HeadStatID;
+                            pages.HStatID[mcount, count] = newStat.HeadStatID;
                         }
                         substeps = (from s in db.Substeps
                                     where s.HeadstepID == h.HeadstepID
                                     orderby s.Number
                                     select s).ToList();
-                        pages.NumSubsteps[mcount,count] = substeps.Count();
-                        if (pages.NumSubsteps[mcount,count] > 0)
+                        pages.NumSubsteps[mcount, count] = substeps.Count();
+                        if (pages.NumSubsteps[mcount, count] > 0)
                         {
                             subcount = 0;
                             foreach (var s in substeps)
                             {
                                 subcount += 1;
-                                pages.Substeps[mcount,count, subcount] = s.Name;    //send substep name
-                                pages.SubID[mcount,count, subcount] = s.SubstepID; //send SubstepID
+                                pages.Substeps[mcount, count, subcount] = s.Name;    //send substep name
+                                pages.SubID[mcount, count, subcount] = s.SubstepID; //send SubstepID
                                 pages.PointsTotal += s.Points;
 
                                 subStats = (from ss in db.SubStats
@@ -356,23 +448,23 @@ namespace ReadyRecruit.Controllers
                                             select ss).ToList();
                                 if (subStats.Count() > 0)
                                 {
-                                    pages.SStatID[mcount,count,subcount] = (from ss in db.SubStats
-                                                            where ss.LinkID == userLinkID &&
-                                                            ss.SubstepID == s.SubstepID
-                                                            select ss.SubStatID).FirstOrDefault();     //send substep status id
-                                    pages.SubstepsDue[mcount,count,subcount] = (from ss in db.SubStats
-                                                                where ss.LinkID == userLinkID &&
-                                                                ss.SubstepID == s.SubstepID
-                                                                select ss.DueDate).FirstOrDefault();        //send substep due date
-                                    pages.IsSubDone[mcount,count,subcount] = (from ss in db.SubStats
-                                                               where ss.LinkID == userLinkID &&
-                                                               ss.SubstepID == s.SubstepID
-                                                               select ss.IsDone).FirstOrDefault();       //send substep isDone status
-                                    pages.SubNotes[mcount,count,subcount] = (from ss in db.SubStats
-                                                              where ss.LinkID == userLinkID &&
-                                                              ss.SubstepID == s.SubstepID
-                                                              select ss.Notes).FirstOrDefault();         //send substep notes
-                                    if (pages.IsSubDone[mcount, count, subcount] == true) pages.PointsEarned += s.Points; 
+                                    pages.SStatID[mcount, count, subcount] = (from ss in db.SubStats
+                                                                              where ss.LinkID == userLinkID &&
+                                                                              ss.SubstepID == s.SubstepID
+                                                                              select ss.SubStatID).FirstOrDefault();     //send substep status id
+                                    pages.SubstepsDue[mcount, count, subcount] = (from ss in db.SubStats
+                                                                                  where ss.LinkID == userLinkID &&
+                                                                                  ss.SubstepID == s.SubstepID
+                                                                                  select ss.DueDate).FirstOrDefault();        //send substep due date
+                                    pages.IsSubDone[mcount, count, subcount] = (from ss in db.SubStats
+                                                                                where ss.LinkID == userLinkID &&
+                                                                                ss.SubstepID == s.SubstepID
+                                                                                select ss.IsDone).FirstOrDefault();       //send substep isDone status
+                                    pages.SubNotes[mcount, count, subcount] = (from ss in db.SubStats
+                                                                               where ss.LinkID == userLinkID &&
+                                                                               ss.SubstepID == s.SubstepID
+                                                                               select ss.Notes).FirstOrDefault();         //send substep notes
+                                    if (pages.IsSubDone[mcount, count, subcount] == true) pages.PointsEarned += s.Points;
                                 }
                                 else   //must create status table
                                 {
@@ -396,7 +488,7 @@ namespace ReadyRecruit.Controllers
                                     newStat.LinkID = userLinkID;
                                     db.SubStats.Add(newStat);
                                     db.SaveChanges();
-                                    pages.SStatID[mcount,count, subcount] = newStat.SubStatID;
+                                    pages.SStatID[mcount, count, subcount] = newStat.SubStatID;
                                 }
 
                             }
@@ -408,7 +500,7 @@ namespace ReadyRecruit.Controllers
 
             profiles.PointsTotal = pages.PointsTotal;
             profiles.PointsEarned = pages.PointsEarned;
-            if(pages.PointsTotal <=0)
+            if (pages.PointsTotal <= 0)
             {
                 pages.PointsTotal = 1;
                 profiles.PointsTotal = 1;
@@ -439,7 +531,7 @@ namespace ReadyRecruit.Controllers
 
             SubStat item = db.SubStats.Find(id);
             Profile user = db.Profiles.Find(userProfileID);
-        
+
             if (item == null || user == null)
             {
                 return HttpNotFound();
@@ -449,8 +541,8 @@ namespace ReadyRecruit.Controllers
                            where ss.SubstepID == item.SubstepID
                            select ss).FirstOrDefault();
             var headstep = (from hs in db.Headsteps
-                           where hs.HeadstepID == substep.HeadstepID
-                           select hs).FirstOrDefault();
+                            where hs.HeadstepID == substep.HeadstepID
+                            select hs).FirstOrDefault();
             var mainstep = (from ms in db.Mainsteps
                             where ms.MainstepID == headstep.MainstepID
                             select ms).FirstOrDefault();
@@ -526,7 +618,7 @@ namespace ReadyRecruit.Controllers
             return RedirectToAction("StepPage");
         }
 
-         // POST: Items/SaveNotes/5   (Add ability to save user notes from the view)
+        // POST: Items/SaveNotes/5   (Add ability to save user notes from the view)
         [HttpPost]
         public ActionResult SaveNotes(int? id, int? id2, string Notes)
         {
@@ -553,7 +645,7 @@ namespace ReadyRecruit.Controllers
             //set item.Notes equal to user input and save to database  
             item.Notes = Notes;
 
-  
+
             db.SaveChanges();
 
             return Redirect(Url.Action("StepPage", "Mainsteps") + pageID);
@@ -907,23 +999,23 @@ namespace ReadyRecruit.Controllers
             {
                 RoadmapID = 11;
             }
-            else if (branch == "Army" && title == "a warrant Officer")
+            else if (branch == "Army" && title == "a warrant officer")
             {
                 RoadmapID = 12;
             }
-            else if (branch == "Air Force" && title == "a warrant Officer")
+            else if (branch == "Air Force" && title == "a warrant officer")
             {
                 RoadmapID = 13;
             }
-            else if (branch == "Navy" && title == "a warrant Officer")
+            else if (branch == "Navy" && title == "a warrant officer")
             {
                 RoadmapID = 14;
             }
-            else if (branch == "Marines" && title == "a warrant Officer")
+            else if (branch == "Marines" && title == "a warrant officer")
             {
                 RoadmapID = 15;
             }
-            else if (branch == "Coast Guard" && title == "a warrant Officer")
+            else if (branch == "Coast Guard" && title == "a warrant officer")
             {
                 RoadmapID = 16;
             }
