@@ -87,7 +87,7 @@ div#navvy.navbar.navbar-static-top {
 
 .outline {
     background-color: rgbA(0, 0, 0, 1.0);
-    color: gold;
+    color: #337ab7;
     /*min-height:90vh;*/
 }
 .outlinetext {
@@ -106,8 +106,8 @@ hr.pagebreak {
 }
 
 h2 input{
-    background-color: tan;
-    color:black;
+    background-color: white;
+    color:#337ab7;
     border:2px solid tomato;
     
 }
@@ -128,10 +128,10 @@ div.rightcolumn {
 .selections {
     text-align:center;
     padding-bottom:10px;
-    color:gold;
+    color:#337ab7;
 }
 .selections a {
-    color:gold;
+    color:#337ab7;
 }
 .selections hr {
     padding-top:0px;
@@ -263,7 +263,7 @@ select {
     color:tomato;
 }
 .ViewProfileSelections a {
-    color:gold;
+    color:#337ab7;
     font-size:14px;
 }
 .form-control, .form-group {
@@ -271,6 +271,16 @@ select {
     display: inline;
     color: tomato;
     font-weight:600;
+}
+.NotesRight {
+    margin-left:50px;
+}
+.NotesForm {
+    margin-left: 50px;
+    width: 600px;
+    max-width: 600px;
+    height: 40px;
+    border: 3px solid #337ab7;
 }
 .container {
     margin: 0px 0px 0px 0px;
@@ -367,7 +377,7 @@ div.container.body-content {
 .fontStyleTitles
 {
     color:white;
-    font-size:49px;
+    font-size:39px;
     font-family: 'Merienda', cursive;
 }
 
@@ -377,7 +387,12 @@ p.paragraphFontStyle, p.paragraphFontStyle a, h4.paragraphFontStyle
     padding-left:20px;
     font-size:18px;
     font-weight: 700;
-    color: #337ab7;
+    color: white;
+}
+
+.moveright {
+    float: right;
+    margin-right:30px;
 }
 
 .btn 

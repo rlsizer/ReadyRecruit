@@ -8,6 +8,7 @@
     var pages = (Pages)ViewData["Pages"];
     var m = 0;
     int progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
+    var name = "";
 }
 
 @* Facebook SDK script *@
@@ -47,18 +48,24 @@
                             <h1>@pages.Title[m]</h1><hr />
                             @for (int i = 1; i <= pages.NumHeadings[m]; i++)
                             {
+                                name = "noteshide" + m.ToString() + i.ToString();
                                 pages.Ihead = i;
                                 <h2>
-                                    <span class="glyphicon glyphicon-list"></span>
+                                    <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
                                     @pages.Headings[m, i]
                                 </h2>
-                                <div>
+                                <div id=@name style="display:none">
                                     @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
                                     {
-                                        <div class="NotesForm hidden">
-                                            <input type="text" name="Notes" value="@pages.HeadNotes[m, i]" />
-                                            <input type="submit" value="Save Notes" />
-                                        </div>
+                                        <div1>
+                                            <input class="NotesForm NotesRight" type="text" name="Notes"  wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                        </div1>
+                                        @*<div1>
+                                            <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
+                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                        </div1>*@
+
                                     }
                                 </div>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
@@ -120,11 +127,10 @@
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("Yes", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step2", routeValues: null, htmlAttributes: null)
                             </button>
-                            <button type="button" class="btn btn-default">
-                                @Html.ActionLink("No", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step2", routeValues: null, htmlAttributes: null)
-                                @*popup a window to congratulate them on their decision and give them
-                                    option to continue to explore or logoff*@
-                            </button>
+                            @*<button type="button" class="btn btn-default">*@
+                                @*@Html.ActionLink("No", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step2", routeValues: null, htmlAttributes: null)*@
+                                <a id="no" href="/Home/Index" onclick="no" class="btn btn-default">No</a>
+                            @*</button>*@
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("Undecided", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step2", routeValues: null, htmlAttributes: null)
                             </button>
@@ -185,13 +191,26 @@
                             <h1>@pages.Title[m]</h1><hr />
                             @for (int i = 1; i <= pages.NumHeadings[m]; i++)
                             {
+                                name = "noteshide" + m.ToString() + i.ToString();
                                 pages.Ihead = i;
                                 <h2>
-                                    <a href="#">
-                                        <span class="glyphicon glyphicon-list"></span>
-                                    </a>
+                                    <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
                                     @pages.Headings[m, i]
                                 </h2>
+                                <div id=@name style="display:none">
+                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                    {
+                                        <div1>
+                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                        </div1>
+                                        @*<div1>
+                                                <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
+                                                <input id="savenotes" type="submit" value="Save Notes" />
+                                            </div1>*@
+
+                                    }
+                                </div>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
                                     pages.Jsub = j;
@@ -316,12 +335,26 @@
                             <h1>@pages.Title[m]</h1><hr />
                             @for (int i = 1; i <= pages.NumHeadings[m]; i++)
                             {
+                                name = "noteshide" + m.ToString() + i.ToString();
                                 pages.Ihead = i;
                                 <h2>
-                                    <a href="#">
-                                        <span class="glyphicon glyphicon-list"></span>
-                                    </a>@pages.Headings[m, i]
+                                    <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
+                                    @pages.Headings[m, i]
                                 </h2>
+                                <div id=@name style="display:none">
+                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                    {
+                                        <div1>
+                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                        </div1>
+                                        @*<div1>
+                                                <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
+                                                <input id="savenotes" type="submit" value="Save Notes" />
+                                            </div1>*@
+
+                                    }
+                                </div>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
                                     pages.Jsub = j;
@@ -439,12 +472,26 @@
                             <h1>@pages.Title[m]</h1><hr />
                             @for (int i = 1; i <= pages.NumHeadings[m]; i++)
                             {
+                                name = "noteshide" + m.ToString() + i.ToString();
                                 pages.Ihead = i;
                                 <h2>
-                                    <a href="#">
-                                        <span class="glyphicon glyphicon-list"></span>
-                                    </a>@pages.Headings[m, i]
+                                    <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
+                                    @pages.Headings[m, i]
                                 </h2>
+                                <div id=@name style="display:none">
+                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                    {
+                                        <div1>
+                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                        </div1>
+                                        @*<div1>
+                                                <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
+                                                <input id="savenotes" type="submit" value="Save Notes" />
+                                            </div1>*@
+
+                                    }
+                                </div>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
                                     pages.Jsub = j;
@@ -559,12 +606,26 @@
                             <h1>@pages.Title[m]</h1><hr />
                             @for (int i = 1; i <= pages.NumHeadings[m]; i++)
                             {
+                                name = "noteshide" + m.ToString() + i.ToString();
                                 pages.Ihead = i;
                                 <h2>
-                                    <a href="#">
-                                        <span class="glyphicon glyphicon-list"></span>
-                                    </a>@pages.Headings[m, i]
+                                    <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
+                                    @pages.Headings[m, i]
                                 </h2>
+                                <div id=@name style="display:none">
+                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                    {
+                                        <div1>
+                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                        </div1>
+                                        @*<div1>
+                                                <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
+                                                <input id="savenotes" type="submit" value="Save Notes" />
+                                            </div1>*@
+
+                                    }
+                                </div>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
                                     pages.Jsub = j;
@@ -686,12 +747,26 @@
                             <h1>@pages.Title[m]</h1><hr />
                             @for (int i = 1; i <= pages.NumHeadings[m]; i++)
                             {
+                                name = "noteshide" + m.ToString() + i.ToString();
                                 pages.Ihead = i;
                                 <h2>
-                                    <a href="#">
-                                        <span class="glyphicon glyphicon-list"></span>
-                                    </a>@pages.Headings[m, i]
+                                    <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
+                                    @pages.Headings[m, i]
                                 </h2>
+                                <div id=@name style="display:none">
+                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                    {
+                                        <div1>
+                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                        </div1>
+                                        @*<div1>
+                                                <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
+                                                <input id="savenotes" type="submit" value="Save Notes" />
+                                            </div1>*@
+
+                                    }
+                                </div>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
                                     pages.Jsub = j;
@@ -813,12 +888,26 @@
                             <h1>@pages.Title[m]</h1><hr />
                             @for (int i = 1; i <= pages.NumHeadings[m]; i++)
                             {
+                                name = "noteshide" + m.ToString() + i.ToString();
                                 pages.Ihead = i;
                                 <h2>
-                                    <a href="#">
-                                        <span class="glyphicon glyphicon-list"></span>
-                                    </a>@pages.Headings[m, i]
+                                    <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
+                                    @pages.Headings[m, i]
                                 </h2>
+                                <div id=@name style="display:none">
+                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                    {
+                                        <div1>
+                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                        </div1>
+                                        @*<div1>
+                                                <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
+                                                <input id="savenotes" type="submit" value="Save Notes" />
+                                            </div1>*@
+
+                                    }
+                                </div>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
                                     pages.Jsub = j;
@@ -940,12 +1029,26 @@
                             <h1>@pages.Title[m]</h1><hr />
                             @for (int i = 1; i <= pages.NumHeadings[m]; i++)
                             {
+                                name = "noteshide" + m.ToString() + i.ToString();
                                 pages.Ihead = i;
                                 <h2>
-                                    <a href="#">
-                                        <span class="glyphicon glyphicon-list"></span>
-                                    </a>@pages.Headings[m, i]
+                                    <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
+                                    @pages.Headings[m, i]
                                 </h2>
+                                <div id=@name style="display:none">
+                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                    {
+                                        <div1>
+                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                        </div1>
+                                        @*<div1>
+                                                <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
+                                                <input id="savenotes" type="submit" value="Save Notes" />
+                                            </div1>*@
+
+                                    }
+                                </div>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
                                     pages.Jsub = j;
@@ -1067,12 +1170,26 @@
                             <h1>@pages.Title[m]</h1><hr />
                             @for (int i = 1; i <= pages.NumHeadings[m]; i++)
                             {
+                                name = "noteshide" + m.ToString() + i.ToString();
                                 pages.Ihead = i;
                                 <h2>
-                                    <a href="#">
-                                        <span class="glyphicon glyphicon-list"></span>
-                                    </a>@pages.Headings[m, i]
+                                    <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
+                                    @pages.Headings[m, i]
                                 </h2>
+                                <div id=@name style="display:none">
+                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                    {
+                                        <div1>
+                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                        </div1>
+                                        @*<div1>
+                                                <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
+                                                <input id="savenotes" type="submit" value="Save Notes" />
+                                            </div1>*@
+
+                                    }
+                                </div>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
                                     pages.Jsub = j;
@@ -1194,12 +1311,26 @@
                             <h1>@pages.Title[m]</h1><hr />
                             @for (int i = 1; i <= pages.NumHeadings[m]; i++)
                             {
+                                name = "noteshide" + m.ToString() + i.ToString();
                                 pages.Ihead = i;
                                 <h2>
-                                    <a href="#">
-                                        <span class="glyphicon glyphicon-list"></span>
-                                    </a>@pages.Headings[m, i]
+                                    <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
+                                    @pages.Headings[m, i]
                                 </h2>
+                                <div id=@name style="display:none">
+                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                    {
+                                        <div1>
+                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                        </div1>
+                                        @*<div1>
+                                                <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
+                                                <input id="savenotes" type="submit" value="Save Notes" />
+                                            </div1>*@
+
+                                    }
+                                </div>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
                                     pages.Jsub = j;

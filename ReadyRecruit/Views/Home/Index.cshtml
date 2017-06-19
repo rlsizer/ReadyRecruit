@@ -7,30 +7,6 @@
     <!--Jumbotron-->
 
     <div class="container">
-        <div class="row">
-
-            <div class="col-md-7 intro">
-                <h2 class="fontStyleTitles">Ready Recruit</h2>
-                <p class="paragraphFontStyle">
-                    We are here to help you make one of the most important decisions of
-                    your life! Whether your thinking about joining, already in the process
-                    of joing, or even if you have no clue about what the Military can
-                    offer or if you qualify. We are here to assit with all of the above.
-                </p>
-                <p class="paragraphFontStyle">
-                    You will be given a roadmap based off your decision, a time frame based
-                    off your schedule, and resources to help with your career path.
-                    If you have an account please log in or please register below.
-                </p>
-                <button class="btn btn-primary">@Html.ActionLink("Register Now", "Register", "Account")</button>
-            </div>
-
-            <div class="col-md-5 Ryan">
-                <!--TRAILER SECTION-->
-                <h1 class="container" id="trailer"><iframe width="500" height="275" src="https://www.youtube.com/embed/jD-PdA4-W9A" frameborder="0" allowfullscreen></iframe></h1>
-            </div>
-
-        </div>
 
         <div id="myCarousel" class="carousel slide col-md-12" data-ride="carousel">
 
@@ -67,6 +43,34 @@
                 <li data-target="#myCarousel" data-slide-to="4"></li>
             </ul>
         </div><!-- End Carousel -->
+        <div class="row">
+
+            <div class="col-md-8 intro">
+                <h2 class="fontStyleTitles">Ready Recruit</h2>
+                <p class="paragraphFontStyle">
+                    We are here to help you make one of the most important decisions of
+                    your life! Whether your thinking about joining, already in the process
+                    of joing, or even if you have no clue about what the Military can
+                    offer or if you qualify. We are here to assit with all of the above.
+                </p>
+                <p class="paragraphFontStyle">
+                    You will be given a roadmap based off your decision, a time frame based
+                    off your schedule, and resources to help with your career path.
+                    If you have an account please log in or please register below.
+                    <span class="moveright">
+                        <button class="btn btn-primary">@Html.ActionLink("Register Now", "Register", "Account")</button>
+                        <button class="btn btn-primary">@Html.ActionLink("Login", "Login", "Account")</button>
+                    </span>
+                </p>
+            </div>
+
+            <div class="col-md-4 Ryan">
+                <!--TRAILER SECTION-->
+                <h1 class="container" id="trailer"><iframe width="400" height="255" src="https://www.youtube.com/embed/jD-PdA4-W9A" frameborder="0" allowfullscreen></iframe></h1>
+            </div>
+
+        </div>
+
 
     </div><!-- End Container -->
 
