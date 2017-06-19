@@ -8,20 +8,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Ready Recruit</title>
-    @*<script type="text/javascript">
-            function toggle_visibility(id, id2) {
-                var e = document.getElementById(id);
-                var name = "#" + id2;
-                if (e.style.display == 'block') {
-                    e.style.display = 'none';
-                    $(name).show("slow");
-                } else {
-                    e.style.display = 'block';
-                    $(name).hide("50000");
-                    $(name).show("50000");
-                }
-            }
-        </script>*@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -40,12 +26,12 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
-                    <li>@Html.ActionLink("Profile", "Index", "Profiles")</li>
+                    @*<li>@Html.ActionLink("Profile", "Index", "Profiles")</li>
                     <li>@Html.ActionLink("Link", "Index", "Links")</li>
                     <li>@Html.ActionLink("Roadmap", "Index", "Roadmaps")</li>
                     <li>@Html.ActionLink("Mainstep", "Index", "Mainsteps")</li>
                     <li>@Html.ActionLink("Headstep", "Index", "Headsteps")</li>
-                    <li>@Html.ActionLink("Substep", "Index", "Substeps")</li>
+                    <li>@Html.ActionLink("Substep", "Index", "Substeps")</li>*@
                     @*<li>@Html.ActionLink("Education", "Index", "Educations")</li>
                         <li>@Html.ActionLink("Gender", "Index", "Genders")</li>
                         <li>@Html.ActionLink("Marital", "Index", "MaritalStats")</li>*@
@@ -67,7 +53,7 @@
                 <div class="col-md-1 profilespics">
                     <img src="~/Content/images/Diane headshot.jpg" />
                 </div>
-                <div class="col-md-2 profileinto">
+                <div class="col-md-2 profileinfo">
                     <div class="row profilename">
                         Diane Korpics
                     </div>
@@ -79,7 +65,7 @@
                 <div class="col-md-1 profilespics">
                     <img src="~/Content/images/Diane headshot.jpg" />
                 </div>
-                <div class="col-md-2 profileinto">
+                <div class="col-md-2 profileinfo">
                     <div class="row profilename">
                         Diane Korpics
                     </div>
@@ -91,7 +77,7 @@
                 <div class="col-md-1 profilespics">
                     <img src="~/Content/images/Diane headshot.jpg" />
                 </div>
-                <div class="col-md-2 profileinto">
+                <div class="col-md-2 profileinfo">
                     <div class="row profilename">
                         Diane Korpics
                     </div>
@@ -103,7 +89,7 @@
                 <div class="col-md-1 profilespics">
                     <img src="~/Content/images/Diane headshot.jpg" />
                 </div>
-                <div class="col-md-2 profileinto">
+                <div class="col-md-2 profileinfo">
                     <div class="row profilename">
                         Diane Korpics
                     </div>

@@ -2,6 +2,7 @@
     background-color: black;
     padding-top: 0px;
     padding-bottom: 25px;
+    color:white;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -48,6 +49,16 @@ textarea {
     font-size: 12px;
 }
 
+.intro {
+    color:white;
+    padding-left: 20px;
+    padding-right: 10px;
+    height: 40vh;
+}
+.Ryan {
+
+}
+
 #Home img {
     height: 101px;
     padding-top: 0px;
@@ -64,12 +75,10 @@ div#navvy.navbar.navbar-static-top {
     background-position: center;
     height: 45px;
     background-color: #337ab7;
-    background-color: grey;
     margin-bottom:0px;
 }
 .nav li {
     background-color: #337ab7;
-    background-color: grey;
     z-index: 2;
 }
 
@@ -77,12 +86,23 @@ div#navvy.navbar.navbar-static-top {
 /* Outline */
 
 .outline {
-    background-color: rgbA(0, 0, 0, 0.8);
+    background-color: rgbA(0, 0, 0, 1.0);
     color: gold;
-    min-height:90vh;
+    /*min-height:90vh;*/
 }
 .outlinetext {
     min-height:75vh;
+}
+#logo img {
+    margin-top: -15px;
+    width: 80px;
+    height: 60px;
+}
+hr.pagebreak {
+    border-top: 7px solid #337ab7;
+    width: 100vw;
+    margin-top: 0px;
+    margin-bottom:0px;
 }
 
 h2 input{
@@ -124,18 +144,22 @@ div.bottom {
 }
 section#Step1 {
     /*padding-top:45px;*/
-    min-height: 100vh;
+    min-height: 93vh;
 }
 section#Step2, section#Step3, section#Step4, section#Step5, section#Step6, section#Step7, section#Step8, section#Step9, section#Step10 {
     padding-top:0px;
-    min-height:100vh;
+    min-height:96vh;
 }
 
 h1 {
-    text-shadow: 3px 3px 3px tomato;
+    text-shadow: 3px 3px 3px #337ab7;
     font-weight:600;
-
 }
+#viewProfile h1 {
+color: #337ab7;
+text-shadow: 3px 3px 3px white;
+}
+
 .outline h1 {
     text-align:center;
         font-size: 28px;
@@ -163,8 +187,8 @@ h1 {
     display: inline;
 }*/
 h4.goal {
-    color:dodgerblue;
-    margin-top:20px;
+    color:tomato;
+    margin-top:25px;
     margin-bottom:5px;
 }
 div.row.bar {
@@ -172,7 +196,7 @@ div.row.bar {
     margin-bottom:10px;
     padding: 0px 0px 0px 0px;
     border: 3px solid tomato;
-    background-color: rgbA(0,0,0,0.5);
+    background-color: rgbA(0,0,0,1.0);
 }
 
 .progress-bar-warning {
@@ -196,7 +220,7 @@ hr {
 
 section#viewProfile {
 background-color: rgbA(0,0,0,1.0);
-color:gold;
+color:white;
 font-size:24px;
 text-align:center;
 padding: 30px 20px 20px 20px;
@@ -213,7 +237,8 @@ section#viewProfile p {
     max-width: 75vw;
 }
 a#dependents {
-    color:gold;
+    color:white;
+    text-shadow: 5px 5px 5px #337ab7;
     font-weight: 900;
 }
 
@@ -224,16 +249,15 @@ a#dependents {
     max-width: 90vw;
 }
 select {
-    color: black;
+    color: tomato;
+    font-weight:600;
     border-radius: 4px;
     font-size: 14px;
     height: 34px;
     padding: 6px 12px;
     line-height: 1.42857143;
 }
-/*#EducationID.form-control.text-box.single-line {
-    width: 400px;
-}*/
+
 .profileData {
     font-weight: 900;
     color:tomato;
@@ -245,6 +269,8 @@ select {
 .form-control, .form-group {
     width: auto;
     display: inline;
+    color: tomato;
+    font-weight:600;
 }
 .container {
     margin: 0px 0px 0px 0px;
@@ -254,7 +280,7 @@ select {
 .btn.btn-default {
     background: rgb(28,34,46);
     font-family: 'Merienda', cursive;
-    border: 1px solid blue;
+    border: 1px solid #337ab7;
     color: white;
 }
 .btn.btn-default a {
@@ -280,7 +306,7 @@ select {
 
 div.jumbotron {
     margin-top:20px;
-    background-color: rgb(65,83,59);
+    /*background-color: rgb(65,83,59);*/
     background-position:left;
     padding: 70px 50px 70px 50px;
     background-size: cover;
@@ -289,6 +315,16 @@ div.jumbotron {
 
 /* Carousel */
 
+
+.carousel-inner {
+   width: 100vw;
+    margin: auto;
+    max-height:50vh;
+}
+.item img {
+    width: 100vw;
+    height: 50vh;
+}
 #myCarousel .list-group{
 	position:absolute;
 	top:5px;
@@ -319,7 +355,7 @@ h6, h2, h3, h4, h5, h1, h6 {
 }
 
 div.container.body-content {
-    color: rgb(65,83,59);
+    /*color: rgb(65,83,59);*/
 }
 
 .ViewBag.Title a{
@@ -335,9 +371,13 @@ div.container.body-content {
     font-family: 'Merienda', cursive;
 }
 
-p.paragraphFontStyle, p.paragraphFontStyle a
+p.paragraphFontStyle, p.paragraphFontStyle a, h4.paragraphFontStyle
 {
-    color:rgb(158,154,117);
+    /*color:rgb(158,154,117);*/
+    padding-left:20px;
+    font-size:18px;
+    font-weight: 700;
+    color: #337ab7;
 }
 
 .btn 
@@ -349,7 +389,7 @@ p.paragraphFontStyle, p.paragraphFontStyle a
 /* Login + Register */
 
 div.row#Color {
-    background-color: rgb(65,83,59);
+    padding-left:30px;
     color:white;
     font-family: 'Merienda', cursive;
 }
@@ -357,7 +397,7 @@ div.row#Color {
 /* Create Profile */
 
 div.form-horizontal {
-    background-color: rgb(65,83,59);
+    /*background-color: rgb(65,83,59);*/
     color:white;
     font-family: 'Merienda', cursive;
 }
@@ -365,7 +405,7 @@ div.form-horizontal {
 /* Manage Profile */
 
 div#Color {
-    background-color: rgb(65,83,59);
+    /*background-color: rgb(65,83,59);*/
     color:white;
     font-family: 'Merienda', cursive;
 }
@@ -378,4 +418,5 @@ div#Color {
 }
 footer p {
     margin-left:20px;
+    color: white;
 }

@@ -6,13 +6,10 @@
 
     <!--Jumbotron-->
 
+    <div class="container">
+        <div class="row">
 
-    <div class="jumbotron">
-
-        <div class="container">
-
-
-            <div class="jumbotron">
+            <div class="col-md-7 intro">
                 <h2 class="fontStyleTitles">Ready Recruit</h2>
                 <p class="paragraphFontStyle">
                     We are here to help you make one of the most important decisions of
@@ -26,66 +23,51 @@
                     If you have an account please log in or please register below.
                 </p>
                 <button class="btn btn-primary">@Html.ActionLink("Register Now", "Register", "Account")</button>
-
             </div>
 
-
-            <div id="myCarousel" class="carousel slide col-md-6" data-ride="carousel">
-
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner">
-
-                    <div class="item active">
-
-                        <img src="http://placehold.it/760x400/cccccc/ffffff">
-
-                    </div><!-- End Item -->
-
-                    <div class="item">
-                        <img src="http://placehold.it/760x400/999999/cccccc">
-
-                    </div><!-- End Item -->
-
-                    <div class="item">
-
-                        <img src="http://placehold.it/760x400/dddddd/333333">
-
-
-                    </div><!-- End Item -->
-
-                    <div class="item">
-
-                        <img src="http://placehold.it/760x400/cccccc/ffffff">
-
-                    </div><!-- End Item -->
-
-                    <div class="item">
-
-                        <img src="http://placehold.it/760x400/cccccc/ffffff">
-
-                    </div><!-- End Item -->
-
-                </div><!-- End Carousel Inner -->
-
-                <ul class="list-group col-md-3 carousel-indicators">
-
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                    <li data-target="#myCarousel" data-slide-to="3"></li>
-                    <li data-target="#myCarousel" data-slide-to="4"></li>
-
-
-                </ul>
-            </div><!-- End Carousel -->
-
-            <div class="col-md-4">
+            <div class="col-md-5 Ryan">
                 <!--TRAILER SECTION-->
-                <h1 class="container" id="trailer"><iframe width="560" height="315" src="https://www.youtube.com/embed/jD-PdA4-W9A" frameborder="0" allowfullscreen></iframe></h1>
+                <h1 class="container" id="trailer"><iframe width="500" height="275" src="https://www.youtube.com/embed/jD-PdA4-W9A" frameborder="0" allowfullscreen></iframe></h1>
             </div>
 
-        </div><!-- End Container -->
-    </div> <!-- End Jumbotron-->
+        </div>
 
+        <div id="myCarousel" class="carousel slide col-md-12" data-ride="carousel">
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+
+                <div class="item active">
+                    <img src="~/Content/images/flag1.jpg" />
+                </div><!-- End Item -->
+
+                <div class="item">
+                    <img src="~/Content/images/jettakeoff.jpg" />
+                </div><!-- End Item -->
+
+                <div class="item">
+                    <img src="~/Content/images/navy.jpg" />
+                </div><!-- End Item -->
+
+                <div class="item">
+                    <img src="~/Content/images/soldiersdessert.jpg" />
+                </div><!-- End Item -->
+
+                <div class="item">
+                    <img src="~/Content/images/wall.jpg" />
+                </div><!-- End Item -->
+
+            </div><!-- End Carousel Inner -->
+
+            <ul class="list-group col-md-3 carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+                <li data-target="#myCarousel" data-slide-to="4"></li>
+            </ul>
+        </div><!-- End Carousel -->
+
+    </div><!-- End Container -->
 
 </section>
