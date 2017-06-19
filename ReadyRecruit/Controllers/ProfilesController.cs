@@ -138,9 +138,10 @@ namespace ReadyRecruit.Controllers
             if (ModelState.IsValid)
             {
                 profile.Id = User.Identity.GetUserId();
+                if (profile.Title == "undecided") profile.Title = null;
+                if (profile.Branch == "undecided") profile.Branch = null;
                 db.Entry(profile).State = EntityState.Modified;
                 db.SaveChanges();
-                //return RedirectToAction("Details",profile.ProfileID);
                 return RedirectToAction("Index");
             }
             ViewBag.EducationID = new SelectList(db.Educations, "EducationID", "EduLevel", profile.EducationID);

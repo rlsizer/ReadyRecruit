@@ -10,314 +10,245 @@
     @Html.AntiForgeryToken()
 
     <section id="viewProfile">
-        <h1>Update Profile</h1>
-
+        <h1>Update Your Profile</h1>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ProfileID)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.FName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="row profileEdit">
+
+            Hi.  My name is
+
+            <div class="form-group">
                 @Html.EditorFor(model => model.FName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FName, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.LName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="form-group">
                 @Html.EditorFor(model => model.LName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.LName, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            .  I am a
+
+            <div class="form-group">
+                @Html.DropDownList("GenderID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.GenderID, "", new { @class = "text-danger" })
+            </div>
+
+            who was born on
+
+            <div class="form-group">
                 @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Height, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            and am
+
+            <div class="form-group">
                 @Html.EditorFor(model => model.Height, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Height, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Weight, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            inches tall and weigh
+
+            <div class="form-group">
                 @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Dependents, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            pounds.  I
+
+            <div class="form-group">
+                @Html.DropDownList("EducationID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EducationID, "", new { @class = "text-danger" })
+            </div>
+
+            and am
+
+            <div class="form-group">
+                @Html.DropDownList("MaritalStatID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaritalStatID, "", new { @class = "text-danger" })
+            </div>
+
+            with
+
+            <div class="form-group">
                 @Html.EditorFor(model => model.Dependents, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Dependents, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <span><a href="#" id="dependents" onclick="definition">dependents</a></span>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Branch, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Branch, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Branch, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            .  I have
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AsvabScore, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AsvabScore, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AsvabScore, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            @if (Model.PriorServiceID == 1)
+            {
+                <div class="form-group">
+                    <select name="PriorServiceID">
+                        <option value="1">no</option>
+                        <option value="2">some</option>
+                    </select>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <select name="PriorServiceID">
+                        <option value="2">some</option>
+                        <option value="1">no</option>
+                    </select>
+                </div>
+            }
+            prior service in the military.  Based on my research so far, I would like to be
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.PracticeScore, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            Based on my research so far, I think I would like to be
+
+            @if (Model.Title == "enlisted")
+            {
+                <div class="form-group">
+                    <select name="Title">
+                        <option value="enlisted">enlisted</option>
+                        <option value="a commissioned officer">a commissioned officer</option>
+                        <option value="a warrant officer">a warrant officer</option>
+                        <option text="undecided" value="undecided">still undecided</option>
+                    </select>
+                </div>
+            }
+            else if (Model.Title == "a commissioned officer")
+            {
+                <div class="form-group">
+                    <select name="Title">
+                        <option value="a commissioned officer">a commissioned officer</option>
+                        <option value="enlisted">enlisted</option>
+                        <option value="a warrant officer">a warrant officer</option>
+                        <option text="undecided" value="undecided">still undecided</option>
+                    </select>
+                </div>
+            }
+            else if (Model.Title == "a warrant officer")
+            {
+                <div class="form-group">
+                    <select name="Title">
+                        <option value="a warrant officer">a warrant officer</option>
+                        <option value="enlisted">enlisted</option>
+                        <option value="a commissioned officer">a commissioned officer</option>
+                        <option text="undecided" value="undecided">still undecided</option>
+                    </select>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <select name="Title">
+                        <option text="undecided" value="undecided">still undecided</option>
+                        <option value="enlisted">enlisted</option>
+                        <option value="a commissioned officer">a commissioned officer</option>
+                        <option value="a warrant officer">a warrant officer</option>
+                    </select>
+                </div>
+            }
+
+            in the
+
+            @if (Model.Branch == "Army")
+            {
+                <div class="form-group">
+                    <select name="Branch">
+                        <option value="Army">Army</option>
+                        <option value="Air Force">Air Force</option>
+                        <option value="Navy">Navy</option>
+                        <option value="Marines">Marines</option>
+                        <option value="Coast Guard">Coast Guard</option>
+                        <option text="undecided" value="undecided">undecided</option>
+                    </select>
+                </div>
+            }
+            else if (Model.Branch == "Air Force")
+            {
+                <div class="form-group">
+                    <select name="Branch">
+                        <option value="Air Force">Air Force</option>
+                        <option value="Army">Army</option>
+                        <option value="Navy">Navy</option>
+                        <option value="Marines">Marines</option>
+                        <option value="Coast Guard">Coast Guard</option>
+                        <option text="undecided" value="undecided">undecided</option>
+                    </select>
+                </div>
+            }
+            else if (Model.Branch == "Navy")
+            {
+                <div class="form-group">
+                    <select name="Branch">
+                        <option value="Navy">Navy</option>
+                        <option value="Army">Army</option>
+                        <option value="Air Force">Air Force</option>
+                        <option value="Marines">Marines</option>
+                        <option value="Coast Guard">Coast Guard</option>
+                        <option text="undecided" value="undecided">undecided</option>
+                    </select>
+                </div>
+            }
+            else if (Model.Branch == "Marines")
+            {
+                <div class="form-group">
+                    <select name="Branch">
+                        <option value="Marines">Marines</option>
+                        <option value="Army">Army</option>
+                        <option value="Air Force">Air Force</option>
+                        <option value="Navy">Navy</option>
+                        <option value="Coast Guard">Coast Guard</option>
+                        <option text="undecided" value="undecided">undecided</option>
+                    </select>
+                </div>
+            }
+            else if (Model.Branch == "Coast Guard")
+            {
+                <div class="form-group">
+                    <select name="Branch">
+                        <option value="Coast Guard">Coast Guard</option>
+                        <option value="Marines">Marines</option>
+                        <option value="Army">Army</option>
+                        <option value="Air Force">Air Force</option>
+                        <option value="Navy">Navy</option>
+                        <option text="undecided" value="undecided">undecided</option>
+                    </select>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <select name="Branch">
+                        <option text="undecided" value="undecided">undecided</option>
+                        <option value="Army">Army</option>
+                        <option value="Air Force">Air Force</option>
+                        <option value="Navy">Navy</option>
+                        <option value="Marines">Marines</option>
+                        <option value="Coast Guard">Coast Guard</option>
+                    </select>
+                </div>
+            }
+
+            .  My best score so far on an ASVAB practice exam is
+
+            <div class="form-group">
                 @Html.EditorFor(model => model.PracticeScore, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PracticeScore, "", new { @class = "text-danger" })
             </div>
-        </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PointsTotal, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PointsTotal, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PointsTotal, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PointsEarned, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PointsEarned, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PointsEarned, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsDone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsDone)
-                    @Html.ValidationMessageFor(model => model.IsDone, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.GenderID, "GenderID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("GenderID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.GenderID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.EducationID, "EducationID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("EducationID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.EducationID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaritalStatID, "MaritalStatID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("MaritalStatID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.MaritalStatID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.PriorServiceID, "PriorServiceID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("PriorServiceID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PriorServiceID, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-        @*@using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
-
-        {
-
-            <input type="text" name="Notes" value="@pages.HeadNotes[m,i]" />
-                                            <input type="submit" value="Save Notes" />
-
-                                            @*<a href="@Url.Action("SaveNotes", new { id = pages.HStatID[m, i],id2=m,notes = })">*@
-                                            @*<span class="glyphicon glyphicon-list"></span>*@
-
-                                                    @*</a>*@
-                                                    @*<a href="#">
-                                                        <span class="glyphicon glyphicon-list"></span>
-                                                    </a>
-        }*@
-
-        
-            <div align="center">
-                <select name="PriorServiceID">
-                    <option value="1">no</option>
-                    <option value="2">some</option>
-                </select>
-            </div>
-     
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Id, "Id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-        @*<p class="row profile">
-            Hi!  My name is
-            <span class="profileData">
-                @Html.EditorFor(model => model.FName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FName, "", new { @class = "text-danger" })
-                @Html.EditorFor(model => model.LName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LName, "", new { @class = "text-danger" }).
-            </span>
-            I am a
-            <span class="profileData">
-                @Html.DropDownList("GenderID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.GenderID, "", new { @class = "text-danger" })
-            </span>
-            who was born on
-            <span class="profileData">
-                @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
-            </span>
-            and am
-            <span class="profileData">
-                @Html.EditorFor(model => model.Height, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Height, "", new { @class = "text-danger" })
-            </span>
-            inches tall and weigh
-            <span class="profileData">
-                @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
-            </span>
-            pounds
-            <span class="profileData">.</span>
-            I
-            <span class="profileData">
-                @Html.DropDownList("EducationID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.EducationID, "", new { @class = "text-danger" })
-            </span>
-            and am
-            <span class="profileData">
-                @Html.DropDownList("MaritalStatID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.MaritalStatID, "", new { @class = "text-danger" })
-            </span>
-            with
-            <span class="profileData">
-                @Html.EditorFor(model => model.Dependents, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Dependents, "", new { @class = "text-danger" })
-            </span>
-            children or others that depend on me for their support
-            <span class="profileData">.</span>
-            Based on my research so far, I think I would like to be
-            <span class="profileData">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </span>
-            in the
-            <span class="profileData">
-                @Html.EditorFor(model => model.Branch, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Branch, "", new { @class = "text-danger" })
-            </span>
-            @*I have had
-                <a href="@Url.Action("ToggleIsServe",new { id = Model.PriorserviceID })">
-                    @{
-                        var priorServe = Model.PriorServiceID;
-                        if (priorServe == 1)
-                        {
-                            <span class="glyphicon glyphicon-check"></span>
-                        }
-                        else
-                        {
-                            <span class="glyphicon glyphicon-unchecked"></span>
-                        }
-                        </a>
-
-
-                    }
-
-                    @if (pages.IsSubDone[2, i, j])
-                    {
-                        <span class="glyphicon glyphicon-check"></span>
-                    }
-                    else
-                    {
-                        <span class="glyphicon glyphicon-unchecked"></span>
-                    }
-                    </a>
-                    prior service in the military
-
-            <span class="profileData">.</span>
-        </p>*@
-
-
-        <div class="ViewProfileSelections row">
+            (enter 0 if not taken yet), and my score on the real ASVAB exam is
             <div class="form-group">
-                <input type="submit" value="Update Profile" class="btn btn-default" />
-                <button type="button" class="btn btn-default">
-                    @Html.ActionLink("Go Back", "Index")
-                </button>
+                @Html.EditorFor(model => model.AsvabScore, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AsvabScore, "", new { @class = "text-danger" })
             </div>
-        </div>
+            </div>
 
-    </section>
+            <div class="form-group ViewProfileSections row">
+                <input type="submit" value="Update Profile" class="btn btn-default" />
+            </div>
+
+        </section>
 }
-
-
-@*<div class="form-group">
-        @Html.LabelFor(model => model.AsvabScore, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.AsvabScore, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.AsvabScore, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.PracticeScore, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.PracticeScore, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.PracticeScore, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-
-    }*@
 
 
 @section Scripts {

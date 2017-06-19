@@ -1,8 +1,8 @@
 ﻿$(document).ready(function () {
 
-    //$("#toggle").on('click', function () {
-    //    $("#updateprogress").css('width', '50%').attr('aria-valuenow', 50);
-    //});
+    $('#dependents').on('click', function definition() {
+        alert("Dependents include children and spouse and any others that rely on you for their support (like elderly parents who need your financial and physical support)").fontcolor("blue").fontsize(16);
+    });
 
     var clickEvent = false;
     $('#myCarousel').carousel({

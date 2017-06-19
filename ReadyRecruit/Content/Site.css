@@ -212,6 +212,17 @@ section#viewProfile p {
     line-height: 1.8;
     max-width: 75vw;
 }
+a#dependents {
+    color:gold;
+    font-weight: 900;
+}
+
+.profileEdit {
+    padding: 20px 20px 20px 20px;
+    margin: auto;
+    line-height: 1.8;
+    max-width: 90vw;
+}
 select {
     color: black;
     border-radius: 4px;

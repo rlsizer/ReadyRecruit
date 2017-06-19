@@ -77,7 +77,9 @@
                 @Html.ValidationMessageFor(model => model.Dependents, "", new { @class = "text-danger" })
             </div>
 
-            children or others that depend on me for their support.  I have
+            <span><a href="#" id="dependents" onclick="definition">dependents</a></span>
+
+            .  I have
 
             <div  class="form-group">
                 <select name="PriorServiceID">
@@ -92,6 +94,10 @@
 
         <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
+            <button type="button" class="btn btn-default">
+                @Html.ActionLink("Go Back", "Login", "Account")
+            </button>
+
         </div>
 
         @*<div class="ViewProfileSelections row">
@@ -110,11 +116,6 @@
 
 }
 
-
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
