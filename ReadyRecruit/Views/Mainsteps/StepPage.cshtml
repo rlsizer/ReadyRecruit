@@ -82,9 +82,14 @@
                                         @* Adjust i and j and put links in like this*@
                                         @if (i == 2 && j == 1)
                                         {
-                                            <a href="#" target="_blank">@pages.Substeps[m, i, j]</a>
+                                            <a href="http://www.military.com/join-armed-forces/recruiting-10-tips.html" target="_blank">@pages.Substeps[m, i, j]</a>
                                         }
+                        
                                         @* Add more else if statements to add links for other lines*@
+                                        else if (i == 2 && j == 2)
+                                        {
+                                            <a href="http://www.military.com/join-armed-forces/guard-reserve-explained.html" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
                                         @* Otherwise, the heading will just get printed without a link here*@
                                         else
                                         {
