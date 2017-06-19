@@ -369,3 +369,13 @@ div#Color {
     color:white;
     font-family: 'Merienda', cursive;
 }
+
+/* footer */
+.profilespics img {
+    width: 60px;
+    height: 80px;
+    margin-left: 20px;
+}
+footer p {
+    margin-left:20px;
+}

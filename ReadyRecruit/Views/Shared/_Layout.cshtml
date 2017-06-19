@@ -9,19 +9,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Ready Recruit</title>
     @*<script type="text/javascript">
-        function toggle_visibility(id, id2) {
-            var e = document.getElementById(id);
-            var name = "#" + id2;
-            if (e.style.display == 'block') {
-                e.style.display = 'none';
-                $(name).show("slow");
-            } else {
-                e.style.display = 'block';
-                $(name).hide("50000");
-                $(name).show("50000");
+            function toggle_visibility(id, id2) {
+                var e = document.getElementById(id);
+                var name = "#" + id2;
+                if (e.style.display == 'block') {
+                    e.style.display = 'none';
+                    $(name).show("slow");
+                } else {
+                    e.style.display = 'block';
+                    $(name).hide("50000");
+                    $(name).show("50000");
+                }
             }
-        }
-    </script>*@
+        </script>*@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -54,20 +54,74 @@
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
-        </div>
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>
-        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>
+                &copy; @DateTime.Now.Year - My ASP.NET Application
+            </p>
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
+            <div class="row">
+                <div class="col-md-1 profilespics">
+                    <img src="~/Content/images/Diane headshot.jpg" />
+                </div>
+                <div class="col-md-2 profileinto">
+                    <div class="row profilename">
+                        Diane Korpics
+                    </div>
+                    <div class="row profilelink">
+                        <a href="https://dkorpics7.github.io">Portfolio</a>
+                    </div>
+                </div>
 
-        <script src="~/Content/Java/carousel.js"></script>
+                <div class="col-md-1 profilespics">
+                    <img src="~/Content/images/Diane headshot.jpg" />
+                </div>
+                <div class="col-md-2 profileinto">
+                    <div class="row profilename">
+                        Diane Korpics
+                    </div>
+                    <div class="row profilelink">
+                        <a href="https://dkorpics7.github.io">Portfolio</a>
+                    </div>
+                </div>
+
+                <div class="col-md-1 profilespics">
+                    <img src="~/Content/images/Diane headshot.jpg" />
+                </div>
+                <div class="col-md-2 profileinto">
+                    <div class="row profilename">
+                        Diane Korpics
+                    </div>
+                    <div class="row profilelink">
+                        <a href="https://dkorpics7.github.io">Portfolio</a>
+                    </div>
+                </div>
+
+                <div class="col-md-1 profilespics">
+                    <img src="~/Content/images/Diane headshot.jpg" />
+                </div>
+                <div class="col-md-2 profileinto">
+                    <div class="row profilename">
+                        Diane Korpics
+                    </div>
+                    <div class="row profilelink">
+                        <a href="https://dkorpics7.github.io">Portfolio</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script src="~/Content/Java/carousel.js"></script>
 
 </body>
 </html>
