@@ -316,6 +316,8 @@
     <Content Include="Content\images\planes.jpg" />
     <Content Include="Content\images\Ready Recruit!_clipped_rev_1.png" />
     <Content Include="Content\images\soldiersdessert.jpg" />
+    <Content Include="Content\images\stefheadshot.jpg" />
+    <Content Include="Content\images\vip_military_banner_small_526_480.jpg" />
     <Content Include="Content\images\wall.jpg" />
     <Content Include="Content\Java\carousel.js" />
     <Content Include="favicon.ico" />
