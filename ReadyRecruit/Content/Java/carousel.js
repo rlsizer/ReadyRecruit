@@ -1,8 +1,36 @@
-﻿$(document).ready(function () {
+﻿
+
+$(document).ready(function () {
 
     $('#dependents').on('click', function definition() {
         alert("Dependents include children and spouse and any others that rely on you for their support (like elderly parents who need your financial and physical support)").fontcolor("blue").fontsize(16);
     });
+    $('#no').on('click', function no() {
+        alert("Congratulations on making such a difficult decision!  Feel free to continue to browse the site anytime if you change your mind. Thank you for visiting Ready Recruit.");
+    });
+
+
+
+    //$('#notepad').on('click', function () {
+    //    //$('#noteshide').removeClass('hidden');
+    //    $('#noteshide').show();
+    //});
+
+    //$('#savenotes').on('click', function () {
+    //    $('#noteshide').hide();
+    //});
+
+
+
+    //document.getElementById("myP").style.visibility = "hidden";
+    //$('#notepad').on('click',function () {
+    //    $('noteshide').hide();
+    //});
+
+    //$('#savenotes').on('click',function() {
+    //    $('noteshide').show();
+    //});
+
 
     var clickEvent = false;
     $('#myCarousel').carousel({
@@ -23,7 +51,7 @@
         }
         clickEvent = false;
     });
-})
+});
 
 $(window).load(function () {
     var boxheight = $('#myCarousel .carousel-inner').innerHeight();

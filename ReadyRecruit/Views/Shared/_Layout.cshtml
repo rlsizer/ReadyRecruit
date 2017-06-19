@@ -8,6 +8,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Ready Recruit</title>
+    <script type="text/javascript">
+        function toggle_notes_show(id) {
+            var e = document.getElementById(id);
+            if (e.style.display == 'none') {
+                e.style.display = 'block';
+            } else {
+                e.style.display = 'none';
+            }
+        }
+    </script>
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
