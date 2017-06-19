@@ -23,6 +23,42 @@ namespace ReadyRecruit.Controllers
             return View(mainsteps.ToList());
         }
 
+        // GET: Populate Database
+        public ActionResult Populate()
+        {
+            var mainsteps = db.Mainsteps.Include(m => m.Roadmap);
+
+
+            int count = 14;
+            Mainstep newitem = new Mainstep();
+            for (int road = 2; road < 6; road++)
+            {
+                for (int m = 1; m <= 7; m++)
+                {
+                    count += 1;
+                    if (count == 15 || count == 16) continue;
+
+                    newitem.MainstepID = count;
+                    newitem.Number = (from ms in db.Mainsteps
+                                      where ms.RoadmapID == 1 &&
+                                      ms.Number == m
+                                      select ms.Number).FirstOrDefault();
+                    newitem.Name = (from ms in db.Mainsteps
+                                    where ms.RoadmapID == 1 &&
+                                    ms.Number == m
+                                    select ms.Name).FirstOrDefault();
+                    newitem.IsDone = false;
+                    newitem.Points = 0;
+                    newitem.RoadmapID = road;
+                    db.Mainsteps.Add(newitem);
+                    db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("StepPage");
+        }
+
+
         public ActionResult StepPage()
         {
             //get userid
