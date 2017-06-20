@@ -443,7 +443,7 @@ span.moveright {
 }
 .newsletters {
     background-color:white;
-    border: 10px solid rgbA(51,122,183,0.7);
+    border: 5px solid rgbA(51,122,183,1);
 
     z-index: -3;
     color:black;
