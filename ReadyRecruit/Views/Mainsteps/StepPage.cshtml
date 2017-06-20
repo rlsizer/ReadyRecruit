@@ -398,20 +398,20 @@
                                     <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
                                     @pages.Headings[m, i]
                                 </h2>
-                                    <div id=@name style="display:none">
-                                        @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
-                                        {
-                                            <div1>
-                                                <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
-                                                <input id="savenotes" type="submit" value="Save Notes" />
-                                            </div1>
+                                <div id=@name style="display:none">
+                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                    {
+                                        <div1>
+                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                        </div1>
                                             @*<div1>
                                                     <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
                                                     <input id="savenotes" type="submit" value="Save Notes" />
                                                 </div1>*@
 
-                                        }
-                                    </div>
+                                    }
+                                </div>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
                                     pages.Jsub = j;
@@ -454,22 +454,22 @@
                                             @pages.Substeps[m, i, j]
                                         }
                                     </h3>
-                                        @*Put drow down menu for resources here. Set i and j accordingly*@
-                                        @*if (i == 2 && j == 2)
-                                             {
-                                             <div class="dropdown" style="display: inline">
-                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                                   Select Resource
-                                                   <span class="caret"></span>
-                                                </button>
-                                                 <ul class="dropdown-menu">
-                                                   <li><a href="#">Resource 1</a></li>
-                                                   <li><a href="#">Resource 2</a></li>
-                                                   <li><a href="#">Resource 3</a></li>
-                                                 </ul>
-                                             </div>
-                                            }*@
-                                        @* Add other drop down boxes here*@
+                                    @*Put drow down menu for resources here. Set i and j accordingly*@
+                                    @*if (i == 2 && j == 2)
+                                         {
+                                         <div class="dropdown" style="display: inline">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                               Select Resource
+                                               <span class="caret"></span>
+                                            </button>
+                                             <ul class="dropdown-menu">
+                                               <li><a href="#">Resource 1</a></li>
+                                               <li><a href="#">Resource 2</a></li>
+                                               <li><a href="#">Resource 3</a></li>
+                                             </ul>
+                                         </div>
+                                        }*@
+                                    @* Add other drop down boxes here*@
 
                                 }  @* end of j loop (substeps)*@
                             }  @* end of i loop (Headings)*@
@@ -548,20 +548,20 @@
                                     <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
                                     @pages.Headings[m, i]
                                 </h2>
-                                    <div id=@name style="display:none">
-                                        @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
-                                        {
-                                            <div1>
-                                                <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
-                                                <input id="savenotes" type="submit" value="Save Notes" />
-                                            </div1>
+                                <div id=@name style="display:none">
+                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                    {
+                                        <div1>
+                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                        </div1>
                                             @*<div1>
                                                     <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
                                                     <input id="savenotes" type="submit" value="Save Notes" />
                                                 </div1>*@
 
-                                        }
-                                    </div>
+                                    }
+                                </div>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
                                     pages.Jsub = j;
@@ -618,22 +618,22 @@
                                             @pages.Substeps[m, i, j]
                                         }
                                     </h3>
-                                        @*Put drow down menu for resources here. Set i and j accordingly*@
-                                        @*if (i == 2 && j == 2)
-                                             {
-                                             <div class="dropdown" style="display: inline">
-                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                                   Select Resource
-                                                   <span class="caret"></span>
-                                                </button>
-                                                 <ul class="dropdown-menu">
-                                                   <li><a href="#">Resource 1</a></li>
-                                                   <li><a href="#">Resource 2</a></li>
-                                                   <li><a href="#">Resource 3</a></li>
-                                                 </ul>
-                                             </div>
-                                            }*@
-                                        @* Add other drop down boxes here*@
+                                    @*Put drow down menu for resources here. Set i and j accordingly*@
+                                    @*if (i == 2 && j == 2)
+                                         {
+                                         <div class="dropdown" style="display: inline">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                               Select Resource
+                                               <span class="caret"></span>
+                                            </button>
+                                             <ul class="dropdown-menu">
+                                               <li><a href="#">Resource 1</a></li>
+                                               <li><a href="#">Resource 2</a></li>
+                                               <li><a href="#">Resource 3</a></li>
+                                             </ul>
+                                         </div>
+                                        }*@
+                                    @* Add other drop down boxes here*@
 
                                 }  @* end of j loop (substeps)*@
                             }  @* end of i loop (Headings)*@
@@ -687,20 +687,20 @@
                             }
                             else if (pages.RoadmapID == 2 || pages.RoadmapID == 8 || pages.RoadmapID == 13)
                             {
-                                 <img src = "../Content/images/airforce.jpg" />
+                                <img src="../Content/images/airforce.jpg" />
                             }
 
                             else if (pages.RoadmapID == 3 || pages.RoadmapID == 9 || pages.RoadmapID == 14)
                             {
-                                <img src = "../Content/images/navy2.jpg" />
+                                <img src="../Content/images/navy2.jpg" />
                             }
                             else if (pages.RoadmapID == 4 || pages.RoadmapID == 10 || pages.RoadmapID == 15)
                             {
-                                <img src = "../Content/images/marines.jpg" />
+                                <img src="../Content/images/marines.jpg" />
                             }
                             else if (pages.RoadmapID == 5 || pages.RoadmapID == 11 || pages.RoadmapID == 16)
                             {
-                                <img src = "../Content/images/coastguard.jpg" />
+                                <img src="../Content/images/coastguard.jpg" />
                             }
                             else
                             {
@@ -733,20 +733,20 @@
                                     <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
                                     @pages.Headings[m, i]
                                 </h2>
-                                    <div id=@name style="display:none">
-                                        @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
-                                        {
-                                            <div1>
-                                                <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
-                                                <input id="savenotes" type="submit" value="Save Notes" />
-                                            </div1>
+                                <div id=@name style="display:none">
+                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                    {
+                                        <div1>
+                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                        </div1>
                                             @*<div1>
                                                     <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
                                                     <input id="savenotes" type="submit" value="Save Notes" />
                                                 </div1>*@
 
-                                        }
-                                    </div>
+                                    }
+                                </div>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
                                     pages.Jsub = j;
@@ -797,22 +797,22 @@
                                             @pages.Substeps[m, i, j]
                                         }
                                     </h3>
-                                        @*Put drow down menu for resources here. Set i and j accordingly*@
-                                        @*if (i == 2 && j == 2)
-                                             {
-                                             <div class="dropdown" style="display: inline">
-                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                                   Select Resource
-                                                   <span class="caret"></span>
-                                                </button>
-                                                 <ul class="dropdown-menu">
-                                                   <li><a href="#">Resource 1</a></li>
-                                                   <li><a href="#">Resource 2</a></li>
-                                                   <li><a href="#">Resource 3</a></li>
-                                                 </ul>
-                                             </div>
-                                            }*@
-                                        @* Add other drop down boxes here*@
+                                    @*Put drow down menu for resources here. Set i and j accordingly*@
+                                    @*if (i == 2 && j == 2)
+                                         {
+                                         <div class="dropdown" style="display: inline">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                               Select Resource
+                                               <span class="caret"></span>
+                                            </button>
+                                             <ul class="dropdown-menu">
+                                               <li><a href="#">Resource 1</a></li>
+                                               <li><a href="#">Resource 2</a></li>
+                                               <li><a href="#">Resource 3</a></li>
+                                             </ul>
+                                         </div>
+                                        }*@
+                                    @* Add other drop down boxes here*@
 
                                 }  @* end of j loop (substeps)*@
                             }  @* end of i loop (Headings)*@
@@ -895,20 +895,20 @@
                                     <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
                                     @pages.Headings[m, i]
                                 </h2>
-                                    <div id=@name style="display:none">
-                                        @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
-                                        {
-                                            <div1>
-                                                <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
-                                                <input id="savenotes" type="submit" value="Save Notes" />
-                                            </div1>
+                                <div id=@name style="display:none">
+                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                    {
+                                        <div1>
+                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                        </div1>
                                             @*<div1>
                                                     <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
                                                     <input id="savenotes" type="submit" value="Save Notes" />
                                                 </div1>*@
 
-                                        }
-                                    </div>
+                                    }
+                                </div>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
                                     pages.Jsub = j;
@@ -953,22 +953,22 @@
                                             @pages.Substeps[m, i, j]
                                         }
                                     </h3>
-                                        @*Put drow down menu for resources here. Set i and j accordingly*@
-                                        @*if (i == 2 && j == 2)
-                                             {
-                                             <div class="dropdown" style="display: inline">
-                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                                   Select Resource
-                                                   <span class="caret"></span>
-                                                </button>
-                                                 <ul class="dropdown-menu">
-                                                   <li><a href="#">Resource 1</a></li>
-                                                   <li><a href="#">Resource 2</a></li>
-                                                   <li><a href="#">Resource 3</a></li>
-                                                 </ul>
-                                             </div>
-                                            }*@
-                                        @* Add other drop down boxes here*@
+                                    @*Put drow down menu for resources here. Set i and j accordingly*@
+                                    @*if (i == 2 && j == 2)
+                                         {
+                                         <div class="dropdown" style="display: inline">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                               Select Resource
+                                               <span class="caret"></span>
+                                            </button>
+                                             <ul class="dropdown-menu">
+                                               <li><a href="#">Resource 1</a></li>
+                                               <li><a href="#">Resource 2</a></li>
+                                               <li><a href="#">Resource 3</a></li>
+                                             </ul>
+                                         </div>
+                                        }*@
+                                    @* Add other drop down boxes here*@
 
                                 }  @* end of j loop (substeps)*@
                             }  @* end of i loop (Headings)*@
@@ -997,6 +997,13 @@
                                 <div class="right">
                                     <a href="#Step7">Next</a>
                                     <a href="#Step7" class="glyphicon glyphicon-triangle-right"></a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="right">
+                                    <a href="#Step11">Done!</a>
+                                    <a href="#Step11" class="glyphicon glyphicon-triangle-right"></a>
                                 </div>
                             }
                         </div>
@@ -1052,20 +1059,20 @@
                                     <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
                                     @pages.Headings[m, i]
                                 </h2>
-                                    <div id=@name style="display:none">
-                                        @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
-                                        {
-                                            <div1>
-                                                <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
-                                                <input id="savenotes" type="submit" value="Save Notes" />
-                                            </div1>
+                                <div id=@name style="display:none">
+                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                    {
+                                        <div1>
+                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                        </div1>
                                             @*<div1>
                                                     <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
                                                     <input id="savenotes" type="submit" value="Save Notes" />
                                                 </div1>*@
 
-                                        }
-                                    </div>
+                                    }
+                                </div>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
                                     pages.Jsub = j;
@@ -1117,25 +1124,25 @@
                                         }
                                     </h3>
 
-                                        @*Put drow down menu for resources here. Set i and j accordingly*@
+                                    @*Put drow down menu for resources here. Set i and j accordingly*@
 
 
 
-                                        @* else if
-                                            {
-                                                 <div class="dropdown" style="display: inline">
-                                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                                       Select Resource
-                                                       <span class="caret"></span>
-                                                    </button>
-                                                     <ul class="dropdown-menu">
-                                                       <li><a href="#">Resource 1</a></li>
-                                                       <li><a href="#">Resource 2</a></li>
-                                                       <li><a href="#">Resource 3</a></li>
-                                                     </ul>
-                                                 </div>
-                                                }*@
-                                        @* Add other drop down boxes here*@
+                                    @* else if
+                                        {
+                                             <div class="dropdown" style="display: inline">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                                   Select Resource
+                                                   <span class="caret"></span>
+                                                </button>
+                                                 <ul class="dropdown-menu">
+                                                   <li><a href="#">Resource 1</a></li>
+                                                   <li><a href="#">Resource 2</a></li>
+                                                   <li><a href="#">Resource 3</a></li>
+                                                 </ul>
+                                             </div>
+                                            }*@
+                                    @* Add other drop down boxes here*@
 
                                 }  @* end of j loop (substeps)*@
                             }  @* end of i loop (Headings)*@
@@ -1174,6 +1181,14 @@
                                     <a href="#Step8" class="glyphicon glyphicon-triangle-right"></a>
                                 </div>
                             }
+                            else
+                            {
+                                <div class="right">
+                                    <a href="#Step11" onclick="fireworks('Step11');">Done!</a>
+
+                                </div>
+                            }
+
                         </div>
                     </div>@* end of col-md-8 *@
 
@@ -1226,20 +1241,20 @@
                                     <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
                                     @pages.Headings[m, i]
                                 </h2>
-                                    <div id=@name style="display:none">
-                                        @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
-                                        {
-                                            <div1>
-                                                <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
-                                                <input id="savenotes" type="submit" value="Save Notes" />
-                                            </div1>
+                                <div id=@name style="display:none">
+                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                    {
+                                        <div1>
+                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                        </div1>
                                             @*<div1>
                                                     <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
                                                     <input id="savenotes" type="submit" value="Save Notes" />
                                                 </div1>*@
 
-                                        }
-                                    </div>
+                                    }
+                                </div>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
                                     pages.Jsub = j;
@@ -1270,22 +1285,22 @@
                                             @pages.Substeps[m, i, j]
                                         }
                                     </h3>
-                                        @*Put drow down menu for resources here. Set i and j accordingly*@
-                                        @*if (i == 2 && j == 2)
-                                             {
-                                             <div class="dropdown" style="display: inline">
-                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                                   Select Resource
-                                                   <span class="caret"></span>
-                                                </button>
-                                                 <ul class="dropdown-menu">
-                                                   <li><a href="#">Resource 1</a></li>
-                                                   <li><a href="#">Resource 2</a></li>
-                                                   <li><a href="#">Resource 3</a></li>
-                                                 </ul>
-                                             </div>
-                                            }*@
-                                        @* Add other drop down boxes here*@
+                                    @*Put drow down menu for resources here. Set i and j accordingly*@
+                                    @*if (i == 2 && j == 2)
+                                         {
+                                         <div class="dropdown" style="display: inline">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                               Select Resource
+                                               <span class="caret"></span>
+                                            </button>
+                                             <ul class="dropdown-menu">
+                                               <li><a href="#">Resource 1</a></li>
+                                               <li><a href="#">Resource 2</a></li>
+                                               <li><a href="#">Resource 3</a></li>
+                                             </ul>
+                                         </div>
+                                        }*@
+                                    @* Add other drop down boxes here*@
 
                                 }  @* end of j loop (substeps)*@
                             }  @* end of i loop (Headings)*@
@@ -1316,6 +1331,14 @@
                                     <a href="#Step9" class="glyphicon glyphicon-triangle-right"></a>
                                 </div>
                             }
+                            else
+                            {
+                                <div class="right">
+                                    <a href="#Step11">Done!</a>
+                                    <a href="#Step11" class="glyphicon glyphicon-triangle-right"></a>
+                                </div>
+                            }
+
                         </div>
                     </div>@* end of col-md-8 *@
 
@@ -1367,20 +1390,20 @@
                                     <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
                                     @pages.Headings[m, i]
                                 </h2>
-                                    <div id=@name style="display:none">
-                                        @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
-                                        {
-                                            <div1>
-                                                <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
-                                                <input id="savenotes" type="submit" value="Save Notes" />
-                                            </div1>
+                                <div id=@name style="display:none">
+                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                    {
+                                        <div1>
+                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                        </div1>
                                             @*<div1>
                                                     <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
                                                     <input id="savenotes" type="submit" value="Save Notes" />
                                                 </div1>*@
 
-                                        }
-                                    </div>
+                                    }
+                                </div>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
                                     pages.Jsub = j;
@@ -1411,22 +1434,22 @@
                                             @pages.Substeps[m, i, j]
                                         }
                                     </h3>
-                                        @*Put drow down menu for resources here. Set i and j accordingly*@
-                                        @*if (i == 2 && j == 2)
-                                             {
-                                             <div class="dropdown" style="display: inline">
-                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                                   Select Resource
-                                                   <span class="caret"></span>
-                                                </button>
-                                                 <ul class="dropdown-menu">
-                                                   <li><a href="#">Resource 1</a></li>
-                                                   <li><a href="#">Resource 2</a></li>
-                                                   <li><a href="#">Resource 3</a></li>
-                                                 </ul>
-                                             </div>
-                                            }*@
-                                        @* Add other drop down boxes here*@
+                                    @*Put drow down menu for resources here. Set i and j accordingly*@
+                                    @*if (i == 2 && j == 2)
+                                         {
+                                         <div class="dropdown" style="display: inline">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                               Select Resource
+                                               <span class="caret"></span>
+                                            </button>
+                                             <ul class="dropdown-menu">
+                                               <li><a href="#">Resource 1</a></li>
+                                               <li><a href="#">Resource 2</a></li>
+                                               <li><a href="#">Resource 3</a></li>
+                                             </ul>
+                                         </div>
+                                        }*@
+                                    @* Add other drop down boxes here*@
 
                                 }  @* end of j loop (substeps)*@
                             }  @* end of i loop (Headings)*@
@@ -1457,6 +1480,14 @@
                                     <a href="#Step10" class="glyphicon glyphicon-triangle-right"></a>
                                 </div>
                             }
+                            else
+                            {
+                                <div class="right">
+                                    <a href="#Step11">Done!</a>
+                                    <a href="#Step11" class="glyphicon glyphicon-triangle-right"></a>
+                                </div>
+                            }
+
                         </div>
                     </div>@* end of col-md-8 *@
 
@@ -1508,20 +1539,20 @@
                                     <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
                                     @pages.Headings[m, i]
                                 </h2>
-                                    <div id=@name style="display:none">
-                                        @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
-                                        {
-                                            <div1>
-                                                <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
-                                                <input id="savenotes" type="submit" value="Save Notes" />
-                                            </div1>
+                                <div id=@name style="display:none">
+                                    @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                    {
+                                        <div1>
+                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                        </div1>
                                             @*<div1>
                                                     <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
                                                     <input id="savenotes" type="submit" value="Save Notes" />
                                                 </div1>*@
 
-                                        }
-                                    </div>
+                                    }
+                                </div>
                                 for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
                                 {
                                     pages.Jsub = j;
@@ -1552,22 +1583,22 @@
                                             @pages.Substeps[m, i, j]
                                         }
                                     </h3>
-                                        @*Put drow down menu for resources here. Set i and j accordingly*@
-                                        @*if (i == 2 && j == 2)
-                                             {
-                                             <div class="dropdown" style="display: inline">
-                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                                   Select Resource
-                                                   <span class="caret"></span>
-                                                </button>
-                                                 <ul class="dropdown-menu">
-                                                   <li><a href="#">Resource 1</a></li>
-                                                   <li><a href="#">Resource 2</a></li>
-                                                   <li><a href="#">Resource 3</a></li>
-                                                 </ul>
-                                             </div>
-                                            }*@
-                                        @* Add other drop down boxes here*@
+                                    @*Put drow down menu for resources here. Set i and j accordingly*@
+                                    @*if (i == 2 && j == 2)
+                                         {
+                                         <div class="dropdown" style="display: inline">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                               Select Resource
+                                               <span class="caret"></span>
+                                            </button>
+                                             <ul class="dropdown-menu">
+                                               <li><a href="#">Resource 1</a></li>
+                                               <li><a href="#">Resource 2</a></li>
+                                               <li><a href="#">Resource 3</a></li>
+                                             </ul>
+                                         </div>
+                                        }*@
+                                    @* Add other drop down boxes here*@
 
                                 }  @* end of j loop (substeps)*@
                             }  @* end of i loop (Headings)*@
@@ -1622,7 +1653,21 @@
                 </div>
             </div>
         </section>
-            <hr class="pagebreak" />
-    }
-    <hr class="pagebreak" />
+
+        <hr class="pagebreak" />
+
+            <section id="Step11" style="display:none">
+                <hr class="pagebreak" />
+                <div class="container">
+                    <div class="row fireworks">
+                        <h2>
+                            <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
+                        </h2>
+
+
+                        </div>
 </div>
+                    </section>
+                        }
+                        <hr class="pagebreak" />
+                    </div>
