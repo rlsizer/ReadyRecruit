@@ -128,8 +128,8 @@ div.pic {
     height: 50vh;
 }
 div.pic img {
-    width: 31vw;
-    height:80vh;
+    width: 384px;
+    height:70vh;
 }
 div.rightcolumn {
     background-color: black;
@@ -225,7 +225,8 @@ div.progress-bar-striped {
    margin-left:35%;
 }
 div.redditAPI {
-    max-height: 300px;
+    max-height: 50vh;
+    height: 350px;
 }
 hr {
     border-top: 1px solid tomato;

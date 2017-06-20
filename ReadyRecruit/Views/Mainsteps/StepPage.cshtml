@@ -274,9 +274,9 @@
                                         {
                                             <a href="http://www.overview.uscg.mil/" target="_blank">@pages.Substeps[m, i, j]</a>
                                         }
-                                        else if (i==1 && j ==2)
+                                        else if (i == 1 && j == 2)
                                         {
-                                            <a href="http://www.military.com/join-armed-forces/height-weight-requirements.html" target="_blank">@pages.Substeps[m,i,j]</a>
+                                            <a href="http://www.military.com/join-armed-forces/height-weight-requirements.html" target="_blank">@pages.Substeps[m, i, j]</a>
                                         }
 
                                         @* Add more else if statements to add links for other lines*@
@@ -328,7 +328,7 @@
                                 @Html.ActionLink("Coast Guard", "CoastGuard", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
                             <button type="button" class="btn btn-default">
-                                @Html.ActionLink("still undecided", "NoBranch", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                @Html.ActionLink("Undecided", "NoBranch", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
                             <div class="right">
                                 <a href="#Step3">Next</a>
@@ -378,26 +378,26 @@
                 </div>
             </div>
         </section>
-        }
-        @if (pages.NumPages >= 3)
-        {
-            m = 3;
-            <section id="Step3">
-                <hr class="pagebreak" />
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 outline">
-                            <div class="row outlinetext">
-                                <a id="logo" class="navbar-brand" href="~/Home/Index"><span><img src="~/Content/images/Ready Recruit!_clipped_rev_1.png" /></span></a>
-                                <h1>@pages.Title[m]</h1><hr />
-                                @for (int i = 1; i <= pages.NumHeadings[m]; i++)
-                                {
-                                    name = "noteshide" + m.ToString() + i.ToString();
-                                    pages.Ihead = i;
-                                    <h2>
-                                        <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
-                                        @pages.Headings[m, i]
-                                    </h2>
+    }
+    @if (pages.NumPages >= 3)
+    {
+        m = 3;
+        <section id="Step3">
+            <hr class="pagebreak" />
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 outline">
+                        <div class="row outlinetext">
+                            <a id="logo" class="navbar-brand" href="~/Home/Index"><span><img src="~/Content/images/Ready Recruit!_clipped_rev_1.png" /></span></a>
+                            <h1>@pages.Title[m]</h1><hr />
+                            @for (int i = 1; i <= pages.NumHeadings[m]; i++)
+                            {
+                                name = "noteshide" + m.ToString() + i.ToString();
+                                pages.Ihead = i;
+                                <h2>
+                                    <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
+                                    @pages.Headings[m, i]
+                                </h2>
                                     <div id=@name style="display:none">
                                         @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
                                         {
@@ -412,48 +412,48 @@
 
                                         }
                                     </div>
-                                    for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
-                                    {
-                                        pages.Jsub = j;
-                                        <h3>
-                                            <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
-                                                @if (pages.IsSubDone[m, i, j])
-                                                {
-                                                    <span class="glyphicon glyphicon-check"></span>
-                                                    progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
-                                                }
-                                                else
-                                                {
-                                                    <span class="glyphicon glyphicon-unchecked"></span>
-                                                    progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
-                                                }
-                                            </a>
-                                            @* The following if statements are for adding links *@
-                                            @* for pages 1, 2, and 3, all the roadmaps are the same*@
-                                            @* Adjust i and j and put links in like this*@
-                                            @if (i == 1 && j == 1)
+                                for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
+                                {
+                                    pages.Jsub = j;
+                                    <h3>
+                                        <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
+                                            @if (pages.IsSubDone[m, i, j])
                                             {
-                                                <a href="http://todaysmilitary.com/joining/entrance-requirements?source-id=Enlistment_Requirements_&content-id=+military_+enlistment_+requirements&medium-id=BMM&campaign-id=G_Entering_the_Military_BMM&gclid=CjwKEAjw7J3KBRCxv93Q3KSukXQSJADzFzVS4ixdV7cvAe0bTbRlktKLCCn94tovislji-cyyKLYmBoCaDrw_wcB" target="_blank">@pages.Substeps[m, i, j]</a>
+                                                <span class="glyphicon glyphicon-check"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
-                                            @* Add more else if statements to add links for other lines*@
-                                            else if (i == 1 && j == 2)
-                                            {
-                                                <a href="http://todaysmilitary.com/working/compensation-estimator" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            else if (i == 2 && j == 2)
-                                            {
-                                                <a href="http://todaysmilitary.com/working/compensation-estimator" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            else if (i == 3 && j == 2)
-                                            {
-                                                <a href="http://todaysmilitary.com/working/compensation-estimator" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            @* Otherwise, the heading will just get printed without a link here*@
                                             else
                                             {
-                                                @pages.Substeps[m, i, j]
+                                                <span class="glyphicon glyphicon-unchecked"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
-                                        </h3>
+                                        </a>
+                                        @* The following if statements are for adding links *@
+                                        @* for pages 1, 2, and 3, all the roadmaps are the same*@
+                                        @* Adjust i and j and put links in like this*@
+                                        @if (i == 1 && j == 1)
+                                        {
+                                            <a href="http://todaysmilitary.com/joining/entrance-requirements?source-id=Enlistment_Requirements_&content-id=+military_+enlistment_+requirements&medium-id=BMM&campaign-id=G_Entering_the_Military_BMM&gclid=CjwKEAjw7J3KBRCxv93Q3KSukXQSJADzFzVS4ixdV7cvAe0bTbRlktKLCCn94tovislji-cyyKLYmBoCaDrw_wcB" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        @* Add more else if statements to add links for other lines*@
+                                        else if (i == 1 && j == 2)
+                                        {
+                                            <a href="http://todaysmilitary.com/working/compensation-estimator" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        else if (i == 2 && j == 2)
+                                        {
+                                            <a href="http://todaysmilitary.com/working/compensation-estimator" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        else if (i == 3 && j == 2)
+                                        {
+                                            <a href="http://todaysmilitary.com/working/compensation-estimator" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        @* Otherwise, the heading will just get printed without a link here*@
+                                        else
+                                        {
+                                            @pages.Substeps[m, i, j]
+                                        }
+                                    </h3>
                                         @*Put drow down menu for resources here. Set i and j accordingly*@
                                         @*if (i == 2 && j == 2)
                                              {
@@ -471,244 +471,269 @@
                                             }*@
                                         @* Add other drop down boxes here*@
 
-                                    }  @* end of j loop (substeps)*@
-                                }  @* end of i loop (Headings)*@
+                                }  @* end of j loop (substeps)*@
+                            }  @* end of i loop (Headings)*@
 
+                        </div>
+                        <div class="row selections">
+                            <hr />
+                            <div class="left">
+                                <a href="#Step2" class="glyphicon glyphicon-triangle-left"></a>
+                                <a href="#Step2">prev</a>
                             </div>
-                            <div class="row selections">
-                                <hr />
-                                <div class="left">
-                                    <a href="#Step2" class="glyphicon glyphicon-triangle-left"></a>
-                                    <a href="#Step2">prev</a>
-                                </div>
-                                <button type="button" class="btn btn-default">
-                                    @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step4", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step4", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step4", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step4", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                </button>
+                            <button type="button" class="btn btn-default">
+                                @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step4", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                            </button>
+                            <button type="button" class="btn btn-default">
+                                @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step4", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                            </button>
+                            <button type="button" class="btn btn-default">
+                                @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step4", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                            </button>
+                            <button type="button" class="btn btn-default">
+                                @Html.ActionLink("Undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step4", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                            </button>
+                            <div class="right">
+                                <a href="#Step4">Next</a>
+                                <a href="#Step4" class="glyphicon glyphicon-triangle-right"></a>
+                            </div>
+                        </div>
+                    </div>@* end of col-md-8 *@
+
+                    <div class="col-md-4 rightcolumn">
+                        @if (pages.RoadmapID == 6)
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to explore a military career.</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
+                            </div>
+                        }
+                        <div class="row bar">
+                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
+                                 aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
+                                <span>@progress%</span>
+                            </div>
+                        </div>
+                        <div class="redditAPI">
+                            <script src="https://www.reddit.com/r/Militaryfaq/.embed?limit=5" type="text/javascript"></script>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    }
+    @if (pages.NumPages >= 4)
+    {
+        m = 4;
+        <section id="Step4">
+            <hr class="pagebreak" />
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 outline">
+                        <div class="row outlinetext">
+                            <a id="logo" class="navbar-brand" href="~/Home/Index"><span><img src="~/Content/images/Ready Recruit!_clipped_rev_1.png" /></span></a>
+                            <h1>@pages.Title[m]</h1><hr />
+                            @for (int i = 1; i <= pages.NumHeadings[m]; i++)
+                            {
+                                name = "noteshide" + m.ToString() + i.ToString();
+                                pages.Ihead = i;
+                                <h2>
+                                    <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
+                                    @pages.Headings[m, i]
+                                </h2>
+                                    <div id=@name style="display:none">
+                                        @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                        {
+                                            <div1>
+                                                <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                                <input id="savenotes" type="submit" value="Save Notes" />
+                                            </div1>
+                                            @*<div1>
+                                                    <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
+                                                    <input id="savenotes" type="submit" value="Save Notes" />
+                                                </div1>*@
+
+                                        }
+                                    </div>
+                                for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
+                                {
+                                    pages.Jsub = j;
+                                    <h3>
+                                        <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
+                                            @if (pages.IsSubDone[m, i, j])
+                                            {
+                                                <span class="glyphicon glyphicon-check"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
+                                            }
+                                            else
+                                            {
+                                                <span class="glyphicon glyphicon-unchecked"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
+                                            }
+                                        </a>
+                                        @* Starting on this page, you need to include the roadmap number as well as the i and j*@
+                                        @* The following if statements are for adding links *@
+                                        @* for pages 1, 2, and 3, all the roadmaps are the same*@
+                                        @* Adjust i and j and put links in like this*@
+                                        @if (i == 1 && j == 1)
+                                        {
+                                            <a href="https://www.goarmy.com/about/serving-in-the-army/serve-your-way/active-duty.html" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+
+                                        @* Add more else if statements to add links for other lines*@
+                                        else if (i == 1 && j == 2)
+                                        {
+                                            <a href="https://www.goarmy.com/reserve.html" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        else if (i == 1 && j == 3)
+                                        {
+                                            <a href="https://www.nationalguard.com/" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        else if (i == 2 && j == 1)
+                                        {
+                                            <a href="http://www.military.com/join-armed-forces/required-paper-work.html" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        else if (i == 2 && j == 2)
+                                        {
+                                            <a href="http://www.military.com/join-armed-forces/army-recruiting-faqs.html" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        else if (i == 2 && j == 3)
+                                        {
+                                            <a href="http://todaysmilitary.com/contact-a-recruiter" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        else if (i == 2 && j == 4)
+                                        {
+                                            <a href="http://www.military.com/join-armed-forces/recruiting-10-tips.html" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        @* Otherwise, the heading will just get printed without a link here*@
+                                        else
+                                        {
+                                            @pages.Substeps[m, i, j]
+                                        }
+                                    </h3>
+                                        @*Put drow down menu for resources here. Set i and j accordingly*@
+                                        @*if (i == 2 && j == 2)
+                                             {
+                                             <div class="dropdown" style="display: inline">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                                   Select Resource
+                                                   <span class="caret"></span>
+                                                </button>
+                                                 <ul class="dropdown-menu">
+                                                   <li><a href="#">Resource 1</a></li>
+                                                   <li><a href="#">Resource 2</a></li>
+                                                   <li><a href="#">Resource 3</a></li>
+                                                 </ul>
+                                             </div>
+                                            }*@
+                                        @* Add other drop down boxes here*@
+
+                                }  @* end of j loop (substeps)*@
+                            }  @* end of i loop (Headings)*@
+
+                        </div>
+                        <div class="row selections">
+                            <hr />
+                            <div class="left">
+                                <a href="#Step3" class="glyphicon glyphicon-triangle-left"></a>
+                                <a href="#Step3">prev</a>
+                            </div>
+
+                            @*<a class="btn btn-default" href="#" target="_blank">Resource 1</a>
+                                <a class="btn btn-default" href="#" target="_blank">Video 1</a>*@
+
+                            @if (pages.NumPages != m)
+                            {
                                 <div class="right">
-                                    <a href="#Step4">Next</a>
-                                    <a href="#Step4" class="glyphicon glyphicon-triangle-right"></a>
-                                </div>
-                            </div>
-                        </div>@* end of col-md-8 *@
-
-                        <div class="col-md-4 rightcolumn">
-                            @if (pages.RoadmapID == 6)
-                            {
-                                <div class="row">
-                                    <h4 class="goal">My goal is to explore a military career.</h4>
+                                    <a href="#Step5">Next</a>
+                                    <a href="#Step5" class="glyphicon glyphicon-triangle-right"></a>
                                 </div>
                             }
-                            else
-                            {
-                                <div class="row">
-                                    <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
-                                </div>
-                            }
-                            <div class="row bar">
-                                <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
-                                     aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
-                                    <span>@progress%</span>
-                                </div>
-                            </div>
-                            <div class="redditAPI">
-                                <script src="https://www.reddit.com/r/Militaryfaq/.embed?limit=5" type="text/javascript"></script>
-                            </div>
+                        </div>
+                    </div>@* end of col-md-8 *@
 
+                    <div class="col-md-4 rightcolumn">
+                        @if (pages.RoadmapID == 6)
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to explore a military career.</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
+                            </div>
+                        }
+
+                        <div class="row bar">
+                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
+                                 aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
+                                <span>@progress%</span>
+                            </div>
                         </div>
 
-                    </div>
-                </div>
-            </section>
-        }
-        @if (pages.NumPages >= 4)
-        {
-            m = 4;
-            <section id="Step4">
-                <hr class="pagebreak" />
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 outline">
-                            <div class="row outlinetext">
-                                <a id="logo" class="navbar-brand" href="~/Home/Index"><span><img src="~/Content/images/Ready Recruit!_clipped_rev_1.png" /></span></a>
-                                <h1>@pages.Title[m]</h1><hr />
-                                @for (int i = 1; i <= pages.NumHeadings[m]; i++)
-                                {
-                                    name = "noteshide" + m.ToString() + i.ToString();
-                                    pages.Ihead = i;
-                                    <h2>
-                                        <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
-                                        @pages.Headings[m, i]
-                                    </h2>
-                                    <div id=@name style="display:none">
-                                        @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
-                                        {
-                                            <div1>
-                                                <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
-                                                <input id="savenotes" type="submit" value="Save Notes" />
-                                            </div1>
-                                            @*<div1>
-                                                    <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
-                                                    <input id="savenotes" type="submit" value="Save Notes" />
-                                                </div1>*@
-
-                                        }
-                                    </div>
-                                    for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
-                                    {
-                                        pages.Jsub = j;
-                                        <h3>
-                                            <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
-                                                @if (pages.IsSubDone[m, i, j])
-                                                {
-                                                    <span class="glyphicon glyphicon-check"></span>
-                                                    progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
-                                                }
-                                                else
-                                                {
-                                                    <span class="glyphicon glyphicon-unchecked"></span>
-                                                    progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
-                                                }
-                                            </a>
-                                            @* Starting on this page, you need to include the roadmap number as well as the i and j*@
-                                            @* The following if statements are for adding links *@
-                                            @* for pages 1, 2, and 3, all the roadmaps are the same*@
-                                            @* Adjust i and j and put links in like this*@
-                                            @if (i == 1 && j == 1)
-                                            {
-                                                <a href="https://www.goarmy.com/about/serving-in-the-army/serve-your-way/active-duty.html" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-
-                                            @* Add more else if statements to add links for other lines*@
-                                            else if (i == 1 && j == 2)
-                                            {
-                                                <a href="https://www.goarmy.com/reserve.html" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            else if (i == 1 && j == 3)
-                                            {
-                                                <a href="https://www.nationalguard.com/" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            else if (i == 2 && j == 1)
-                                            {
-                                                <a href="http://www.military.com/join-armed-forces/required-paper-work.html" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            else if (i == 2 && j == 2)
-                                            {
-                                                <a href="http://www.military.com/join-armed-forces/army-recruiting-faqs.html" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            else if (i == 2 && j == 3)
-                                            {
-                                                <a href="http://todaysmilitary.com/contact-a-recruiter" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            else if (i == 2 && j == 4)
-                                            {
-                                                <a href="http://www.military.com/join-armed-forces/recruiting-10-tips.html" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            @* Otherwise, the heading will just get printed without a link here*@
-                                            else
-                                            {
-                                                @pages.Substeps[m, i, j]
-                                            }
-                                        </h3>
-                                        @*Put drow down menu for resources here. Set i and j accordingly*@
-                                        @*if (i == 2 && j == 2)
-                                             {
-                                             <div class="dropdown" style="display: inline">
-                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                                   Select Resource
-                                                   <span class="caret"></span>
-                                                </button>
-                                                 <ul class="dropdown-menu">
-                                                   <li><a href="#">Resource 1</a></li>
-                                                   <li><a href="#">Resource 2</a></li>
-                                                   <li><a href="#">Resource 3</a></li>
-                                                 </ul>
-                                             </div>
-                                            }*@
-                                        @* Add other drop down boxes here*@
-
-                                    }  @* end of j loop (substeps)*@
-                                }  @* end of i loop (Headings)*@
-
-                            </div>
-                            <div class="row selections">
-                                <hr />
-                                <div class="left">
-                                    <a href="#Step3" class="glyphicon glyphicon-triangle-left"></a>
-                                    <a href="#Step3">prev</a>
-                                </div>
-
-                                @*<a class="btn btn-default" href="#" target="_blank">Resource 1</a>
-                                    <a class="btn btn-default" href="#" target="_blank">Video 1</a>*@
-
-                                @if (pages.NumPages != m)
-                                {
-                                    <div class="right">
-                                        <a href="#Step5">Next</a>
-                                        <a href="#Step5" class="glyphicon glyphicon-triangle-right"></a>
-                                    </div>
-                                }
-                            </div>
-                        </div>@* end of col-md-8 *@
-
-                        <div class="col-md-4 rightcolumn">
-                            @if (pages.RoadmapID == 6)
+                        <div class="row pic">
+                            @if (pages.RoadmapID == 1 || pages.RoadmapID == 7 || pages.RoadmapID == 12)
                             {
-                                <div class="row">
-                                    <h4 class="goal">My goal is to explore a military career.</h4>
-                                </div>
+                                <img src="~/Content/images/army.jpg" />
+                            }
+                            else if (pages.RoadmapID == 2 || pages.RoadmapID == 8 || pages.RoadmapID == 13)
+                            {
+                                <img src="~/Content/images/airforce.jpg" />
+                            }
+
+                            else if (pages.RoadmapID == 3 || pages.RoadmapID == 9 || pages.RoadmapID == 14)
+                            {
+                                @*<img src = "~/Content/images/navy2.jpg" />*@
+                                <img src = "~/Content/images/navy.jpg" />
+                            }
+                            else if (pages.RoadmapID == 4 || pages.RoadmapID == 10 || pages.RoadmapID == 15)
+                            {
+                                <img src = "~/Content/images/marines.JPG" />
+                            }
+                            else if (pages.RoadmapID == 5 || pages.RoadmapID == 11 || pages.RoadmapID == 16)
+                            {
+                                <img src = "~/Content/images/coastguard.JPG" />
                             }
                             else
                             {
-                                <div class="row">
-                                    <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
-                                </div>
-                            }
-
-                            <div class="row bar">
-                                <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
-                                     aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
-                                    <span>@progress%</span>
-                                </div>
-                            </div>
-
-                            <div class="row pic">
-                                
                                 <img src="~/Content/images/RecruitPhoto2.jpg" />
-                            </div>
-                        </div>
+                            }
 
+                        </div>
                     </div>
+
                 </div>
-            </section>
-        }
-        @if (pages.NumPages >= 5)
-        {
-            m = 5;
-            <section id="Step5">
-                <hr class="pagebreak" />
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 outline">
-                            <div class="row outlinetext">
-                                <a id="logo" class="navbar-brand" href="~/Home/Index"><span><img src="~/Content/images/Ready Recruit!_clipped_rev_1.png" /></span></a>
-                                <h1>@pages.Title[m]</h1><hr />
-                                @for (int i = 1; i <= pages.NumHeadings[m]; i++)
-                                {
-                                    name = "noteshide" + m.ToString() + i.ToString();
-                                    pages.Ihead = i;
-                                    <h2>
-                                        <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
-                                        @pages.Headings[m, i]
-                                    </h2>
+            </div>
+        </section>
+    }
+    @if (pages.NumPages >= 5)
+    {
+        m = 5;
+        <section id="Step5">
+            <hr class="pagebreak" />
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 outline">
+                        <div class="row outlinetext">
+                            <a id="logo" class="navbar-brand" href="~/Home/Index"><span><img src="~/Content/images/Ready Recruit!_clipped_rev_1.png" /></span></a>
+                            <h1>@pages.Title[m]</h1><hr />
+                            @for (int i = 1; i <= pages.NumHeadings[m]; i++)
+                            {
+                                name = "noteshide" + m.ToString() + i.ToString();
+                                pages.Ihead = i;
+                                <h2>
+                                    <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
+                                    @pages.Headings[m, i]
+                                </h2>
                                     <div id=@name style="display:none">
                                         @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
                                         {
@@ -723,56 +748,56 @@
 
                                         }
                                     </div>
-                                    for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
-                                    {
-                                        pages.Jsub = j;
-                                        <h3>
-                                            <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
-                                                @if (pages.IsSubDone[m, i, j])
-                                                {
-                                                    <span class="glyphicon glyphicon-check"></span>
-                                                    progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
-                                                }
-                                                else
-                                                {
-                                                    <span class="glyphicon glyphicon-unchecked"></span>
-                                                    progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
-                                                }
-                                            </a>
-                                            @* The following if statements are for adding links *@
-                                            @* for pages 1, 2, and 3, all the roadmaps are the same*@
-                                            @* Adjust i and j and put links in like this*@
-                                            @if (i == 1 && j == 1)
+                                for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
+                                {
+                                    pages.Jsub = j;
+                                    <h3>
+                                        <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
+                                            @if (pages.IsSubDone[m, i, j])
                                             {
-                                                <a href="http://www.military.com/join-armed-forces/asvab/asvab-test-explained.html" target="_blank">@pages.Substeps[m, i, j]</a>
+                                                <span class="glyphicon glyphicon-check"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
-                                            @* Add more else if statements to add links for other lines*@
-                                            else if (i == 1 && j == 2)
-                                            {
-                                                <a href="http://www.military.com/join-armed-forces/asvab/asvab-study-tips.html" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            else if (i == 1 && j == 3)
-                                            {
-                                                <a href="http://official-asvab.com/docs/asvab_fact_sheet.pdf" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            else if (i == 1 && j == 4)
-                                            {
-                                                <a href="http://www.military.com/join-armed-forces/asvab/asvab-and-army-jobs.html" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            else if (i == 2 && j == 1)
-                                            {
-                                                <a href="http://asvabtutor.com/asvab-practice-tests/" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            else if (i == 2 && j == 2)
-                                            {
-                                                <a href="http://www.military.com/join-armed-forces/asvab" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            @* Otherwise, the heading will just get printed without a link here*@
                                             else
                                             {
-                                                @pages.Substeps[m, i, j]
+                                                <span class="glyphicon glyphicon-unchecked"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
-                                        </h3>
+                                        </a>
+                                        @* The following if statements are for adding links *@
+                                        @* for pages 1, 2, and 3, all the roadmaps are the same*@
+                                        @* Adjust i and j and put links in like this*@
+                                        @if (i == 1 && j == 1)
+                                        {
+                                            <a href="http://www.military.com/join-armed-forces/asvab/asvab-test-explained.html" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        @* Add more else if statements to add links for other lines*@
+                                        else if (i == 1 && j == 2)
+                                        {
+                                            <a href="http://www.military.com/join-armed-forces/asvab/asvab-study-tips.html" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        else if (i == 1 && j == 3)
+                                        {
+                                            <a href="http://official-asvab.com/docs/asvab_fact_sheet.pdf" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        else if (i == 1 && j == 4)
+                                        {
+                                            <a href="http://www.military.com/join-armed-forces/asvab/asvab-and-army-jobs.html" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        else if (i == 2 && j == 1)
+                                        {
+                                            <a href="http://asvabtutor.com/asvab-practice-tests/" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        else if (i == 2 && j == 2)
+                                        {
+                                            <a href="http://www.military.com/join-armed-forces/asvab" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        @* Otherwise, the heading will just get printed without a link here*@
+                                        else
+                                        {
+                                            @pages.Substeps[m, i, j]
+                                        }
+                                    </h3>
                                         @*Put drow down menu for resources here. Set i and j accordingly*@
                                         @*if (i == 2 && j == 2)
                                              {
@@ -790,87 +815,87 @@
                                             }*@
                                         @* Add other drop down boxes here*@
 
-                                    }  @* end of j loop (substeps)*@
-                                }  @* end of i loop (Headings)*@
-
-                            </div>
-                            <div class="row selections">
-                                <hr />
-                                <div class="left">
-                                    <a href="#Step4" class="glyphicon glyphicon-triangle-left"></a>
-                                    <a href="#Step4">prev</a>
-                                </div>
-                                @*<button type="button" class="btn btn-default">
-                                        @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>*@
-                                @if (pages.NumPages != m)
-                                {
-                                    <div class="right">
-                                        <a href="#Step6">Next</a>
-                                        <a href="#Step6" class="glyphicon glyphicon-triangle-right"></a>
-                                    </div>
-                                }
-                            </div>
-                        </div>@* end of col-md-8 *@
-
-                        <div class="col-md-4 rightcolumn">
-                            @if (pages.RoadmapID == 6)
-                            {
-                                <div class="row">
-                                    <h4 class="goal">My goal is to explore a military career.</h4>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="row">
-                                    <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
-                                </div>
-                            }
-
-                            <div class="row bar">
-                                <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
-                                     aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
-                                    <span>@progress%</span>
-                                </div>
-                            </div>
-                                <div class="row pic asvab">
-                                    <img src="~/Content/images/asvab.jpg" />
-                                </div>
-
+                                }  @* end of j loop (substeps)*@
+                            }  @* end of i loop (Headings)*@
 
                         </div>
+                        <div class="row selections">
+                            <hr />
+                            <div class="left">
+                                <a href="#Step4" class="glyphicon glyphicon-triangle-left"></a>
+                                <a href="#Step4">prev</a>
+                            </div>
+                            @*<button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>*@
+                            @if (pages.NumPages != m)
+                            {
+                                <div class="right">
+                                    <a href="#Step6">Next</a>
+                                    <a href="#Step6" class="glyphicon glyphicon-triangle-right"></a>
+                                </div>
+                            }
+                        </div>
+                    </div>@* end of col-md-8 *@
+
+                    <div class="col-md-4 rightcolumn">
+                        @if (pages.RoadmapID == 6)
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to explore a military career.</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
+                            </div>
+                        }
+
+                        <div class="row bar">
+                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
+                                 aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
+                                <span>@progress%</span>
+                            </div>
+                        </div>
+                        <div class="row pic asvab">
+                            <img src="~/Content/images/asvab-qotd_480.jpg" />
+                        </div>
+
+
                     </div>
                 </div>
-            </section>
-        }
-        @if (pages.NumPages >= 6)
-        {
-            m = 6;
-            <section id="Step6">
-                <hr class="pagebreak" />
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 outline">
-                            <div class="row outlinetext">
-                                <a id="logo" class="navbar-brand" href="~/Home/Index"><span><img src="~/Content/images/Ready Recruit!_clipped_rev_1.png" /></span></a>
-                                <h1>@pages.Title[m]</h1><hr />
-                                @for (int i = 1; i <= pages.NumHeadings[m]; i++)
-                                {
-                                    name = "noteshide" + m.ToString() + i.ToString();
-                                    pages.Ihead = i;
-                                    <h2>
-                                        <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
-                                        @pages.Headings[m, i]
-                                    </h2>
+            </div>
+        </section>
+    }
+    @if (pages.NumPages >= 6)
+    {
+        m = 6;
+        <section id="Step6">
+            <hr class="pagebreak" />
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 outline">
+                        <div class="row outlinetext">
+                            <a id="logo" class="navbar-brand" href="~/Home/Index"><span><img src="~/Content/images/Ready Recruit!_clipped_rev_1.png" /></span></a>
+                            <h1>@pages.Title[m]</h1><hr />
+                            @for (int i = 1; i <= pages.NumHeadings[m]; i++)
+                            {
+                                name = "noteshide" + m.ToString() + i.ToString();
+                                pages.Ihead = i;
+                                <h2>
+                                    <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
+                                    @pages.Headings[m, i]
+                                </h2>
                                     <div id=@name style="display:none">
                                         @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
                                         {
@@ -885,50 +910,50 @@
 
                                         }
                                     </div>
-                                    for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
-                                    {
-                                        pages.Jsub = j;
-                                        <h3>
-                                            <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
-                                                @if (pages.IsSubDone[m, i, j])
-                                                {
-                                                    <span class="glyphicon glyphicon-check"></span>
-                                                    progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
-                                                }
-                                                else
-                                                {
-                                                    <span class="glyphicon glyphicon-unchecked"></span>
-                                                    progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
-                                                }
-                                            </a>
-                                            @* The following if statements are for adding links *@
-                                            @* for pages 1, 2, and 3, all the roadmaps are the same*@
-                                            @* Adjust i and j and put links in like this*@
-                                            @if (i == 1 && j == 1)
+                                for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
+                                {
+                                    pages.Jsub = j;
+                                    <h3>
+                                        <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
+                                            @if (pages.IsSubDone[m, i, j])
                                             {
-                                                <a href="http://todaysmilitary.com/videos/meps-physical-exam" target="_blank">@pages.Substeps[m, i, j]</a>
+                                                <span class="glyphicon glyphicon-check"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
-                                            @* Add more else if statements to add links for other lines*@
-                                            else if (i == 1 && j == 2)
-                                            {
-                                                <a href="https://www.goarmy.com/learn/your-visit-to-meps.html" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            else if (i == 1 && j == 3)
-                                            {
-                                                <a href="http://todaysmilitary.com/working/career-fields-and-profiles" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            else if (i == 1 && j == 4)
-                                            {
-                                                <a href="http://todaysmilitary.com/videos/meps-oath-enlistment" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-
-
-                                            @* Otherwise, the heading will just get printed without a link here*@
                                             else
                                             {
-                                                @pages.Substeps[m, i, j]
+                                                <span class="glyphicon glyphicon-unchecked"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
-                                        </h3>
+                                        </a>
+                                        @* The following if statements are for adding links *@
+                                        @* for pages 1, 2, and 3, all the roadmaps are the same*@
+                                        @* Adjust i and j and put links in like this*@
+                                        @if (i == 1 && j == 1)
+                                        {
+                                            <a href="http://todaysmilitary.com/videos/meps-physical-exam" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        @* Add more else if statements to add links for other lines*@
+                                        else if (i == 1 && j == 2)
+                                        {
+                                            <a href="https://www.goarmy.com/learn/your-visit-to-meps.html" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        else if (i == 1 && j == 3)
+                                        {
+                                            <a href="http://todaysmilitary.com/working/career-fields-and-profiles" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        else if (i == 1 && j == 4)
+                                        {
+                                            <a href="http://todaysmilitary.com/videos/meps-oath-enlistment" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+
+
+                                        @* Otherwise, the heading will just get printed without a link here*@
+                                        else
+                                        {
+                                            @pages.Substeps[m, i, j]
+                                        }
+                                    </h3>
                                         @*Put drow down menu for resources here. Set i and j accordingly*@
                                         @*if (i == 2 && j == 2)
                                              {
@@ -946,88 +971,88 @@
                                             }*@
                                         @* Add other drop down boxes here*@
 
-                                    }  @* end of j loop (substeps)*@
-                                }  @* end of i loop (Headings)*@
+                                }  @* end of j loop (substeps)*@
+                            }  @* end of i loop (Headings)*@
 
+                        </div>
+                        <div class="row selections">
+                            <hr />
+                            <div class="left">
+                                <a href="#Step5" class="glyphicon glyphicon-triangle-left"></a>
+                                <a href="#Step5">prev</a>
                             </div>
-                            <div class="row selections">
-                                <hr />
-                                <div class="left">
-                                    <a href="#Step5" class="glyphicon glyphicon-triangle-left"></a>
-                                    <a href="#Step5">prev</a>
-                                </div>
-                                @*<button type="button" class="btn btn-default">
-                                        @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>*@
-                                @if (pages.NumPages != m)
-                                {
-                                    <div class="right">
-                                        <a href="#Step7">Next</a>
-                                        <a href="#Step7" class="glyphicon glyphicon-triangle-right"></a>
-                                    </div>
-                                }
-                            </div>
-                        </div>@* end of col-md-8 *@
-
-                        <div class="col-md-4 rightcolumn">
-                            @if (pages.RoadmapID == 6)
+                            @*<button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>*@
+                            @if (pages.NumPages != m)
                             {
-                                <div class="row">
-                                    <h4 class="goal">My goal is to explore a military career.</h4>
+                                <div class="right">
+                                    <a href="#Step7">Next</a>
+                                    <a href="#Step7" class="glyphicon glyphicon-triangle-right"></a>
                                 </div>
                             }
-                            else
-                            {
-                                <div class="row">
-                                    <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
-                                </div>
-                            }
+                        </div>
+                    </div>@* end of col-md-8 *@
 
-                            <div class="row bar">
-                                <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
-                                     aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
-                                    <span>@progress%</span>
-                                </div>
+                    <div class="col-md-4 rightcolumn">
+                        @if (pages.RoadmapID == 6)
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to explore a military career.</h4>
                             </div>
-                            <div class="row pic">
-                                
-                                <img src="~/Content/images/ArmyCareerPicture.jpg" />
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
+                            </div>
+                        }
 
+                        <div class="row bar">
+                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
+                                 aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
+                                <span>@progress%</span>
                             </div>
                         </div>
+                        <div class="row pic">
 
+                            <img src="~/Content/images/ArmyCareerPicture.jpg" />
+
+                        </div>
                     </div>
+
                 </div>
-            </section>
-        }
-        @if (pages.NumPages >= 7)
-        {
-            m = 7;
-            <section id="Step7">
-                <hr class="pagebreak" />
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 outline">
-                            <div class="row outlinetext">
-                                <a id="logo" class="navbar-brand" href="~/Home/Index"><span><img src="~/Content/images/Ready Recruit!_clipped_rev_1.png" /></span></a>
-                                <h1>@pages.Title[m]</h1><hr />
-                                @for (int i = 1; i <= pages.NumHeadings[m]; i++)
-                                {
-                                    name = "noteshide" + m.ToString() + i.ToString();
-                                    pages.Ihead = i;
-                                    <h2>
-                                        <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
-                                        @pages.Headings[m, i]
-                                    </h2>
+            </div>
+        </section>
+    }
+    @if (pages.NumPages >= 7)
+    {
+        m = 7;
+        <section id="Step7">
+            <hr class="pagebreak" />
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 outline">
+                        <div class="row outlinetext">
+                            <a id="logo" class="navbar-brand" href="~/Home/Index"><span><img src="~/Content/images/Ready Recruit!_clipped_rev_1.png" /></span></a>
+                            <h1>@pages.Title[m]</h1><hr />
+                            @for (int i = 1; i <= pages.NumHeadings[m]; i++)
+                            {
+                                name = "noteshide" + m.ToString() + i.ToString();
+                                pages.Ihead = i;
+                                <h2>
+                                    <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
+                                    @pages.Headings[m, i]
+                                </h2>
                                     <div id=@name style="display:none">
                                         @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
                                         {
@@ -1042,56 +1067,56 @@
 
                                         }
                                     </div>
-                                    for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
-                                    {
-                                        pages.Jsub = j;
-                                        <h3>
-                                            <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
-                                                @if (pages.IsSubDone[m, i, j])
-                                                {
-                                                    <span class="glyphicon glyphicon-check"></span>
-                                                    progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
-                                                }
-                                                else
-                                                {
-                                                    <span class="glyphicon glyphicon-unchecked"></span>
-                                                    progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
-                                                }
-                                            </a>
-                                            @* The following if statements are for adding links *@
-                                            @* for pages 1, 2, and 3, all the roadmaps are the same*@
-                                            @* Adjust i and j and put links in like this*@
-                                            @if (i == 1 && j == 1)
-
+                                for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
+                                {
+                                    pages.Jsub = j;
+                                    <h3>
+                                        <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
+                                            @if (pages.IsSubDone[m, i, j])
                                             {
-                                                <a href="http://www.myfuture.com/military/articles-advice/enlisting-in-the-military#what-happens-after-the-meps" target="_blank">@pages.Substeps[m, i, j]</a>
+                                                <span class="glyphicon glyphicon-check"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
-                                            else if (i == 1 && j == 2)
-                                            {
-                                                <a href="https://youtu.be/LheFuBefJEQ" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            else if (i == 1 && j == 3)
-                                            {
-                                                <a href="https://youtu.be/GfoB1rQvU2s" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            else if (i == 1 && j == 4)
-                                            {
-                                                <a href="http://www.military.com/join-armed-forces/boot-camp-checklist.html#arm" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            else if (i == 2 && j == 1)
-                                            {
-                                                <a href="https://www.goarmy.com/soldier-life/becoming-a-soldier/basic-combat-training.html" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-
-
-
-                                            @* Add more else if statements to add links for other lines*@
-                                            @* Otherwise, the heading will just get printed without a link here*@
                                             else
                                             {
-                                                @pages.Substeps[m, i, j]
+                                                <span class="glyphicon glyphicon-unchecked"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
                                             }
-                                        </h3>
+                                        </a>
+                                        @* The following if statements are for adding links *@
+                                        @* for pages 1, 2, and 3, all the roadmaps are the same*@
+                                        @* Adjust i and j and put links in like this*@
+                                        @if (i == 1 && j == 1)
+
+                                        {
+                                            <a href="http://www.myfuture.com/military/articles-advice/enlisting-in-the-military#what-happens-after-the-meps" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        else if (i == 1 && j == 2)
+                                        {
+                                            <a href="https://youtu.be/LheFuBefJEQ" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        else if (i == 1 && j == 3)
+                                        {
+                                            <a href="https://youtu.be/GfoB1rQvU2s" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        else if (i == 1 && j == 4)
+                                        {
+                                            <a href="http://www.military.com/join-armed-forces/boot-camp-checklist.html#arm" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        else if (i == 2 && j == 1)
+                                        {
+                                            <a href="https://www.goarmy.com/soldier-life/becoming-a-soldier/basic-combat-training.html" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+
+
+
+                                        @* Add more else if statements to add links for other lines*@
+                                        @* Otherwise, the heading will just get printed without a link here*@
+                                        else
+                                        {
+                                            @pages.Substeps[m, i, j]
+                                        }
+                                    </h3>
 
                                         @*Put drow down menu for resources here. Set i and j accordingly*@
 
@@ -1113,492 +1138,492 @@
                                                 }*@
                                         @* Add other drop down boxes here*@
 
-                                    }  @* end of j loop (substeps)*@
-                                }  @* end of i loop (Headings)*@
+                                }  @* end of j loop (substeps)*@
+                            }  @* end of i loop (Headings)*@
 
 
-                                <div class="row videoindent">
-                                    <a class="img-thumbnail"><iframe width="180" height="100" src="https://www.youtube.com/embed/GHWhsmwOHT4" frameborder="0" allowfullscreen></iframe></a>
-                                    <a class="img-thumbnail"><iframe width="180" height="100" src="https://www.youtube.com/embed/vt9VhmA4FnA" frameborder="0" allowfullscreen></iframe></a>
-                                    <a class="img-thumbnail"><iframe width="180" height="100" src="https://www.youtube.com/embed/7os3Kv-0vKM" frameborder="0" allowfullscreen></iframe></a>
-                                </div>
-
-
+                            <div class="row videoindent">
+                                <a class="img-thumbnail"><iframe width="180" height="100" src="https://www.youtube.com/embed/GHWhsmwOHT4" frameborder="0" allowfullscreen></iframe></a>
+                                <a class="img-thumbnail"><iframe width="180" height="100" src="https://www.youtube.com/embed/vt9VhmA4FnA" frameborder="0" allowfullscreen></iframe></a>
+                                <a class="img-thumbnail"><iframe width="180" height="100" src="https://www.youtube.com/embed/7os3Kv-0vKM" frameborder="0" allowfullscreen></iframe></a>
                             </div>
-                            <div class="row selections">
-                                <hr />
-                                <div class="left">
-                                    <a href="#Step6" class="glyphicon glyphicon-triangle-left"></a>
-                                    <a href="#Step6">prev</a>
-                                </div>
-                                @*<button type="button" class="btn btn-default">
-                                        @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        @Html.ActionLink("Undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>*@
-                                @if (pages.NumPages != m)
-                                {
-                                    <div class="right">
-                                        <a href="#Step8">Next</a>
-                                        <a href="#Step8" class="glyphicon glyphicon-triangle-right"></a>
-                                    </div>
-                                }
-                            </div>
-                        </div>@* end of col-md-8 *@
 
-                        <div class="col-md-4 rightcolumn">
-                            @if (pages.RoadmapID == 6)
+
+                        </div>
+                        <div class="row selections">
+                            <hr />
+                            <div class="left">
+                                <a href="#Step6" class="glyphicon glyphicon-triangle-left"></a>
+                                <a href="#Step6">prev</a>
+                            </div>
+                            @*<button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>*@
+                            @if (pages.NumPages != m)
                             {
-                                <div class="row">
-                                    <h4 class="goal">My goal is to explore a military career.</h4>
+                                <div class="right">
+                                    <a href="#Step8">Next</a>
+                                    <a href="#Step8" class="glyphicon glyphicon-triangle-right"></a>
                                 </div>
                             }
-                            else
-                            {
-                                <div class="row">
-                                    <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
-                                </div>
-                            }
+                        </div>
+                    </div>@* end of col-md-8 *@
 
-                            <div class="row bar">
-                                <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
-                                     aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
-                                    <span>@progress%</span>
-                                </div>
+                    <div class="col-md-4 rightcolumn">
+                        @if (pages.RoadmapID == 6)
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to explore a military career.</h4>
                             </div>
-                            <div class="row pic">
-                               
-                                <img src="~/Content/images/Onboarding Pic.jpg" />
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
+                            </div>
+                        }
+
+                        <div class="row bar">
+                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
+                                 aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
+                                <span>@progress%</span>
                             </div>
                         </div>
+                        <div class="row pic">
 
-                    </div>
-                </div>
-            </section>
-        }
-        @if (pages.NumPages >= 8)
-        {
-            m = 8;
-            <section id="Step8">
-                <hr class="pagebreak" />
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 outline">
-                            <div class="row outlinetext">
-                                <a id="logo" class="navbar-brand" href="~/Home/Index"><span><img src="~/Content/images/Ready Recruit!_clipped_rev_1.png" /></span></a>
-                                <h1>@pages.Title[m]</h1><hr />
-                                @for (int i = 1; i <= pages.NumHeadings[m]; i++)
-                                {
-                                    name = "noteshide" + m.ToString() + i.ToString();
-                                    pages.Ihead = i;
-                                    <h2>
-                                        <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
-                                        @pages.Headings[m, i]
-                                    </h2>
-                                    <div id=@name style="display:none">
-                                        @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
-                                        {
-                                            <div1>
-                                                <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
-                                                <input id="savenotes" type="submit" value="Save Notes" />
-                                            </div1>
-                                            @*<div1>
-                                                    <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
-                                                    <input id="savenotes" type="submit" value="Save Notes" />
-                                                </div1>*@
-
-                                        }
-                                    </div>
-                                    for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
-                                    {
-                                        pages.Jsub = j;
-                                        <h3>
-                                            <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
-                                                @if (pages.IsSubDone[m, i, j])
-                                                {
-                                                    <span class="glyphicon glyphicon-check"></span>
-                                                    progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
-                                                }
-                                                else
-                                                {
-                                                    <span class="glyphicon glyphicon-unchecked"></span>
-                                                    progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
-                                                }
-                                            </a>
-                                            @* The following if statements are for adding links *@
-                                            @* for pages 1, 2, and 3, all the roadmaps are the same*@
-                                            @* Adjust i and j and put links in like this*@
-                                            @if (i == 2 && j == 1)
-                                            {
-                                                <a href="#" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            @* Add more else if statements to add links for other lines*@
-                                            @* Otherwise, the heading will just get printed without a link here*@
-                                            else
-                                            {
-                                                @pages.Substeps[m, i, j]
-                                            }
-                                        </h3>
-                                        @*Put drow down menu for resources here. Set i and j accordingly*@
-                                        @*if (i == 2 && j == 2)
-                                             {
-                                             <div class="dropdown" style="display: inline">
-                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                                   Select Resource
-                                                   <span class="caret"></span>
-                                                </button>
-                                                 <ul class="dropdown-menu">
-                                                   <li><a href="#">Resource 1</a></li>
-                                                   <li><a href="#">Resource 2</a></li>
-                                                   <li><a href="#">Resource 3</a></li>
-                                                 </ul>
-                                             </div>
-                                            }*@
-                                        @* Add other drop down boxes here*@
-
-                                    }  @* end of j loop (substeps)*@
-                                }  @* end of i loop (Headings)*@
-
-                            </div>
-                            <div class="row selections">
-                                <hr />
-                                <div class="left">
-                                    <a href="#Step7" class="glyphicon glyphicon-triangle-left"></a>
-                                    <a href="#Step7">prev</a>
-                                </div>
-                                @*<button type="button" class="btn btn-default">
-                                        @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>*@
-                                @if (pages.NumPages != m)
-                                {
-                                    <div class="right">
-                                        <a href="#Step9">Next</a>
-                                        <a href="#Step9" class="glyphicon glyphicon-triangle-right"></a>
-                                    </div>
-                                }
-                            </div>
-                        </div>@* end of col-md-8 *@
-
-                        <div class="col-md-4 rightcolumn">
-                            @if (pages.RoadmapID == 6)
-                            {
-                                <div class="row">
-                                    <h4 class="goal">My goal is to explore a military career.</h4>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="row">
-                                    <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
-                                </div>
-                            }
-
-                            <div class="row bar">
-                                <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
-                                     aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
-                                    <span>@progress%</span>
-                                </div>
-                            </div>
-                            <div class="row pic">
-                                @*<img src="~/Content/images/iwojima.jpg" />*@
-                            </div>
+                            <img src="~/Content/images/Onboarding Pic.jpg" />
                         </div>
-
                     </div>
+
                 </div>
-            </section>
-        }
-        @if (pages.NumPages >= 9)
-        {
-            m = 9;
-            <section id="Step9">
-                <hr class="pagebreak" />
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 outline">
-                            <div class="row outlinetext">
-                                <a id="logo" class="navbar-brand" href="~/Home/Index"><span><img src="~/Content/images/Ready Recruit!_clipped_rev_1.png" /></span></a>
-                                <h1>@pages.Title[m]</h1><hr />
-                                @for (int i = 1; i <= pages.NumHeadings[m]; i++)
-                                {
-                                    name = "noteshide" + m.ToString() + i.ToString();
-                                    pages.Ihead = i;
-                                    <h2>
-                                        <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
-                                        @pages.Headings[m, i]
-                                    </h2>
-                                    <div id=@name style="display:none">
-                                        @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
-                                        {
-                                            <div1>
-                                                <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
-                                                <input id="savenotes" type="submit" value="Save Notes" />
-                                            </div1>
-                                            @*<div1>
-                                                    <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
-                                                    <input id="savenotes" type="submit" value="Save Notes" />
-                                                </div1>*@
-
-                                        }
-                                    </div>
-                                    for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
-                                    {
-                                        pages.Jsub = j;
-                                        <h3>
-                                            <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
-                                                @if (pages.IsSubDone[m, i, j])
-                                                {
-                                                    <span class="glyphicon glyphicon-check"></span>
-                                                    progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
-                                                }
-                                                else
-                                                {
-                                                    <span class="glyphicon glyphicon-unchecked"></span>
-                                                    progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
-                                                }
-                                            </a>
-                                            @* The following if statements are for adding links *@
-                                            @* for pages 1, 2, and 3, all the roadmaps are the same*@
-                                            @* Adjust i and j and put links in like this*@
-                                            @if (i == 2 && j == 1)
-                                            {
-                                                <a href="#" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            @* Add more else if statements to add links for other lines*@
-                                            @* Otherwise, the heading will just get printed without a link here*@
-                                            else
-                                            {
-                                                @pages.Substeps[m, i, j]
-                                            }
-                                        </h3>
-                                        @*Put drow down menu for resources here. Set i and j accordingly*@
-                                        @*if (i == 2 && j == 2)
-                                             {
-                                             <div class="dropdown" style="display: inline">
-                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                                   Select Resource
-                                                   <span class="caret"></span>
-                                                </button>
-                                                 <ul class="dropdown-menu">
-                                                   <li><a href="#">Resource 1</a></li>
-                                                   <li><a href="#">Resource 2</a></li>
-                                                   <li><a href="#">Resource 3</a></li>
-                                                 </ul>
-                                             </div>
-                                            }*@
-                                        @* Add other drop down boxes here*@
-
-                                    }  @* end of j loop (substeps)*@
-                                }  @* end of i loop (Headings)*@
-
-                            </div>
-                            <div class="row selections">
-                                <hr />
-                                <div class="left">
-                                    <a href="#Step8" class="glyphicon glyphicon-triangle-left"></a>
-                                    <a href="#Step8">prev</a>
-                                </div>
-                                @*<button type="button" class="btn btn-default">
-                                        @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>*@
-                                @if (pages.NumPages != m)
-                                {
-                                    <div class="right">
-                                        <a href="#Step10">Next</a>
-                                        <a href="#Step10" class="glyphicon glyphicon-triangle-right"></a>
-                                    </div>
-                                }
-                            </div>
-                        </div>@* end of col-md-8 *@
-
-                        <div class="col-md-4 rightcolumn">
-                            @if (pages.RoadmapID == 6)
-                            {
-                                <div class="row">
-                                    <h4 class="goal">My goal is to explore a military career.</h4>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="row">
-                                    <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
-                                </div>
-                            }
-
-                            <div class="row bar">
-                                <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
-                                     aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
-                                    <span>@progress%</span>
-                                </div>
-                            </div>
-                            <div class="row pic">
-                                @*<img src="~/Content/images/iwojima.jpg" />*@
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-        }
-        @if (pages.NumPages >= 10)
-        {
-            m = 10;
-            <section id="Step10">
-                <hr class="pagebreak" />
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 outline">
-                            <div class="row outlinetext">
-                                <a id="logo" class="navbar-brand" href="~/Home/Index"><span><img src="~/Content/images/Ready Recruit!_clipped_rev_1.png" /></span></a>
-                                <h1>@pages.Title[m]</h1><hr />
-                                @for (int i = 1; i <= pages.NumHeadings[m]; i++)
-                                {
-                                    name = "noteshide" + m.ToString() + i.ToString();
-                                    pages.Ihead = i;
-                                    <h2>
-                                        <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
-                                        @pages.Headings[m, i]
-                                    </h2>
-                                    <div id=@name style="display:none">
-                                        @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
-                                        {
-                                            <div1>
-                                                <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
-                                                <input id="savenotes" type="submit" value="Save Notes" />
-                                            </div1>
-                                            @*<div1>
-                                                    <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
-                                                    <input id="savenotes" type="submit" value="Save Notes" />
-                                                </div1>*@
-
-                                        }
-                                    </div>
-                                    for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
-                                    {
-                                        pages.Jsub = j;
-                                        <h3>
-                                            <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
-                                                @if (pages.IsSubDone[m, i, j])
-                                                {
-                                                    <span class="glyphicon glyphicon-check"></span>
-                                                    progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
-                                                }
-                                                else
-                                                {
-                                                    <span class="glyphicon glyphicon-unchecked"></span>
-                                                    progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
-                                                }
-                                            </a>
-                                            @* The following if statements are for adding links *@
-                                            @* for pages 1, 2, and 3, all the roadmaps are the same*@
-                                            @* Adjust i and j and put links in like this*@
-                                            @if (i == 2 && j == 1)
-                                            {
-                                                <a href="#" target="_blank">@pages.Substeps[m, i, j]</a>
-                                            }
-                                            @* Add more else if statements to add links for other lines*@
-                                            @* Otherwise, the heading will just get printed without a link here*@
-                                            else
-                                            {
-                                                @pages.Substeps[m, i, j]
-                                            }
-                                        </h3>
-                                        @*Put drow down menu for resources here. Set i and j accordingly*@
-                                        @*if (i == 2 && j == 2)
-                                             {
-                                             <div class="dropdown" style="display: inline">
-                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                                   Select Resource
-                                                   <span class="caret"></span>
-                                                </button>
-                                                 <ul class="dropdown-menu">
-                                                   <li><a href="#">Resource 1</a></li>
-                                                   <li><a href="#">Resource 2</a></li>
-                                                   <li><a href="#">Resource 3</a></li>
-                                                 </ul>
-                                             </div>
-                                            }*@
-                                        @* Add other drop down boxes here*@
-
-                                    }  @* end of j loop (substeps)*@
-                                }  @* end of i loop (Headings)*@
-
-                            </div>
-                            <div class="row selections">
-                                <hr />
-                                <div class="left">
-                                    <a href="#Step9" class="glyphicon glyphicon-triangle-left"></a>
-                                    <a href="#Step9">prev</a>
-                                </div>
-                                @*<button type="button" class="btn btn-default">
-                                        @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>
-                                    <button type="button" class="btn btn-default">
-                                        @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                                    </button>*@
-                            </div>
-                        </div>@* end of col-md-8 *@
-
-                        <div class="col-md-4 rightcolumn">
-                            @if (pages.RoadmapID == 6)
-                            {
-                                <div class="row">
-                                    <h4 class="goal">My goal is to explore a military career.</h4>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="row">
-                                    <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
-                                </div>
-                            }
-
-                            <div class="row bar">
-                                <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
-                                     aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
-                                    <span>@progress%</span>
-                                </div>
-                            </div>
-                            <div class="row pic">
-                                @*<img src="~/Content/images/iwojima.jpg" />*@
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
+            </div>
+        </section>
+    }
+    @if (pages.NumPages >= 8)
+    {
+        m = 8;
+        <section id="Step8">
             <hr class="pagebreak" />
-        }
-        <hr class="pagebreak" />
-    </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 outline">
+                        <div class="row outlinetext">
+                            <a id="logo" class="navbar-brand" href="~/Home/Index"><span><img src="~/Content/images/Ready Recruit!_clipped_rev_1.png" /></span></a>
+                            <h1>@pages.Title[m]</h1><hr />
+                            @for (int i = 1; i <= pages.NumHeadings[m]; i++)
+                            {
+                                name = "noteshide" + m.ToString() + i.ToString();
+                                pages.Ihead = i;
+                                <h2>
+                                    <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
+                                    @pages.Headings[m, i]
+                                </h2>
+                                    <div id=@name style="display:none">
+                                        @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                        {
+                                            <div1>
+                                                <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                                <input id="savenotes" type="submit" value="Save Notes" />
+                                            </div1>
+                                            @*<div1>
+                                                    <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
+                                                    <input id="savenotes" type="submit" value="Save Notes" />
+                                                </div1>*@
+
+                                        }
+                                    </div>
+                                for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
+                                {
+                                    pages.Jsub = j;
+                                    <h3>
+                                        <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
+                                            @if (pages.IsSubDone[m, i, j])
+                                            {
+                                                <span class="glyphicon glyphicon-check"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
+                                            }
+                                            else
+                                            {
+                                                <span class="glyphicon glyphicon-unchecked"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
+                                            }
+                                        </a>
+                                        @* The following if statements are for adding links *@
+                                        @* for pages 1, 2, and 3, all the roadmaps are the same*@
+                                        @* Adjust i and j and put links in like this*@
+                                        @if (i == 2 && j == 1)
+                                        {
+                                            <a href="#" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        @* Add more else if statements to add links for other lines*@
+                                        @* Otherwise, the heading will just get printed without a link here*@
+                                        else
+                                        {
+                                            @pages.Substeps[m, i, j]
+                                        }
+                                    </h3>
+                                        @*Put drow down menu for resources here. Set i and j accordingly*@
+                                        @*if (i == 2 && j == 2)
+                                             {
+                                             <div class="dropdown" style="display: inline">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                                   Select Resource
+                                                   <span class="caret"></span>
+                                                </button>
+                                                 <ul class="dropdown-menu">
+                                                   <li><a href="#">Resource 1</a></li>
+                                                   <li><a href="#">Resource 2</a></li>
+                                                   <li><a href="#">Resource 3</a></li>
+                                                 </ul>
+                                             </div>
+                                            }*@
+                                        @* Add other drop down boxes here*@
+
+                                }  @* end of j loop (substeps)*@
+                            }  @* end of i loop (Headings)*@
+
+                        </div>
+                        <div class="row selections">
+                            <hr />
+                            <div class="left">
+                                <a href="#Step7" class="glyphicon glyphicon-triangle-left"></a>
+                                <a href="#Step7">prev</a>
+                            </div>
+                            @*<button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>*@
+                            @if (pages.NumPages != m)
+                            {
+                                <div class="right">
+                                    <a href="#Step9">Next</a>
+                                    <a href="#Step9" class="glyphicon glyphicon-triangle-right"></a>
+                                </div>
+                            }
+                        </div>
+                    </div>@* end of col-md-8 *@
+
+                    <div class="col-md-4 rightcolumn">
+                        @if (pages.RoadmapID == 6)
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to explore a military career.</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
+                            </div>
+                        }
+
+                        <div class="row bar">
+                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
+                                 aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
+                                <span>@progress%</span>
+                            </div>
+                        </div>
+                        <div class="row pic">
+                            @*<img src="~/Content/images/iwojima.jpg" />*@
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    }
+    @if (pages.NumPages >= 9)
+    {
+        m = 9;
+        <section id="Step9">
+            <hr class="pagebreak" />
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 outline">
+                        <div class="row outlinetext">
+                            <a id="logo" class="navbar-brand" href="~/Home/Index"><span><img src="~/Content/images/Ready Recruit!_clipped_rev_1.png" /></span></a>
+                            <h1>@pages.Title[m]</h1><hr />
+                            @for (int i = 1; i <= pages.NumHeadings[m]; i++)
+                            {
+                                name = "noteshide" + m.ToString() + i.ToString();
+                                pages.Ihead = i;
+                                <h2>
+                                    <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
+                                    @pages.Headings[m, i]
+                                </h2>
+                                    <div id=@name style="display:none">
+                                        @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                        {
+                                            <div1>
+                                                <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                                <input id="savenotes" type="submit" value="Save Notes" />
+                                            </div1>
+                                            @*<div1>
+                                                    <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
+                                                    <input id="savenotes" type="submit" value="Save Notes" />
+                                                </div1>*@
+
+                                        }
+                                    </div>
+                                for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
+                                {
+                                    pages.Jsub = j;
+                                    <h3>
+                                        <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
+                                            @if (pages.IsSubDone[m, i, j])
+                                            {
+                                                <span class="glyphicon glyphicon-check"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
+                                            }
+                                            else
+                                            {
+                                                <span class="glyphicon glyphicon-unchecked"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
+                                            }
+                                        </a>
+                                        @* The following if statements are for adding links *@
+                                        @* for pages 1, 2, and 3, all the roadmaps are the same*@
+                                        @* Adjust i and j and put links in like this*@
+                                        @if (i == 2 && j == 1)
+                                        {
+                                            <a href="#" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        @* Add more else if statements to add links for other lines*@
+                                        @* Otherwise, the heading will just get printed without a link here*@
+                                        else
+                                        {
+                                            @pages.Substeps[m, i, j]
+                                        }
+                                    </h3>
+                                        @*Put drow down menu for resources here. Set i and j accordingly*@
+                                        @*if (i == 2 && j == 2)
+                                             {
+                                             <div class="dropdown" style="display: inline">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                                   Select Resource
+                                                   <span class="caret"></span>
+                                                </button>
+                                                 <ul class="dropdown-menu">
+                                                   <li><a href="#">Resource 1</a></li>
+                                                   <li><a href="#">Resource 2</a></li>
+                                                   <li><a href="#">Resource 3</a></li>
+                                                 </ul>
+                                             </div>
+                                            }*@
+                                        @* Add other drop down boxes here*@
+
+                                }  @* end of j loop (substeps)*@
+                            }  @* end of i loop (Headings)*@
+
+                        </div>
+                        <div class="row selections">
+                            <hr />
+                            <div class="left">
+                                <a href="#Step8" class="glyphicon glyphicon-triangle-left"></a>
+                                <a href="#Step8">prev</a>
+                            </div>
+                            @*<button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>*@
+                            @if (pages.NumPages != m)
+                            {
+                                <div class="right">
+                                    <a href="#Step10">Next</a>
+                                    <a href="#Step10" class="glyphicon glyphicon-triangle-right"></a>
+                                </div>
+                            }
+                        </div>
+                    </div>@* end of col-md-8 *@
+
+                    <div class="col-md-4 rightcolumn">
+                        @if (pages.RoadmapID == 6)
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to explore a military career.</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
+                            </div>
+                        }
+
+                        <div class="row bar">
+                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
+                                 aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
+                                <span>@progress%</span>
+                            </div>
+                        </div>
+                        <div class="row pic">
+                            @*<img src="~/Content/images/iwojima.jpg" />*@
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    }
+    @if (pages.NumPages >= 10)
+    {
+        m = 10;
+        <section id="Step10">
+            <hr class="pagebreak" />
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 outline">
+                        <div class="row outlinetext">
+                            <a id="logo" class="navbar-brand" href="~/Home/Index"><span><img src="~/Content/images/Ready Recruit!_clipped_rev_1.png" /></span></a>
+                            <h1>@pages.Title[m]</h1><hr />
+                            @for (int i = 1; i <= pages.NumHeadings[m]; i++)
+                            {
+                                name = "noteshide" + m.ToString() + i.ToString();
+                                pages.Ihead = i;
+                                <h2>
+                                    <a class="glyphicon glyphicon-list" onclick="toggle_notes_show('@name');"></a>
+                                    @pages.Headings[m, i]
+                                </h2>
+                                    <div id=@name style="display:none">
+                                        @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, notes = "Notes" }))
+                                        {
+                                            <div1>
+                                                <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                                <input id="savenotes" type="submit" value="Save Notes" />
+                                            </div1>
+                                            @*<div1>
+                                                    <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
+                                                    <input id="savenotes" type="submit" value="Save Notes" />
+                                                </div1>*@
+
+                                        }
+                                    </div>
+                                for (int j = 1; j <= pages.NumSubsteps[m, i]; j++)
+                                {
+                                    pages.Jsub = j;
+                                    <h3>
+                                        <a href="@Url.Action("ToggleDoneSub", new { id = pages.SStatID[m, i, j] })">
+                                            @if (pages.IsSubDone[m, i, j])
+                                            {
+                                                <span class="glyphicon glyphicon-check"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
+                                            }
+                                            else
+                                            {
+                                                <span class="glyphicon glyphicon-unchecked"></span>
+                                                progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
+                                            }
+                                        </a>
+                                        @* The following if statements are for adding links *@
+                                        @* for pages 1, 2, and 3, all the roadmaps are the same*@
+                                        @* Adjust i and j and put links in like this*@
+                                        @if (i == 2 && j == 1)
+                                        {
+                                            <a href="#" target="_blank">@pages.Substeps[m, i, j]</a>
+                                        }
+                                        @* Add more else if statements to add links for other lines*@
+                                        @* Otherwise, the heading will just get printed without a link here*@
+                                        else
+                                        {
+                                            @pages.Substeps[m, i, j]
+                                        }
+                                    </h3>
+                                        @*Put drow down menu for resources here. Set i and j accordingly*@
+                                        @*if (i == 2 && j == 2)
+                                             {
+                                             <div class="dropdown" style="display: inline">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                                   Select Resource
+                                                   <span class="caret"></span>
+                                                </button>
+                                                 <ul class="dropdown-menu">
+                                                   <li><a href="#">Resource 1</a></li>
+                                                   <li><a href="#">Resource 2</a></li>
+                                                   <li><a href="#">Resource 3</a></li>
+                                                 </ul>
+                                             </div>
+                                            }*@
+                                        @* Add other drop down boxes here*@
+
+                                }  @* end of j loop (substeps)*@
+                            }  @* end of i loop (Headings)*@
+
+                        </div>
+                        <div class="row selections">
+                            <hr />
+                            <div class="left">
+                                <a href="#Step9" class="glyphicon glyphicon-triangle-left"></a>
+                                <a href="#Step9">prev</a>
+                            </div>
+                            @*<button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Commissioned", "Commissioned", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("Warrant Officer", "Warrant", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
+                                </button>*@
+                        </div>
+                    </div>@* end of col-md-8 *@
+
+                    <div class="col-md-4 rightcolumn">
+                        @if (pages.RoadmapID == 6)
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to explore a military career.</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <h4 class="goal">My goal is to be @pages.RoadmapName</h4>
+                            </div>
+                        }
+
+                        <div class="row bar">
+                            <div class="progress-bar-striped active progress-bar-warning" role="progressbar" aria-valuenow='@progress'
+                                 aria-valuemin="0" aria-valuemax="100" style="width:@progress%">
+                                <span>@progress%</span>
+                            </div>
+                        </div>
+                        <div class="row pic">
+                            @*<img src="~/Content/images/iwojima.jpg" />*@
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+            <hr class="pagebreak" />
+    }
+    <hr class="pagebreak" />
+</div>
