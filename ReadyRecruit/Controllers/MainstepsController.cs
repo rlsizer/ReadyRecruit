@@ -218,27 +218,45 @@ namespace ReadyRecruit.Controllers
             //}
 
             //delete unused headings (must delete their stat tables first) --isn't working
-            var headsteps = (from step in db.Headsteps
-                             where step.Name == "???"
-                             select step);
-            var headstep = headsteps.FirstOrDefault();
+            //var headsteps = (from step in db.Headsteps
+            //                 where step.Name == "???"
+            //                 select step);
+            //var headstep = headsteps.FirstOrDefault();
 
-            foreach (var h in headsteps)
-            {
-                var headstats = (from stat in db.HeadStats
-                                 where stat.HeadstepID == h.HeadstepID
-                                 select stat);
-                var headstat = headstats.FirstOrDefault();
-                foreach (var s in headstats)
-                {
-                    headstat = db.HeadStats.Find(s.HeadStatID);
-                    db.HeadStats.Remove(headstat);
-                    db.SaveChanges();
-                }
-                headstep = db.Headsteps.Find(h.HeadstepID);
-                db.Headsteps.Remove(headstep);
-                db.SaveChanges();
-            }
+            //foreach (var h in headsteps)
+            //{
+            //    var headstats = (from stat in db.HeadStats
+            //                     where stat.HeadstepID == h.HeadstepID
+            //                     select stat);
+            //    var headstat = headstats.FirstOrDefault();
+            //    foreach (var s in headstats)
+            //    {
+            //        headstat = db.HeadStats.Find(s.HeadStatID);
+            //        db.HeadStats.Remove(headstat);
+            //        db.SaveChanges();
+            //    }
+            //    headstep = db.Headsteps.Find(h.HeadstepID);
+            //    db.Headsteps.Remove(headstep);
+            //    db.SaveChanges();
+            //}
+
+            //populates new substeps
+            //Substep newsubstep = new Substep();
+            // var headsteps = (from step in db.Headsteps
+            //                where step.Name == "Are You Qualified?"
+            //                select step).ToList();
+            //foreach (var h in headsteps)
+            //{
+            //    newsubstep.Number = 2;
+            //    newsubstep.Name = "Height/Weight Requirements";
+            //    newsubstep.IsDone = false;
+            //    newsubstep.Points = 2;
+            //    newsubstep.HeadstepID = h.HeadstepID;
+            //    db.Substeps.Add(newsubstep);
+            //    db.SaveChanges();
+            //}
+
+
             return RedirectToAction("StepPage");
         }
 

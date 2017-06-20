@@ -122,10 +122,14 @@ h2 input{
 }
 
 div.pic {
-    background-image: url('images/iwojima.jpg');
+    /*background-image: url('images/iwojima.jpg');*/
     background-size: 33.3vw;
     display: block;
     height: 50vh;
+}
+div.pic img {
+    width: 31vw;
+    height:80vh;
 }
 div.rightcolumn {
     background-color: black;
@@ -465,6 +469,7 @@ div.newsletters hr {
     width: 180px;
     height: 100px;
     margin: 5px 10px 5px 10px;
+    background-color: tomato;
 }
 /* Login + Register */
 
