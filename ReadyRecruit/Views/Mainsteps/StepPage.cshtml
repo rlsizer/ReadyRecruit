@@ -147,9 +147,9 @@
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("Undecided", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step2", routeValues: null, htmlAttributes: null)
                             </button>
-                            <button type="button" class="btn btn-default">
+                            @*<button type="button" class="btn btn-default">
                                 @Html.ActionLink("Populate", "Populate", "Mainsteps", protocol: null, hostName: null, fragment: "Step1", routeValues: null, htmlAttributes: null)
-                            </button>
+                            </button>*@
 
                             <div class="right">
                                 <a href="#Step2">Next</a>
@@ -352,10 +352,21 @@
                                 <span>@progress%</span>
                             </div>
                         </div>
+                        <div class="row newsletters">
+                            <h4>Check out these newsletters:</h4><hr />
+                            <ul>
+                                <li><a href="https://www.army.mil/news" target="_blank">US Army News</a> ></li>
+                                <li><a href="https://www.army.mil/arnews" target="_blank">US Army News Service</a></li>
+                                <li><a href="https://www.armytimes.com/your-army/" target="_blank">Army Times</a></li>
+                                <li><a href="https://www.airforcetimes.com/your-air-force" target="_blank">Air Force News</a> ></li>
+                                <li>US Navy News</li>
+                                <li><a href="https://www.mca-marines.org/gazette?gclid=CjwKEAjw7J3KBRCxv93Q3KSukXQSJADzFzVShleSeMdZ4n1nplBWqYTeK7yoUFcyaEnvSJ6B_4AfIhoCRu3w_wcB" target="_blank" >Marine Corps News</a ></li>
+                                <li><a href="http://www.news.uscg.mil/" target="_blank">Coast Guard News</a> ></li>
+                                <li><a href="http://www.nationalguard.mil/News/" target="_blank">National Guard News</a> ></li>
+                            </ul>
 
-                        <div class="redditAPI">
-                            <script src="https://www.reddit.com/r/Militaryfaq/.embed?limit=5" type="text/javascript"></script>
                         </div>
+
 
                     </div>
 
@@ -503,9 +514,10 @@
                                 <span>@progress%</span>
                             </div>
                         </div>
-                        <div class="row pic">
-                            @*<img src="~/Content/images/iwojima.jpg" />*@
+                        <div class="redditAPI">
+                            <script src="https://www.reddit.com/r/Militaryfaq/.embed?limit=5" type="text/javascript"></script>
                         </div>
+
                     </div>
 
                 </div>
@@ -629,8 +641,8 @@
                                 <a href="#Step3">prev</a>
                             </div>
 
-                            <a class="btn btn-default" href="#" target="_blank">Resource 1</a>
-                            <a class="btn btn-default" href="#" target="_blank">Video 1</a>
+                            @*<a class="btn btn-default" href="#" target="_blank">Resource 1</a>
+                            <a class="btn btn-default" href="#" target="_blank">Video 1</a>*@
 
                            @if (pages.NumPages != m)
                             {
@@ -662,6 +674,7 @@
                                 <span>@progress%</span>
                             </div>
                         </div>
+
                         <div class="row pic">
                             @*<img src="~/Content/images/iwojima.jpg" />*@
                         </div>
@@ -781,7 +794,7 @@
                                 <a href="#Step4" class="glyphicon glyphicon-triangle-left"></a>
                                 <a href="#Step4">prev</a>
                             </div>
-                            <button type="button" class="btn btn-default">
+                            @*<button type="button" class="btn btn-default">
                                 @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
                             <button type="button" class="btn btn-default">
@@ -792,7 +805,7 @@
                             </button>
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                            </button>
+                            </button>*@
                             @if (pages.NumPages != m)
                             {
                                 <div class="right">
@@ -936,7 +949,7 @@
                                 <a href="#Step5" class="glyphicon glyphicon-triangle-left"></a>
                                 <a href="#Step5">prev</a>
                             </div>
-                            <button type="button" class="btn btn-default">
+                            @*<button type="button" class="btn btn-default">
                                 @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
                             <button type="button" class="btn btn-default">
@@ -947,7 +960,7 @@
                             </button>
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                            </button>
+                            </button>*@
                             @if (pages.NumPages != m)
                             {
                                 <div class="right">
@@ -1095,12 +1108,10 @@
                             }  @* end of i loop (Headings)*@
 
 
-                            <div class="row">
-                                <a class="thumbnail"><iframe width="50" height="75" src="https://youtu.be/GHWhsmwOHT4" frameborder="0" allowfullscreen></iframe></a>
-                                <a class="thumbnail"><iframe width="50" height="75" src="https://youtu.be/vt9VhmA4FnA" frameborder="0" allowfullscreen></iframe></a>
-                                <a class="thumbnail"><iframe width="50" height="75" src="https://youtu.be/7os3Kv-0vKM" frameborder="0" allowfullscreen></iframe></a>
-
-
+                            <div class="row videoindent"> 
+                                <h1 class="img-thumbnail"><iframe width="200" height="100" src="https://youtu.be/GHWhsmwOHT4" frameborder="0" allowfullscreen></iframe></h1>
+                                <a class="img-thumbnail"><iframe width="200" height="100" src="https://youtu.be/vt9VhmA4FnA" frameborder="0" allowfullscreen></iframe></a>
+                                <a class="img-thumbnail"><iframe width="200" height="100" src="https://youtu.be/7os3Kv-0vKM" frameborder="0" allowfullscreen></iframe></a>
                             </div>
 
 
@@ -1111,7 +1122,7 @@
                                 <a href="#Step6" class="glyphicon glyphicon-triangle-left"></a>
                                 <a href="#Step6">prev</a>
                             </div>
-                            <button type="button" class="btn btn-default">
+                            @*<button type="button" class="btn btn-default">
                                 @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
                             <button type="button" class="btn btn-default">
@@ -1122,7 +1133,7 @@
                             </button>
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("Undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                            </button>
+                            </button>*@
                             @if (pages.NumPages != m)
                             {
                                 <div class="right">
@@ -1252,7 +1263,7 @@
                                 <a href="#Step7" class="glyphicon glyphicon-triangle-left"></a>
                                 <a href="#Step7">prev</a>
                             </div>
-                            <button type="button" class="btn btn-default">
+                            @*<button type="button" class="btn btn-default">
                                 @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
                             <button type="button" class="btn btn-default">
@@ -1263,7 +1274,7 @@
                             </button>
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                            </button>
+                            </button>*@
                             @if (pages.NumPages != m)
                             {
                                 <div class="right">
@@ -1393,7 +1404,7 @@
                                 <a href="#Step8" class="glyphicon glyphicon-triangle-left"></a>
                                 <a href="#Step8">prev</a>
                             </div>
-                            <button type="button" class="btn btn-default">
+                            @*<button type="button" class="btn btn-default">
                                 @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
                             <button type="button" class="btn btn-default">
@@ -1404,7 +1415,7 @@
                             </button>
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                            </button>
+                            </button>*@
                             @if (pages.NumPages != m)
                             {
                                 <div class="right">
@@ -1534,7 +1545,7 @@
                                 <a href="#Step9" class="glyphicon glyphicon-triangle-left"></a>
                                 <a href="#Step9">prev</a>
                             </div>
-                            <button type="button" class="btn btn-default">
+                            @*<button type="button" class="btn btn-default">
                                 @Html.ActionLink("Enlisted", "Enlisted", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
                             </button>
                             <button type="button" class="btn btn-default">
@@ -1545,7 +1556,7 @@
                             </button>
                             <button type="button" class="btn btn-default">
                                 @Html.ActionLink("still undecided", "NoTitle", "Mainsteps", protocol: null, hostName: null, fragment: "Step3", routeValues: new { id = pages.LinkID }, htmlAttributes: null)
-                            </button>
+                            </button>*@
                         </div>
                     </div>@* end of col-md-8 *@
 
@@ -1579,4 +1590,5 @@
         </section>
         <hr class="pagebreak" />
     }
+    <hr class="pagebreak" />
 </div>
