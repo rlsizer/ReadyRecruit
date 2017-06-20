@@ -317,14 +317,17 @@
     <Content Include="Content\images\ArmyCareerPicture.jpg" />
     <Content Include="Content\images\bainbridge-ddg_720_720.jpg" />
     <Content Include="Content\images\coastguard.JPG" />
+    <Content Include="Content\images\coastguard.jpg.JPG" />
     <Content Include="Content\images\Diane headshot.jpg" />
     <Content Include="Content\images\flag1.jpg" />
     <Content Include="Content\images\iwojima.jpg" />
     <Content Include="Content\images\jenkins.jazmyne_headshot_2_720.jpg" />
     <Content Include="Content\images\jettakeoff.jpg" />
     <Content Include="Content\images\marines.JPG" />
+    <Content Include="Content\images\marines.jpg.JPG" />
     <Content Include="Content\images\navy.jpg" />
     <Content Include="Content\images\navy2.jpg" />
+    <Content Include="Content\images\navy2.jpg.jpg" />
     <Content Include="Content\images\Onboarding Pic.jpg" />
     <Content Include="Content\images\planes.jpg" />
     <Content Include="Content\images\Ready Recruit!_clipped_rev_1.png" />
