@@ -506,3 +506,15 @@ footer p {
     margin-left:20px;
     color: white;
 }
+.fireworks {
+    background-image: url('images/sparkling-flag_360.gif');
+    background-size: cover;
+    min-width: 100vw;
+    min-height:100vh;
+}
+.fireworks h1 {
+    text-align: center;
+    padding-top: 100px;
+    font-size: 48px;
+    text-shadow: -3px -3px 0 #337ab7, 3px -3px 0 #337ab7, -3px 3px 0 #337ab7, 3px 3px 0 #337ab7;
+}
