@@ -284,9 +284,11 @@ namespace ReadyRecruit.Controllers
             var userLinkID = -1;
             //check profile for branch selection
             var userBranch = (from pr in db.Profiles
+                              where pr.ProfileID == userProfileID
                               select pr.Branch).FirstOrDefault();
             //check profile for title selection
             var userTitle = (from pr in db.Profiles
+                             where pr.ProfileID == userProfileID
                              select pr.Title).FirstOrDefault();
 
             //user has no links and has no title or branch specified:    create undecided branch

@@ -289,7 +289,7 @@ select {
 
 .profileData {
     font-weight: 900;
-    color: rgbA(51,122,183,0.9);
+    color: rgbA(51,122,183,1);
 }
 .ViewProfileSelections a {
     color:#337ab7;
