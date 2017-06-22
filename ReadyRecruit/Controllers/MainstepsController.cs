@@ -256,6 +256,41 @@ namespace ReadyRecruit.Controllers
             //    db.SaveChanges();
             //}
 
+            //couldn't get this one to work -- exception thrown
+            //changes "Choose Your Army Career Path headstep and substeps for Air Force
+            //var mainstep = (from m in db.Mainsteps
+            //                 where m.Name == "Recruiting Phase" &&
+            //                      (m.RoadmapID == 2 || m.RoadmapID == 8 || m.RoadmapID == 13)
+            //                 select m);
+            //foreach(var m in mainstep)
+            //{
+            //    var headstepIDs = (from h in db.Headsteps
+            //                    where h.Name == "Choose Your Army Career Path" &&
+            //                    h.MainstepID == m.MainstepID
+            //                    select h.HeadstepID).ToList();
+            //    foreach(var ID in headstepIDs)
+            //    {
+            //        Headstep step = db.Headsteps.Find(ID);
+            //        step.Name = "Choose Your Air Force Career Path";
+            //        db.SaveChanges();
+            //        var substep = (from s in db.Substeps
+            //                       where s.Name == "Active Duty Army"
+            //                       select s).FirstOrDefault();
+            //        substep.Name = "Active Duty Air Force";
+            //        db.SaveChanges();
+            //        substep = (from s in db.Substeps
+            //                       where s.Name == "Army National Guard"
+            //                       select s).FirstOrDefault();
+            //        substep.Name = "Air Guard";
+            //        db.SaveChanges();
+            //        substep = (from s in db.Substeps
+            //                       where s.Name == "Army Reserve"
+            //                       select s).FirstOrDefault();
+            //        substep.Name = "Air Force Reserve";
+            //        db.SaveChanges();
+            //    }
+
+            //}
 
             return RedirectToAction("StepPage");
         }
