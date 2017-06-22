@@ -362,7 +362,9 @@ div.jumbotron {
    width: 100vw;
     margin: auto;
     max-height:45vh;
+    min-height: 298px;
 }
+
 .item img {
     width: 100vw;
     height: 45vh;
