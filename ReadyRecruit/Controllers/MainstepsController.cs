@@ -586,7 +586,7 @@ namespace ReadyRecruit.Controllers
                                                        select old).FirstOrDefault();
                                     var oldheadstep = (from hs in db.Headsteps
                                                        where hs.MainstepID == oldmainstep.MainstepID
-                                                       && hs.Name == h.Name
+                                                       && hs.Number == h.Number
                                                        select hs).FirstOrDefault();
                                     var oldheadstat = (from stat in db.HeadStats
                                                        where stat.LinkID == oldlinkfirst.LinkID &&
@@ -675,7 +675,7 @@ namespace ReadyRecruit.Controllers
                                                                select old).FirstOrDefault();
                                             var oldheadstep = (from head in db.Headsteps
                                                                where head.MainstepID == oldmainstep.MainstepID &&
-                                                               head.Name == h.Name
+                                                               head.Number == h.Number
                                                                select head).FirstOrDefault();
                                             var oldsubstep = (from old in db.Substeps
                                                               where old.HeadstepID == oldheadstep.HeadstepID
@@ -777,7 +777,7 @@ namespace ReadyRecruit.Controllers
                 //First find all links for this user
                 var links = (from l in db.Links
                              where l.ProfileID == userProfileID
-                             select l);
+                             select l).ToList();
                 //For each link, find the roadmap id
                 var roadmapID = -1;
                 var mainstepID = -1;
@@ -807,6 +807,13 @@ namespace ReadyRecruit.Controllers
                                      ss.Number == substepNumber
                                      select ss.SubstepID).FirstOrDefault();
                     //find SubStatID with this substepID and the link l
+                    //var newitemID = (from s in db.SubStats
+                    //           where s.SubstepID == thisSubstepID &&
+                    //           s.LinkID == l.LinkID
+                    //           select s.SubStatID).FirstOrDefault();
+                    //newitem = db.SubStats.Find(newitemID);
+                    //newitem.IsDone = item.IsDone;
+                    //db.SaveChanges();
                     newitem = (from s in db.SubStats
                                where s.SubstepID == thisSubstepID &&
                                s.LinkID == l.LinkID
@@ -919,7 +926,7 @@ namespace ReadyRecruit.Controllers
                                      select pr.ProfileID).FirstOrDefault();
                 var links = (from l in db.Links
                              where l.ProfileID == userProfileID
-                             select l);
+                             select l).ToList();
                 //For each link, find the roadmap id
                 var roadmapID = -1;
                 var mainstepID = -1;
