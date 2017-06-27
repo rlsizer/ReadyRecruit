@@ -570,6 +570,31 @@ namespace ReadyRecruit.Controllers
                             newStat.IsDone = false;
                             newStat.HeadstepID = h.HeadstepID;
                             newStat.LinkID = userLinkID;
+                            //copy any notes from a previous roadmap for pages 1, 2 or 3
+                            if (mcount >= 1 && mcount <= 3)
+                            {
+                                var oldlink = (from link in db.Links
+                                               where link.ProfileID == userProfileID &&
+                                               link.RoadmapID != userRoadmapID
+                                               select link);
+                                if (!oldlink.IsNullOrEmpty())
+                                {
+                                    var oldlinkfirst = oldlink.FirstOrDefault();
+                                    var oldmainstep = (from old in db.Mainsteps
+                                                       where old.RoadmapID == oldlinkfirst.RoadmapID
+                                                       && old.Name == m.Name
+                                                       select old).FirstOrDefault();
+                                    var oldheadstep = (from hs in db.Headsteps
+                                                       where hs.MainstepID == oldmainstep.MainstepID
+                                                       && hs.Number == h.Number
+                                                       select hs).FirstOrDefault();
+                                    var oldheadstat = (from stat in db.HeadStats
+                                                       where stat.LinkID == oldlinkfirst.LinkID &&
+                                                       stat.HeadstepID == oldheadstep.HeadstepID
+                                                       select stat).FirstOrDefault();
+                                    newStat.Notes = oldheadstat.Notes;
+                                }
+                            }
                             db.HeadStats.Add(newStat);
                             db.SaveChanges();
                             pages.HStatID[mcount, count] = newStat.HeadStatID;
@@ -633,6 +658,36 @@ namespace ReadyRecruit.Controllers
                                     newStat.IsDone = false;
                                     newStat.SubstepID = s.SubstepID;
                                     newStat.LinkID = userLinkID;
+
+                                    //copy IsDone status from a previous roadmap for pages 1, 2, and 3
+                                    if (mcount >= 1 && mcount <= 3)
+                                    {
+                                        var oldlink = (from link in db.Links
+                                                       where link.ProfileID == userProfileID &&
+                                                       link.RoadmapID != userRoadmapID
+                                                       select link);
+                                        if (!oldlink.IsNullOrEmpty())
+                                        {
+                                            var oldlinkfirst = oldlink.FirstOrDefault();
+                                            var oldmainstep = (from old in db.Mainsteps
+                                                               where old.RoadmapID == oldlinkfirst.RoadmapID
+                                                               && old.Name == m.Name
+                                                               select old).FirstOrDefault();
+                                            var oldheadstep = (from head in db.Headsteps
+                                                               where head.MainstepID == oldmainstep.MainstepID &&
+                                                               head.Number == h.Number
+                                                               select head).FirstOrDefault();
+                                            var oldsubstep = (from old in db.Substeps
+                                                              where old.HeadstepID == oldheadstep.HeadstepID
+                                                               && old.Name == s.Name
+                                                              select old).FirstOrDefault();
+                                            var oldstat = (from old in db.SubStats
+                                                           where old.LinkID == oldlinkfirst.LinkID &&
+                                                           old.SubstepID == oldsubstep.SubstepID
+                                                           select old).FirstOrDefault();
+                                            newStat.IsDone = oldstat.IsDone;
+                                        }
+                                    }
                                     db.SubStats.Add(newStat);
                                     db.SaveChanges();
                                     pages.SStatID[mcount, count, subcount] = newStat.SubStatID;
@@ -709,7 +764,65 @@ namespace ReadyRecruit.Controllers
             }
             db.SaveChanges();
 
-            //return RedirectToAction("StepPage");
+            //Since the first 3 steps in each roadmap are the same, assign the IsDone status to all existing
+            //roadmaps with the same Substep
+
+            if (main >= 1 && main <= 3)
+            {
+
+                var substepNumber = substep.Number;
+                var headstepNumber = headstep.Number;
+                var currentRoadmapID = mainstep.RoadmapID;
+
+                //First find all links for this user
+                var links = (from l in db.Links
+                             where l.ProfileID == userProfileID
+                             select l).ToList();
+                //For each link, find the roadmap id
+                var roadmapID = -1;
+                var mainstepID = -1;
+                var thisHeadstepID = -1;
+                var thisSubstepID = -1;
+                SubStat newitem = db.SubStats.Find(id);
+                foreach (Link l in links)
+                {
+                    roadmapID = l.RoadmapID;
+                    //if it is the current roadmap, skip over
+                    if (l.RoadmapID == currentRoadmapID) continue;
+                    //find the mainstepID for this new roadmap and the same mainstep number
+                    mainstepID = (from m in db.Mainsteps
+                                  where m.RoadmapID == l.RoadmapID &&
+                                  m.Number == main
+                                  select m.MainstepID).FirstOrDefault();
+                    //find the headstepID for the headstep with this mainstepID and the same
+                    //headstep.Number as the IsDone status was entered for
+                    thisHeadstepID = (from hs in db.Headsteps
+                                      where hs.MainstepID == mainstepID &&
+                                      hs.Number == headstepNumber
+                                      select hs.HeadstepID).FirstOrDefault();
+                    //find the substepID for the substep with this headstepID and the same
+                    //substep.Number as the IsDone status was entered for
+                    thisSubstepID = (from ss in db.Substeps
+                                     where ss.HeadstepID == thisHeadstepID &&
+                                     ss.Number == substepNumber
+                                     select ss.SubstepID).FirstOrDefault();
+                    //find SubStatID with this substepID and the link l
+                    //var newitemID = (from s in db.SubStats
+                    //           where s.SubstepID == thisSubstepID &&
+                    //           s.LinkID == l.LinkID
+                    //           select s.SubStatID).FirstOrDefault();
+                    //newitem = db.SubStats.Find(newitemID);
+                    //newitem.IsDone = item.IsDone;
+                    //db.SaveChanges();
+                    newitem = (from s in db.SubStats
+                               where s.SubstepID == thisSubstepID &&
+                               s.LinkID == l.LinkID
+                               select s).FirstOrDefault();
+                    newitem.IsDone = item.IsDone;
+                    db.SaveChanges();
+                }
+            }
+
             return Redirect(Url.Action("StepPage", "Mainsteps") + pageID);
         }
 
@@ -767,8 +880,10 @@ namespace ReadyRecruit.Controllers
 
         // POST: Items/SaveNotes/5   (Add ability to save user notes from the view)
         [HttpPost]
-        public ActionResult SaveNotes(int? id, int? id2, string Notes)
+        public ActionResult SaveNotes(int? id, int? id2, int? id3, string Notes)
         {
+            //id = HeadStatID, id2 = Mainstep.Number, id3 = RoadmapID
+
             if (id == null || id2 == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -792,8 +907,57 @@ namespace ReadyRecruit.Controllers
             //set item.Notes equal to user input and save to database  
             item.Notes = Notes;
 
-
             db.SaveChanges();
+
+            //Since the first 3 steps in each roadmap are the same, assign the notes to all existing
+            //roadmaps with the same Headstep
+
+            //find the HeadstepID and then the Headstep.Number for this Stat
+            var headstepID = item.HeadstepID;
+            var headstep = db.Headsteps.Find(headstepID);
+            var headstepNumber = headstep.Number;
+
+            if (id2 >= 1 && id2 <= 3)
+            {
+                //First find all links for this user
+                var currentUserId = User.Identity.GetUserId();
+                var userProfileID = (from pr in db.Profiles
+                                     where pr.Id == currentUserId
+                                     select pr.ProfileID).FirstOrDefault();
+                var links = (from l in db.Links
+                             where l.ProfileID == userProfileID
+                             select l).ToList();
+                //For each link, find the roadmap id
+                var roadmapID = -1;
+                var mainstepID = -1;
+                var thisHeadstepID = -1;
+                HeadStat newitem = db.HeadStats.Find(id);
+                foreach (Link l in links)
+                {
+                    roadmapID = l.RoadmapID;
+                    //if it is the current roadmap, skip over
+                    if (l.RoadmapID == id3) continue;
+                    //find the mainstepID for this new roadmap and the same mainstep number
+                    mainstepID = (from m in db.Mainsteps
+                                  where m.RoadmapID == l.RoadmapID &&
+                                  m.Number == id2
+                                  select m.MainstepID).FirstOrDefault();
+                    //find the headstepID for the headstep with this mainstepID and the same
+                    //headstep.Number as the notes were entered for
+                    thisHeadstepID = (from hs in db.Headsteps
+                                      where hs.MainstepID == mainstepID &&
+                                      hs.Number == headstepNumber
+                                      select hs.HeadstepID).FirstOrDefault();
+                    //find HeadStatID with this headstepID and the link l
+                    newitem = (from h in db.HeadStats
+                               where h.HeadstepID == thisHeadstepID &&
+                               h.LinkID == l.LinkID
+                               select h).FirstOrDefault();
+                    newitem.Notes = item.Notes;
+                    db.SaveChanges();
+                }
+            }
+
 
             return Redirect(Url.Action("StepPage", "Mainsteps") + pageID);
         }
