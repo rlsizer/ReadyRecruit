@@ -531,26 +531,9 @@ namespace ReadyRecruit.Controllers
                                      where hs.LinkID == userLinkID &&
                                      hs.HeadstepID == h.HeadstepID
                                      select hs).ToList();
-                        if (headStats.Count() > 0)
-                        {
-                            pages.HStatID[mcount, count] = (from hs in db.HeadStats
-                                                            where hs.LinkID == userLinkID &&
-                                                            hs.HeadstepID == h.HeadstepID
-                                                            select hs.HeadStatID).FirstOrDefault();     //send heaing status id
-                            pages.HeadingsDue[mcount, count] = (from hs in db.HeadStats
-                                                                where hs.LinkID == userLinkID &&
-                                                                hs.HeadstepID == h.HeadstepID
-                                                                select hs.DueDate).FirstOrDefault();        //send heading due date
-                            pages.IsHeadDone[mcount, count] = (from hs in db.HeadStats
-                                                               where hs.LinkID == userLinkID &&
-                                                               hs.HeadstepID == h.HeadstepID
-                                                               select hs.IsDone).FirstOrDefault();       //send heading isDone status
-                            pages.HeadNotes[mcount, count] = (from hs in db.HeadStats
-                                                              where hs.LinkID == userLinkID &&
-                                                              hs.HeadstepID == h.HeadstepID
-                                                              select hs.Notes).FirstOrDefault();         //send heading notes
-                        }
-                        else   //must create status table
+
+                        //create stat tables if they don't exist
+                        if(headStats.Count<=0)
                         {
                             var lastStat = (from hs in db.HeadStats
                                             select hs.HeadStatID).ToList();
@@ -582,7 +565,7 @@ namespace ReadyRecruit.Controllers
                                     var oldlinkfirst = oldlink.FirstOrDefault();
                                     var oldmainstep = (from old in db.Mainsteps
                                                        where old.RoadmapID == oldlinkfirst.RoadmapID
-                                                       && old.Name == m.Name
+                                                       && old.Number == m.Number
                                                        select old).FirstOrDefault();
                                     var oldheadstep = (from hs in db.Headsteps
                                                        where hs.MainstepID == oldmainstep.MainstepID
@@ -597,9 +580,27 @@ namespace ReadyRecruit.Controllers
                             }
                             db.HeadStats.Add(newStat);
                             db.SaveChanges();
-                            pages.HStatID[mcount, count] = newStat.HeadStatID;
+                            //pages.HStatID[mcount, count] = newStat.HeadStatID;
                         }
-                        substeps = (from s in db.Substeps
+
+                    pages.HStatID[mcount, count] = (from hs in db.HeadStats
+                                                            where hs.LinkID == userLinkID &&
+                                                            hs.HeadstepID == h.HeadstepID
+                                                            select hs.HeadStatID).FirstOrDefault();     //send heading status id
+                            pages.HeadingsDue[mcount, count] = (from hs in db.HeadStats
+                                                                where hs.LinkID == userLinkID &&
+                                                                hs.HeadstepID == h.HeadstepID
+                                                                select hs.DueDate).FirstOrDefault();        //send heading due date
+                            pages.IsHeadDone[mcount, count] = (from hs in db.HeadStats
+                                                               where hs.LinkID == userLinkID &&
+                                                               hs.HeadstepID == h.HeadstepID
+                                                               select hs.IsDone).FirstOrDefault();       //send heading isDone status
+                            pages.HeadNotes[mcount, count] = (from hs in db.HeadStats
+                                                              where hs.LinkID == userLinkID &&
+                                                              hs.HeadstepID == h.HeadstepID
+                                                              select hs.Notes).FirstOrDefault();         //send heading notes
+
+                          substeps = (from s in db.Substeps
                                     where s.HeadstepID == h.HeadstepID
                                     orderby s.Number
                                     select s).ToList();
@@ -618,27 +619,9 @@ namespace ReadyRecruit.Controllers
                                             where ss.LinkID == userLinkID &&
                                             ss.SubstepID == s.SubstepID
                                             select ss).ToList();
-                                if (subStats.Count() > 0)
-                                {
-                                    pages.SStatID[mcount, count, subcount] = (from ss in db.SubStats
-                                                                              where ss.LinkID == userLinkID &&
-                                                                              ss.SubstepID == s.SubstepID
-                                                                              select ss.SubStatID).FirstOrDefault();     //send substep status id
-                                    pages.SubstepsDue[mcount, count, subcount] = (from ss in db.SubStats
-                                                                                  where ss.LinkID == userLinkID &&
-                                                                                  ss.SubstepID == s.SubstepID
-                                                                                  select ss.DueDate).FirstOrDefault();        //send substep due date
-                                    pages.IsSubDone[mcount, count, subcount] = (from ss in db.SubStats
-                                                                                where ss.LinkID == userLinkID &&
-                                                                                ss.SubstepID == s.SubstepID
-                                                                                select ss.IsDone).FirstOrDefault();       //send substep isDone status
-                                    pages.SubNotes[mcount, count, subcount] = (from ss in db.SubStats
-                                                                               where ss.LinkID == userLinkID &&
-                                                                               ss.SubstepID == s.SubstepID
-                                                                               select ss.Notes).FirstOrDefault();         //send substep notes
-                                    if (pages.IsSubDone[mcount, count, subcount] == true) pages.PointsEarned += s.Points;
-                                }
-                                else   //must create status table
+
+                                //create status table if it doesn't exist
+                                if(subStats.Count <= 0)
                                 {
                                     var lastStat = (from ss in db.SubStats
                                                     select ss.SubStatID).ToList();
@@ -671,7 +654,7 @@ namespace ReadyRecruit.Controllers
                                             var oldlinkfirst = oldlink.FirstOrDefault();
                                             var oldmainstep = (from old in db.Mainsteps
                                                                where old.RoadmapID == oldlinkfirst.RoadmapID
-                                                               && old.Name == m.Name
+                                                               && old.Number == m.Number
                                                                select old).FirstOrDefault();
                                             var oldheadstep = (from head in db.Headsteps
                                                                where head.MainstepID == oldmainstep.MainstepID &&
@@ -679,7 +662,7 @@ namespace ReadyRecruit.Controllers
                                                                select head).FirstOrDefault();
                                             var oldsubstep = (from old in db.Substeps
                                                               where old.HeadstepID == oldheadstep.HeadstepID
-                                                               && old.Name == s.Name
+                                                               && old.Number == s.Number
                                                               select old).FirstOrDefault();
                                             var oldstat = (from old in db.SubStats
                                                            where old.LinkID == oldlinkfirst.LinkID &&
@@ -690,8 +673,28 @@ namespace ReadyRecruit.Controllers
                                     }
                                     db.SubStats.Add(newStat);
                                     db.SaveChanges();
-                                    pages.SStatID[mcount, count, subcount] = newStat.SubStatID;
+                                    //pages.SStatID[mcount, count, subcount] = newStat.SubStatID;
+
                                 }
+
+
+                                    pages.SStatID[mcount, count, subcount] = (from ss in db.SubStats
+                                                                              where ss.LinkID == userLinkID &&
+                                                                              ss.SubstepID == s.SubstepID
+                                                                              select ss.SubStatID).FirstOrDefault();     //send substep status id
+                                    pages.SubstepsDue[mcount, count, subcount] = (from ss in db.SubStats
+                                                                                  where ss.LinkID == userLinkID &&
+                                                                                  ss.SubstepID == s.SubstepID
+                                                                                  select ss.DueDate).FirstOrDefault();        //send substep due date
+                                    pages.IsSubDone[mcount, count, subcount] = (from ss in db.SubStats
+                                                                                where ss.LinkID == userLinkID &&
+                                                                                ss.SubstepID == s.SubstepID
+                                                                                select ss.IsDone).FirstOrDefault();       //send substep isDone status
+                                    pages.SubNotes[mcount, count, subcount] = (from ss in db.SubStats
+                                                                               where ss.LinkID == userLinkID &&
+                                                                               ss.SubstepID == s.SubstepID
+                                                                               select ss.Notes).FirstOrDefault();         //send substep notes
+                                    if (pages.IsSubDone[mcount, count, subcount] == true) pages.PointsEarned += s.Points;
 
                             }
                         }
