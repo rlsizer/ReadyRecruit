@@ -47,19 +47,24 @@
             </span>
             children or others that depend on me for their support.
 
-
+            @{ 
+                var undecided = false;
+            } 
             @if ((item.Title == null || item.Title == "" || item.Title == "undecided") && (item.Branch == null || item.Branch == "" || item.Branch == "undecided"))
-            {
+                    {
+                        undecided = true;
                 <span>I have <span class="profileData">not yet decided</span> on a branch of the military (Army, Air Force, etc...) or whether I want to go in as <span class="profileData">an officer or an enlisted soldier</span></span>
             }
             else if (item.Title == null || item.Title == "" || item.Title == "undecided")
             {
+                undecided = true;
                 <span>
                     I want to join the <span class="profileData">@Html.DisplayFor(modelItem => item.Branch) </span>, but have not yet decided whether to go in as <span class="profileData">an officer or an enlisted soldier</span>
                 </span>
             }
             else if (item.Branch == null || item.Branch == "" || item.Branch == "undecided")
             {
+                undecided = true;
                 <span>
                     I want to be <span class="profileData">@Html.DisplayFor(modelItem => item.Title) </span>, but have <span class="profileData">not yet decided</span> on a branch (Army, Air Force, etc...)
                 </span>
@@ -108,9 +113,22 @@
             <button type="button" class="btn btn-default">
                 @Html.ActionLink("Update Profile", "Edit", new { id = item.ProfileID })
             </button>
-            <button type="button" class="btn btn-default getstarted">
-                @Html.ActionLink("Get Started!", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: null, routeValues: null, htmlAttributes: null)
-            </button>
+            @if (undecided == true)
+            {
+                <button type="button" class="btn btn-default getstarted">
+                    @Html.ActionLink("Get Started!", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: null, routeValues: null, htmlAttributes: null)
+                </button>
+            }
+            else
+            {
+                <button type="button" class="btn btn-default">
+                    @Html.ActionLink("Change Career Path", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: null, routeValues: null, htmlAttributes: null)
+                </button>
+                <button type="button" class="btn btn-default getstarted">
+                    @Html.ActionLink("Continue", "StepPage", "Mainsteps", protocol: null, hostName: null, fragment: "Step4", routeValues: null, htmlAttributes: null)
+                </button>
+            }
+
             @*<button type="button" class="btn btn-default">
                 @Html.ActionLink("Delete", "Delete", new { id = item.ProfileID })
             </button>*@
