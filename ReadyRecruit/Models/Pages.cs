@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -35,5 +36,6 @@ namespace ReadyRecruit.Models
         public string[,,] SubNotes { get; set; } = new string[20,20,20];
         public int Ihead { get; set; }    
         public int Jsub { get; set; }
+      
     }
 }

@@ -713,6 +713,7 @@ namespace ReadyRecruit.Controllers
             pages.LinkID = userLinkID;
             pages.Ihead = 0;
             pages.Jsub = 0;
+            
 
             ViewData["Pages"] = pages;
 

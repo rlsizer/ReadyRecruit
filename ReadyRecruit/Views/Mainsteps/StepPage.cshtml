@@ -59,7 +59,8 @@
                                     @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, id3 = pages.RoadmapID, notes = "Notes" }))
                                     {
                                         <div1>
-                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            @*<input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />*@
+                                            <textarea class="NotesForm NotesRight" name="Notes" rows="10" placeholder="Enter Notes Here" >@pages.HeadNotes[m, i]</textarea>
                                             <input id="savenotes" type="submit" value="Save Notes" />
                                         </div1>
                                         @*<div1>
@@ -219,7 +220,7 @@
                                     @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, id3 = pages.RoadmapID, notes = "Notes" }))
                                     {
                                         <div1>
-                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <textarea class="NotesForm NotesRight" name="Notes" rows="10" placeholder="Enter Notes Here">@pages.HeadNotes[m, i]</textarea>
                                             <input id="savenotes" type="submit" value="Save Notes" />
                                         </div1>
                                         @*<div1>
@@ -403,8 +404,8 @@
                                     @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, id3 = pages.RoadmapID, notes = "Notes" }))
                                     {
                                         <div1>
-                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
-                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                            <textarea class="NotesForm NotesRight" name="Notes" rows="10" placeholder="Enter Notes Here">@pages.HeadNotes[m, i]</textarea>
+                                            <input id="savenotes" type="submit" value="Save Notes" />    
                                         </div1>
                                         @*<div1>
                                                 <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
@@ -553,7 +554,7 @@
                                     @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, id3 = pages.RoadmapID, notes = "Notes" }))
                                     {
                                         <div1>
-                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <textarea class="NotesForm NotesRight" name="Notes" rows="10" placeholder="Enter Notes Here">@pages.HeadNotes[m, i]</textarea>
                                             <input id="savenotes" type="submit" value="Save Notes" />
                                         </div1>
                                         @*<div1>
@@ -738,8 +739,8 @@
                                     @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, id3 = pages.RoadmapID, notes = "Notes" }))
                                     {
                                         <div1>
-                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
-                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                            <textarea class="NotesForm NotesRight" name="Notes" rows="10" placeholder="Enter Notes Here">@pages.HeadNotes[m, i]</textarea>
+                                            <input id="savenotes" type="submit" value="Save Notes" />                                         
                                         </div1>
                                         @*<div1>
                                                 <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
@@ -900,8 +901,8 @@
                                     @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, id3 = pages.RoadmapID, notes = "Notes" }))
                                     {
                                         <div1>
-                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
-                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                            <textarea class="NotesForm NotesRight" name="Notes" rows="10" placeholder="Enter Notes Here">@pages.HeadNotes[m, i]</textarea>
+                                            <input id="savenotes" type="submit" value="Save Notes" />                           
                                         </div1>
                                         @*<div1>
                                                 <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
@@ -1064,7 +1065,7 @@
                                     @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, id3 = pages.RoadmapID, notes = "Notes" }))
                                     {
                                         <div1>
-                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <textarea class="NotesForm NotesRight" name="Notes" rows="10" placeholder="Enter Notes Here">@pages.HeadNotes[m, i]</textarea>
                                             <input id="savenotes" type="submit" value="Save Notes" />
                                         </div1>
                                         @*<div1>
@@ -1246,8 +1247,8 @@
                                     @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, id3 = pages.RoadmapID, notes = "Notes" }))
                                     {
                                         <div1>
-                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
-                                            <input id="savenotes" type="submit" value="Save Notes" />
+                                            <textarea class="NotesForm NotesRight" name="Notes" rows="10" placeholder="Enter Notes Here">@pages.HeadNotes[m, i]</textarea>
+                                            <input id="savenotes" type="submit" value="Save Notes" />                                           
                                         </div1>
                                         @*<div1>
                                                 <textarea class="NotesRight" rows="6" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]"></textarea>
@@ -1395,7 +1396,7 @@
                                     @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, id3 = pages.RoadmapID, notes = "Notes" }))
                                     {
                                         <div1>
-                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <textarea class="NotesForm NotesRight" name="Notes" rows="10" placeholder="Enter Notes Here">@pages.HeadNotes[m, i]</textarea>
                                             <input id="savenotes" type="submit" value="Save Notes" />
                                         </div1>
                                         @*<div1>
@@ -1544,7 +1545,7 @@
                                     @using (Html.BeginForm("SaveNotes", "Mainsteps", new { id = pages.HStatID[m, i], id2 = m, id3 = pages.RoadmapID, notes = "Notes" }))
                                     {
                                         <div1>
-                                            <input class="NotesForm NotesRight" type="text" name="Notes" wrap="hard" placeholder="Enter Notes Here" value="@pages.HeadNotes[m, i]" />
+                                            <textarea class="NotesForm NotesRight" name="Notes" rows="10" placeholder="Enter Notes Here">@pages.HeadNotes[m, i]</textarea>
                                             <input id="savenotes" type="submit" value="Save Notes" />
                                         </div1>
                                         @*<div1>
