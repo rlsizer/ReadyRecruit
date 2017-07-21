@@ -6,6 +6,7 @@
 }
 @{
     var pages = (Pages)ViewData["Pages"];
+    
     var m = 0;
     int progress = Decimal.ToInt32(pages.PointsEarned * 100 / pages.PointsTotal);
     var name = "";
